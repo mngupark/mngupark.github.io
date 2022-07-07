@@ -8,8 +8,8 @@ title: About
 - 서울 광운대학교 재학 (2017 ~ )
 - Email : alsrb0820@gmail.com
 
-<p class="message">
-  You can get more specific information at [Gyuhub](https://github.com/Gyuhub/Gyuhub).
+*You can get more specific information at [Gyuhub](https://github.com/Gyuhub/Gyuhub).*
 
+<p class="message">
   Thanks for reading!
 </p>
