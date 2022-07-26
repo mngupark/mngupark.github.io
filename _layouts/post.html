@@ -23,3 +23,8 @@ layout: default
   </ul>
 </aside>
 {% endif %}
+
+{% assign categories = page.categories %}
+{% for category in categories %}
+      <small><a href="{{ site.baseurl }}/categories">{{ category }}</a></small>
+{% endfor %}
