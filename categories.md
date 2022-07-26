@@ -7,11 +7,12 @@ title: Categories
 
 Browse all posts by categories.
 
-{% for category in site.categories %}
-  <h2>{{ category | first }}</h2>
-  <h3>{{ category[0] | capfirst }}</h3>
+{% for categories in site.categories %}
+{% for category in categories %}
+  <h3>{{ category[0] | capitalize }}</h3>
+{% endfor %}
   <ul>
-    {% for post in category[1] %}
+    {% for post in categories[1] %}
       <li><a href="{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>
