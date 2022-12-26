@@ -50,3 +50,8 @@ nav:
 
   - title: About
     url: /about
+
+# Latex configuration
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
