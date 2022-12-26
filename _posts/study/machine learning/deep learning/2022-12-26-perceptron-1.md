@@ -35,8 +35,8 @@ use_math: true
 
 여기선 이 정해진 한계를 임계값이라고 하며 $\theta$로 표현한다. 이를 수식으로 나타내면 아래와 같다.
 
-$$y=
-\begin{cases}
+$$
+y=\begin{cases}
 0, & w_1 x_1 + w_2 x_2 \le \theta \\
 1, & w_1 x_1 + w_2 x_2 > \theta
 \end{cases}
