@@ -2,7 +2,6 @@
 layout: post
 title: Perceptron-1
 category: deep learning
-use_math: true
 ---
 
 퍼셉트론(Perceptron)은 프랑크 로젠블라트가 1957년에 고안한 알고리즘이다.
@@ -35,9 +34,9 @@ use_math: true
 
 여기선 이 정해진 한계를 임계값이라고 하며 $\theta$로 표현한다. 이를 수식으로 나타내면 아래와 같다.
 
-$$y=\begin{cases}
+$$ y=\begin{cases}
 0, & w_1 x_1 + w_2 x_2 \le \theta \\
 1, & w_1 x_1 + w_2 x_2 > \theta
-\end{cases}$$
+\end{cases} $$
 
 퍼셉트론은 복수의 입력 신호 **각각에** 고유한 *가중치*를 부여한다. *가중치*는 각 신호가 결과에 주는 영향력을 조절하는 요소로 작용한다.
