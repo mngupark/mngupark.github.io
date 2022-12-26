@@ -2,6 +2,7 @@
 layout: post
 title: Perceptron-1
 category: deep learning
+use_math: true
 ---
 
 퍼셉트론(Perceptron)은 프랑크 로젠블라트가 1957년에 고안한 알고리즘이다.
