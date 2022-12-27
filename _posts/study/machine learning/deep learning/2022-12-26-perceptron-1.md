@@ -93,7 +93,7 @@ y=\begin{cases}
 \end{cases}
 $$
 
-크게 달라질 것은 없고 이전의 수식에서 $\color{yellow}\theta$를 $\color{yellow}-b$로 표기만 바꿨을 뿐, 의미는 같습니다.
+크게 달라질 것은 없고 이전의 수식에서 $\color{yellow}\theta$를 $\color{yellow}{-b}$로 표기만 바꿨을 뿐, 의미는 같습니다.
 
 앞으로는 **임계값** $\theta$라는 표현 대신 **편향** $b$라는 표현으로 바꿔서 사용하겠습니다.
 
