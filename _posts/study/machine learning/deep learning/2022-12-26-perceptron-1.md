@@ -20,7 +20,7 @@ category: deep learning
 
 퍼셉트론은 신경망(딥러닝)의 기원이 되는 알고리즘이기에 이 구조를 배우는 것은 신경망과 딥러닝으로 나아가는 중요한 시작점이라고 할 수 있습니다.
 
-# 퍼셉트론이란? {#1}
+# 퍼셉트론이란? {#perceptron}
 
 퍼셉트론은 다수의 **신호**를 입력으로 받아 하나의 **신호**를 출력합니다. 여기서 **신호**란 전류나 강물처럼 흐름이 있는 것을 비유할 수 있습니다.
 
@@ -61,16 +61,17 @@ $$
 
 구현해 볼 논리 게이트는 AND, NAND, OR 그리고 XOR 게이트 입니다.
 
-1. AND 게이트
+- AND 게이트
 
 아래에는 해당 게이트에 대한 진리표와 Python 코드가 있습니다.
 
-| $x_1$ | $x_2$ | $y$   |
-| :---: | :---: | :---: |
-| 0     | 0     | 0     |
-| 1     | 0     | 0     |
-| 0     | 1     | 0     |
-| 1     | 1     | 1     |
+<table style="margin-left: auto; margin-right: auto; width: 30%;">
+  <tr><th>$x_1$</th> <th>$x_2$</th> <th>$y$</th></tr>
+  <tr><td>0</td> <td>0</td> <td>0</td></tr>
+  <tr><td>1</td> <td>0</td> <td>0</td></tr>
+  <tr><td>0</td> <td>1</td> <td>0</td></tr>
+  <tr><td>1</td> <td>1</td> <td>1</td></tr>
+</table>
 
 ```python
 def and_gate(x1, x2):
@@ -81,18 +82,18 @@ def and_gate(x1, x2):
      elif tmp > theta:
           return 1
 ```
-2. NAND 게이트
+- NAND 게이트
 
-NAND 게이트를 구현하기 전에 퍼셉트론의 [수식](#1)을 조금 수정하겠습니다.
+NAND 게이트를 구현하기 전에 퍼셉트론의 [수식](#perceptron)을 조금 수정하겠습니다.
 
 $$
 y=\begin{cases}
-0, & b + w_1 x_1 + w_2 x_2 \le 0 \\
-1, & b + w_1 x_1 + w_2 x_2 > 0
+0, & {\color{yellow}b} + w_1 x_1 + w_2 x_2 \le 0 \\
+1, & {\color{yellow}b} + w_1 x_1 + w_2 x_2 > 0
 \end{cases}
 $$
 
-크게 달라질 것은 없고 이전의 수식에서 $\theta$를 $-b$로 표기만 바꿨을 뿐, 의미는 같습니다.
+크게 달라질 것은 없고 이전의 수식에서 $\color{yellow}\theta$를 $\color{yellow}-b$로 표기만 바꿨을 뿐, 의미는 같습니다.
 
 앞으로는 **임계값** $\theta$라는 표현 대신 **편향** $b$라는 표현으로 바꿔서 사용하겠습니다.
 
@@ -100,12 +101,13 @@ $$
 
 그럼 수정된 수식을 통한 해당 게이트에 대한 진리표와 Python 코드가 아래에 있습니다.
 
-| $x_1$ | $x_2$ | $y$   |
-| :---: | :---: | :---: |
-| 0     | 0     | 1     |
-| 1     | 0     | 1     |
-| 0     | 1     | 1     |
-| 1     | 1     | 0     |
+<table style="margin-left: auto; margin-right: auto; width: 30%;">
+  <tr><th>$x_1$</th> <th>$x_2$</th> <th>$y$</th></tr>
+  <tr><td>0</td> <td>0</td> <td>1</td></tr>
+  <tr><td>1</td> <td>0</td> <td>1</td></tr>
+  <tr><td>0</td> <td>1</td> <td>1</td></tr>
+  <tr><td>1</td> <td>1</td> <td>0</td></tr>
+</table>
 
 > :memo: 여기서부터는 Python의 <mark>numpy</mark> 모듈을 사용했습니다.
 
@@ -121,16 +123,17 @@ def nand_gate(x1, x2):
           return 1
 ```
 
-3. OR 게이트
+- OR 게이트
 
 아래에는 해당 게이트에 대한 진리표와 Python 코드가 있습니다.
 
-| $x_1$ | $x_2$ | $y$   |
-| :---: | :---: | :---: |
-| 0     | 0     | 0     |
-| 1     | 0     | 1     |
-| 0     | 1     | 1     |
-| 1     | 1     | 1     |
+<table style="margin-left: auto; margin-right: auto; width: 30%;">
+  <tr><th>$x_1$</th> <th>$x_2$</th> <th>$y$</th></tr>
+  <tr><td>0</td> <td>0</td> <td>0</td></tr>
+  <tr><td>1</td> <td>0</td> <td>1</td></tr>
+  <tr><td>0</td> <td>1</td> <td>1</td></tr>
+  <tr><td>1</td> <td>1</td> <td>1</td></tr>
+</table>
 
 ```python
 def or_gate(x1, x2):
