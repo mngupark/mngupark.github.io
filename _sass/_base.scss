@@ -39,6 +39,11 @@ img {
   border-radius: var(--border-radius);
 }
 
+.emoji {
+  display: inline-block;
+  margin: auto;
+}
+
 table {
   margin-bottom: 1rem;
   width: 100%;
