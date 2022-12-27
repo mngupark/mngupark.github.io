@@ -83,8 +83,12 @@ blockquote {
 
 figure {
   margin: 0;
+  text-align: center;
 }
 
+figcaption {
+  color: var(--gray-600);
+}
 
 // Markdown footnotes
 //
