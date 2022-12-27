@@ -52,6 +52,13 @@ nav:
     url: /about
 
 # Latex configuration
+markdown: kramdown
+highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"
 incremental: false
+
+# Markdown Processing
+kramdown:
+  input: GFM
+  math_engine: mathjax
