@@ -68,6 +68,7 @@ $$
 아래에는 해당 게이트에 대한 진리표와 Python 코드가 있습니다.
 
 <table style="margin-left: auto; margin-right: auto; width: 30%;">
+  <caption>AND 게이트의 진리표</caption>
   <tr><th>$x_1$</th> <th>$x_2$</th> <th>$y$</th></tr>
   <tr><td>0</td> <td>0</td> <td>0</td></tr>
   <tr><td>1</td> <td>0</td> <td>0</td></tr>
@@ -104,6 +105,7 @@ $$
 그럼 수정된 수식을 통한 해당 게이트에 대한 진리표와 Python 코드가 아래에 있습니다.
 
 <table style="margin-left: auto; margin-right: auto; width: 30%;">
+  <caption>NAND 게이트의 진리표</caption>
   <tr><th>$x_1$</th> <th>$x_2$</th> <th>$y$</th></tr>
   <tr><td>0</td> <td>0</td> <td>1</td></tr>
   <tr><td>1</td> <td>0</td> <td>1</td></tr>
@@ -130,6 +132,7 @@ def nand_gate(x1, x2):
 아래에는 해당 게이트에 대한 진리표와 Python 코드가 있습니다.
 
 <table style="margin-left: auto; margin-right: auto; width: 30%;">
+  <caption>OR 게이트의 진리표</caption>
   <tr><th>$x_1$</th> <th>$x_2$</th> <th>$y$</th></tr>
   <tr><td>0</td> <td>0</td> <td>0</td></tr>
   <tr><td>1</td> <td>0</td> <td>1</td></tr>
@@ -153,6 +156,6 @@ def or_gate(x1, x2):
 
 바로 3가지 게이트 모두 다 **똑같은** 퍼셉트론의 구조이지만 **가중치**와 **편향** 매개변수의 <ins>값을 조절</ins>하면서 역할이 각각 다른 게이트를 구현할 수 있었다는 사실입니다.
 
-기계 학습 문제란 바로 이러한 ==매개변수의 값==을 정하는 작업을 컴퓨터가 자동으로 할 수 있게 하는 것입니다!
+기계 학습 문제란 바로 이러한 <mark>매개변수의 값</mark>을 정하는 작업을 컴퓨터가 자동으로 할 수 있게 하는 것입니다!
 
-**학습**이란 적절한 ==매개변수==를 정하는 작업이며, 사람은 **퍼셉트론의 구조** (==모델==)을 만들고 컴퓨터에 학습할 **데이터**를 주는 일을 합니다.
+**학습**이란 적절한 <mark>매개변수</mark>를 정하는 작업이며, 사람은 **퍼셉트론의 구조** (<mark>모델</mark>)을 만들고 컴퓨터에 학습할 **데이터**를 주는 일을 합니다.
