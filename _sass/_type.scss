@@ -88,6 +88,10 @@ figure {
 
 figcaption {
   color: var(--gray-600);
+  &::before {
+    counter-increment: fig-counter;
+    content: "[Fig. " counter(fig-counter) ".] ";
+  }
 }
 
 // Markdown footnotes

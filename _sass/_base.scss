@@ -17,6 +17,10 @@ body {
       -ms-text-size-adjust: 100%;
 }
 
+article {
+  counter-reset: table-counter, cap-counter;
+}
+
 // No `:visited` state is required by default (browsers will use `a`)
 a {
   color: var(--link-color);
@@ -44,20 +48,23 @@ img {
   margin: auto;
 }
 
-caption {
-  padding: 10px;
-  padding-left: 0;
-  caption-side: top;
-  text-align: left;
-  font-size: 15px;
-  color: var(--gray-500);
-}
-
 table {
   margin-bottom: 1rem;
   width: 100%;
   border: 0px solid var(--border-color);
   border-collapse: collapse;
+  caption {
+    padding: 10px;
+    padding-left: 0;
+    caption-side: top;
+    text-align: left;
+    font-size: 15px;
+    color: var(--gray-500);
+    &::before {
+      counter-increment: tab-counter;
+      content: "[Table " counter(tab-counter) ".] ";
+    }
+  }
 }
 
 td,
