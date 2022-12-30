@@ -88,3 +88,55 @@ mark {
   background-color: var(--yellow-100);
   border-radius: .125rem;
 }
+
+.btn {
+  display: inline-block;
+  border-radius: 2px;
+  background-color: var(--button-bg-color);;
+  border: none;
+  color: var(--button-color);;
+  text-align: center;
+  margin: 3px;
+  font-family: var(--body-font);
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  padding: 10px;
+  width: auto;
+  transition: all 0.5s;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  vertical-align: middle;
+
+  & span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  & span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -10px;
+    transition: 0.5s;
+  }
+
+  &:hover span {
+    padding-right: 15px;
+  }
+  &:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+  &:active,
+  &:focus {
+    background-color: var(--button-hover-bg-color);
+    outline: 0;
+  }
+  &:disabled {
+    background-color: var(--button-bg-color);
+    opacity: 0.5;
+  }
+}
