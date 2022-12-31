@@ -9,6 +9,14 @@ post-order: 2
 
 지금까지 AND, NAND, OR 총 3가지의 게이트를 살펴봤습니다. 다음으로 살펴볼 게이트는 XOR 게이트입니다.
 
+<figure>
+     <img src="/assets/images/study/machine_learning/deep_learning/2022-12-30-perceptron_2.jpg"
+          title="Perceptron-2"
+          alt="Perceptron-2"
+          class="img_center"/>
+     <figcaption>XOR 게이트의 예시</figcaption>
+</figure>
+
 XOR 게이트는 **베타적 논리합**이라는 논리 회로입니다. $x_1$과 $x_2$ 중 한 쪽이 1일때만 1을 출력합니다.
 
 해당 게이트에 대한 진리표는 아래와 같습니다.
@@ -38,11 +46,13 @@ XOR 게이트는 여러가지 방법으로 구현할 수 있습니다. 결국 XO
 
 그 많은 방법 중 아래와 같이 AND, NAND, OR 게이트를 하나씩 조합해서 만드는 방법이 있습니다.
 
-<center>
-
-    sample image of XOR gate
-
-</center>
+<figure>
+     <img src="/assets/images/study/machine_learning/deep_learning/2022-12-30-perceptron_3.jpg"
+          title="Perceptron-3"
+          alt="Perceptron-3"
+          class="img_center"/>
+     <figcaption>또다른 XOR 게이트의 예시</figcaption>
+</figure>
 
 위의 게이트 조합대로 NAND 게이트의 출력을 $s_1$, OR 게이트의 출력을 $s_2$라고 한다면 새롭게 만들어진 XOR 게이트의 진리표는 아래와 같습니다.
 
@@ -67,11 +77,14 @@ def xor_gate(x1, x2):
 
 이러한 XOR 게이트를 뉴런을 이용한 퍼셉트론으로 표현한다면 아래 그림과 같습니다.
 
-<center>
-
-    perceptron of XOR gate
-
-</center>
+<figure>
+     <img src="/assets/images/study/machine_learning/deep_learning/2022-12-30-perceptron_4.jpg"
+          title="Perceptron-4"
+          alt="Perceptron-4"
+          class="img_center"
+          style="width: 50%"/>
+     <figcaption>뉴런으로 나타낸 XOR 게이트</figcaption>
+</figure>
 
 왼쪽부터 차례대로 각각의 뉴런의 열들을 0층, 1층, 2층이라고 부릅니다. 층이 여러 개인 이런 퍼셉트론을 **다층 퍼셉트론**이라고 부릅니다.
 

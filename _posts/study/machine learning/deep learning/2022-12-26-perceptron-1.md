@@ -31,11 +31,13 @@ post-order: 1
 
 ---
 
-<center>
-
-퍼셉트론 예시 이미지 대체
-
-</center>
+<figure>
+     <img src="/assets/images/study/machine_learning/deep_learning/2022-12-26-perceptron_1.jpg"
+          title="Perceptron-1"
+          alt="Perceptron-1"
+          class="img_center"/>
+     <figcaption>퍼셉트론의 예시</figcaption>
+</figure>
 
 위의 그림은 입력이 2개인 퍼셉트론의 한 예시입니다.
 
