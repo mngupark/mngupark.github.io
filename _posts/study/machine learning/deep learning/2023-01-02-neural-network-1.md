@@ -31,7 +31,8 @@ post-order: 3
      <img src="/assets/images/study/machine_learning/deep_learning/2023-01-02-neural_network_1.jpg" 
           title="Example of neural network"
           alt="Example of neural network"
-          class="img_center"/>
+          class="img_center"
+          style="width: 50%"/>
      <figcaption>신경망의 예시</figcaption>
 </figure>
 
@@ -51,7 +52,8 @@ post-order: 3
      <img src="/assets/images/study/machine_learning/deep_learning/2022-12-26-perceptron_1.jpg" 
           title="Review of perceptron"
           alt="Review of perceptron"
-          class="img_center"/>
+          class="img_center"
+          style="width: 50%"/>
      <figcaption>퍼셉트론이 신호를 전달하는 방식</figcaption>
 </figure>
 
@@ -70,7 +72,8 @@ $$
      <img src="/assets/images/study/machine_learning/deep_learning/2023-01-02-neural_network_2.jpg" 
           title="Biased perceptron"
           alt="Biased perceptron"
-          class="img_center"/>
+          class="img_center"
+          style="width: 50%"/>
      <figcaption>편향이 추가된 퍼셉트론</figcaption>
 </figure>
 
@@ -103,7 +106,8 @@ $$
      <img src="/assets/images/study/machine_learning/deep_learning/2023-01-02-neural_network_3.jpg" 
           title="Procedure of activation function"
           alt="Procedure of activation function"
-          class="img_center"/>
+          class="img_center"
+          style="width: 50%"/>
      <figcaption>활성화 함수의 처리 과정</figcaption>
 </figure>
 
