@@ -51,8 +51,8 @@ $x_1$과 $x_2$는 **입력 신호** , $y$는 **출력 신호**, $w_1$과 $w_2$�
 
 $$
 y=\begin{cases}
-0, & w_1 x_1 + w_2 x_2 \le \theta \\
-1, & w_1 x_1 + w_2 x_2 > \theta
+0 & (w_1 x_1 + w_2 x_2 \le \theta) \\
+1 & (w_1 x_1 + w_2 x_2 > \theta)
 \end{cases}
 $$
 
@@ -94,8 +94,8 @@ NAND 게이트를 구현하기 전에 퍼셉트론의 [수식](#perceptron)을 �
 
 $$
 y=\begin{cases}
-0, & {\color{yellow}b} + w_1 x_1 + w_2 x_2 \le 0 \\
-1, & {\color{yellow}b} + w_1 x_1 + w_2 x_2 > 0
+0 & ({\color{yellow}b} + w_1 x_1 + w_2 x_2 \le 0) \\
+1 & ({\color{yellow}b} + w_1 x_1 + w_2 x_2 > 0)
 \end{cases}
 $$
 
