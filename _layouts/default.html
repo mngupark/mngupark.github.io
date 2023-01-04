@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark-poole">
+<html lang="en">
+  <script>
+    var theme = localStorage.getItem('data-theme');
+    document.documentElement.setAttribute('data-theme', theme);
+  </script>
   {% include head.html %}
   {% include mathjax_support.html %}
-
   <body>
     <div class="container content">
       <header class="masthead">
@@ -17,7 +20,11 @@
             <small><a href="{{ nav.url }}">{{ nav.title }}</a></small>
             {% endfor %}
           </nav>
-          <button class="btn theme-btn" onclick="toggle_theme()"><img id="theme-icon" src="/assets/moon.ico"/></button>
+          <button class="btn theme-btn" onclick="toggle_theme()"><img id="theme-icon" src="#"/></button>
+          <script>
+            if (theme == 'dark-poole') document.getElementById('theme-icon').setAttribute('src', '/assets/sun.ico');
+            else document.getElementById('theme-icon').setAttribute('src', '/assets/moon.ico');
+          </script>
         </h3>
       </header>
 

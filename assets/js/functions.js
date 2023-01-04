@@ -14,19 +14,19 @@ function toggle_category(id) {
 let cur_degree = 0;
 
 function toggle_theme() {
-   let currentMode = document.documentElement.getAttribute('data-theme');
+   let currentMode = localStorage.getItem('data-theme');
    var icon = document.getElementById('theme-icon');
    if (currentMode == 'dark-poole') {
       document.documentElement.setAttribute('data-theme', 'light-poole');
 		window.localStorage.setItem('theme', 'light');
-      icon.src = '/assets/sun.ico';
-		// document.getElementById("theme_btn").innerHTML = "Dark Mode";
+      icon.src = '/assets/moon.ico';
+		window.localStorage.setItem('data-theme', 'light-poole');
    }
    else {
       document.documentElement.setAttribute('data-theme', 'dark-poole');
 		window.localStorage.setItem('theme', 'dark');
-      icon.src = '/assets/moon.ico';
-		// document.getElementById("theme_btn").innerHTML = "Light Mode";
+      icon.src = '/assets/sun.ico';
+		window.localStorage.setItem('data-theme', 'dark-poole');
    }
    if (cur_degree == 360) cur_degree = 0;
    else cur_degree += 360;
