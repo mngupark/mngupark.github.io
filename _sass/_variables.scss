@@ -13,6 +13,10 @@
   --dark-poole-002: hsl(0, 0%, 85%);
   --dark-poole-link-color: rgba(255, 255, 255, 0.75);
   --dark-poole-link-hover: #fff;
+  --light-poole-001: hsl(0, 0%, 100%);
+  --light-poole-002: hsl(200, 3%, 12%);
+  --light-poole-link-color: rgba(0, 0, 0, 0.75);
+  --light-poole-link-hover: #000;
 
   --red: #fa5252;
   --pink: #e64980;
@@ -61,19 +65,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --body-color: var(--gray-300);
-    --body-bg: var(--gray-800);
-
-    --heading-color: #fff;
-
-    --link-color: var(--blue-300);
-    --link-hover-color: var(--blue-400);
-
-    --border-color: rgba(255, 255, 255, 0.15);
-
-    --code-bg: var(--gray-900);
-  }
+  // When user theme is set to dark mode
 }
 
 // Dark Poole theme
@@ -85,4 +77,15 @@
   --link-hover-color: var(--dark-poole-link-hover);
   --border-color: rgba(255, 255, 255, 0.15);
   --code-bg: var(--gray-900);
+}
+
+// Light Poole theme
+[data-theme="light-poole"] {
+  --body-color: var(--light-poole-002);
+  --body-bg: var(--light-poole-001);
+  --heading-color: var(--light-poole-002);
+  --link-color: var(--light-poole-link-color);
+  --link-hover-color: var(--light-poole-link-hover);
+  --border-color: rgba(0, 0, 0, 0.15);
+  --code-bg: var(--gray-000);
 }
