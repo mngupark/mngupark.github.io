@@ -84,6 +84,16 @@ thead th {
   border-bottom-color: currentColor;
 }
 
+.aligned-center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  
+  td, th {
+    text-align: center;
+  }
+}
+
 mark {
   padding: .15rem;
   background-color: var(--yellow-100);
