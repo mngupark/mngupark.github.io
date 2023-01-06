@@ -98,8 +98,8 @@ ReLU 함수는 입력이 0을 넘으면 그 입력을 *그대로* 출력하고, 
 
 $$
 h(x)=\begin{cases}
-x\,(x > 0) \\
-0\,(x \le 0) \end{cases} \label{relu} \tag{4}
+0\,(x \le 0) \\
+x\,(x > 0) \end{cases} \label{relu} \tag{4}
 $$
 
 ## 구현
@@ -128,13 +128,16 @@ def relu(x):
 식 $(\ref{relu})$와 그래프를 확인해보면 ReLU 함수는 비교적 간단한 함수입니다. ReLU 함수도 위의 함수들과 마찬가지로 **비선형 함수**이고, **매끄럽습니다**(계단 함수에 비해).
 마지막으로 이러한 활성화 함수들을 표를 통해 공통점과 차이점을 확인해보겠습니다.
 
-<table class="aligned-center">
+<table class="aligned-center" style="width: 70%">
   <caption>신경망에 사용되는 활성화 함수들</caption>
   <tr><th></th><th>Step</th> <th>Sigmoid</th> <th>ReLU</th></tr>
   <tr><th>함수 종류</th> <td>비선형</td> <td>비선형</td> <td>비선형</td> </tr>
   <tr><th>매끄러움의 정도</th> <td>안 매끄러움</td> <td>매끄러움</td> <td>덜 매끄러움</td> </tr>
   <tr><th>미분 가능성</th> <td>$x=0$에서 불가능</td> <td>가능</td> <td>$x=0$에서 불가능</td> </tr>
   <tr><th>출력 값의 범위</th> <td>$[0,1]$</td> <td>$[0,1]$</td> <td>$[0,\infty)$</td> </tr>
+  <tr><th>함수의 공식</th> <td>$h(x)=\begin{cases} 0\,(x \le 0) \\ 1\,(x > 0) \end{cases}$</td>
+                         <td>$h(x)=\frac{1}{1+\exp{-x}}$</td>
+                         <td>$h(x)=\begin{cases} 0\,(x \le 0) \\ x\,(x > 0) \end{cases}$</td> </tr>
 </table>
 
 ---
