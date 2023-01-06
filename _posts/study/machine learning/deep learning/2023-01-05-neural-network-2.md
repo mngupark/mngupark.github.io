@@ -137,4 +137,6 @@ def relu(x):
   <tr><th>출력 값의 범위</th> <td>$[0,1]$</td> <td>$[0,1]$</td> <td>$[0,\infty)$</td> </tr>
 </table>
 
+---
+
 [^fn-functions]: 앞으로 이 [github repository](https://github.com/Gyuhub/dl_scratch.git)에서 관련된 예제들과 구현 코드들을 다룰 예정입니다.
