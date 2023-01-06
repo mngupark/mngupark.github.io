@@ -98,8 +98,8 @@ ReLU 함수는 입력이 0을 넘으면 그 입력을 *그대로* 출력하고, 
 
 $$
 h(x)=\begin{cases}
-0\,(x \le 0) \\
-x\,(x > 0) \end{cases} \label{relu} \tag{4}
+0\ (x \le 0) \\
+x\ (x > 0) \end{cases} \label{relu} \tag{4}
 $$
 
 ## 구현

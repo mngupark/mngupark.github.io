@@ -63,8 +63,8 @@ post-order: 3
 
 $$
 y=\begin{cases}
-0 & (b+w_1 x_1 + w_2 x_2 \le 0) \\
-1 & (b+w_1 x_1 + w_2 x_2 > 0)
+0\ & (b+w_1 x_1 + w_2 x_2 \le 0) \\
+1\ & (b+w_1 x_1 + w_2 x_2 > 0)
 \end{cases} \label{perceptron_1} \tag{1}
 $$
 
@@ -86,8 +86,8 @@ $$
 $$
 y=h(b+w_1 x_1+w_2 x_2) \\
 h(x)=\begin{cases}
-0 & (x \le 0) \\
-1 & (x > 0)
+0\ & (x \le 0) \\
+1\ & (x > 0)
 \end{cases} \tag{2}
 $$
 
