@@ -16,10 +16,10 @@ post-order: 4
 
 ## 시그모이드 함수
 
-신경망에서 자주 사용되는 활성화 함수인 <ins>시그모이드 함수</ins>(sigmoid function)를 아래와 같이 나타낼 수 있습니다.
+신경망에서 자주 사용되는 활성화 함수인 <ins>시그모이드 함수</ins>(sigmoid function)를 아래의 수식으로 나타낼 수 있습니다. 시그모이드란 *"S자 모양"*이라는 의미입니다.
 
 $$
-h(x) = \frac{1}{1+\exp(-x)}
+h(x) = \frac{1}{1+\exp(-x)} \label{sigmoid} \tag{1}
 $$
 
 신경망에서는 입력 신호를 시그모이드 함수를 활성화 함수로 사용해서 변환된 신호를 다음 뉴런으로 전달합니다. 이전에 다룬 퍼셉트론과 앞으로 다룰 신경망의 주된 차이는 바로 이 **활성화 함수**뿐입니다.
@@ -77,13 +77,13 @@ def sigmoid(x):
 예를 들면 입력이 $x$일때 $h(x)=cx+d, (c,d\in\mathbb{R})$라는 선형 함수를 활성화 함수로 사용한 3층 네트워크를 상상해 봅시다. 그렇다면 출력 $y$는 아래와 같이 표현이 가능할 것입니다.
 
 $$
-y=h(h(h(x)))=c(c(cx+d)+d)+d=c^3x+c^2d+cd+d
+y=h(h(h(x)))=c(c(cx+d)+d)+d=c^3x+c^2d+cd+d \label{linear_activation_function_example1} \tag{2}
 $$
 
-위 식을 보면 출력이 복잡해 보이지만 아래와 같이 분리한다면 결국 다른 **선형 함수**를 활성화 함수로 이용한 <ins>은닉층이 없는</ins> 단층 네트워크로 표현이 가능합니다.
+식 $(\ref{linear_activation_function_example1})$를 보면 출력이 복잡해 보이지만 아래와 같이 분리한다면 결국 다른 **선형 함수**를 활성화 함수로 이용한 <ins>은닉층이 없는</ins> 단층 네트워크로 표현이 가능합니다.
 
 $$
-y=\bar{h}(x) (\bar{h}(x)=\bar{c}x+\bar{d}, \bar{c}=c^3, \bar{d}=c^2d+cd+d)
+y=\bar{h}(x) (\bar{h}(x)=\bar{c}x+\bar{d}, \bar{c}=c^3, \bar{d}=c^2d+cd+d) \tag{3}
 $$
 
 따라서 신경망에서 *은닉층을 여러 층*으로 구성하는 이점을 살리고 싶다면 **활성화 함수**는 반드시 **비선형 함수**를 사용해야 합니다.
@@ -99,7 +99,7 @@ ReLU 함수는 입력이 0을 넘으면 그 입력을 *그대로* 출력하고, 
 $$
 h(x)=\begin{cases}
 x\,(x > 0) \\
-0\,(x \le 0) \end{cases}
+0\,(x \le 0) \end{cases} \label{relu} \tag{4}
 $$
 
 ## 구현
@@ -125,7 +125,7 @@ def relu(x):
      <figcaption>ReLU 함수</figcaption>
 </figure>
 
-수식과 그래프를 확인해보면 ReLU 함수는 비교적 간단한 함수입니다. ReLU 함수도 위의 함수들과 마찬가지로 **비선형 함수**이고, **매끄럽습니다**(계단 함수에 비해).
+식 $(\ref{relu})$와 그래프를 확인해보면 ReLU 함수는 비교적 간단한 함수입니다. ReLU 함수도 위의 함수들과 마찬가지로 **비선형 함수**이고, **매끄럽습니다**(계단 함수에 비해).
 마지막으로 이러한 활성화 함수들을 표를 통해 공통점과 차이점을 확인해보겠습니다.
 
 <table class="aligned-center">
@@ -137,4 +137,4 @@ def relu(x):
   <tr><th>출력 값의 범위</th> <td>$[0,1]$</td> <td>$[0,1]$</td> <td>$[0,\infty)$</td> </tr>
 </table>
 
-[^fn-functions]: 앞으로 [Git repository](https://github.com/Gyuhub/dl_scratch.git)에서 관련된 예제들과 구현 코드들을 다룰 예정입니다.
+[^fn-functions]: 앞으로 이 [github repository](https://github.com/Gyuhub/dl_scratch.git)에서 관련된 예제들과 구현 코드들을 다룰 예정입니다.
