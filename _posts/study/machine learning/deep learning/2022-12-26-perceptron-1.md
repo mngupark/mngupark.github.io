@@ -49,7 +49,7 @@ $$
 y=\begin{cases}
 0 & (w_1 x_1 + w_2 x_2 \le \theta) \\
 1 & (w_1 x_1 + w_2 x_2 > \theta)
-\end{cases}
+\end{cases} \label{perceptron_2} \tag{1}
 $$
 
 퍼셉트론은 복수의 입력 신호 **각각에** 고유한 **가중치**를 부여합니다. **가중치**는 각 신호가 결과에 주는 영향력을 조절하는 요소로 작용합니다.
@@ -90,15 +90,15 @@ $$
 y=\begin{cases}
 0 & ({\color{yellow}b} + w_1 x_1 + w_2 x_2 \le 0) \\
 1 & ({\color{yellow}b} + w_1 x_1 + w_2 x_2 > 0)
-\end{cases}
+\end{cases} \label{perceptron_3} \tag{2}
 $$
 
-크게 달라질 것은 없고 이전의 수식에서 $\color{yellow}\theta$를 $\color{yellow}{-b}$로 표기만 바꿨을 뿐, 의미는 같습니다.
+크게 달라질 것은 없고 이전의 수식 $(\ref{perceptron_2})$에서 $\color{yellow}\theta$를 $\color{yellow}{-b}$로 표기만 바꿨을 뿐, 의미는 같습니다.
 앞으로는 **임계값** $\theta$라는 표현 대신 **편향** $b$라는 표현으로 바꿔서 사용하겠습니다.
 
 > :bulb: **편향** $b$는 **가중치** $w$와 기능이 다릅니다! **가중치**는 입력 신호가 결과에 주는 *영향력*을 조절하는 것이고, **편향**은 뉴런이 얼마나 쉽게 *활성화*하느냐를 조정하는 매개변수 입니다.
 
-그럼 수정된 수식을 통한 해당 게이트에 대한 진리표와 Python 코드가 아래에 있습니다.
+그럼 수정된 수식 $(\ref{perceptron_3})$을 통한 해당 게이트에 대한 진리표와 Python 코드가 아래에 있습니다.
 
 <table style="margin-left: auto; margin-right: auto; width: 30%;">
   <caption>NAND 게이트의 진리표</caption>

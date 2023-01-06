@@ -65,10 +65,10 @@ $$
 y=\begin{cases}
 0 & (b+w_1 x_1 + w_2 x_2 \le 0) \\
 1 & (b+w_1 x_1 + w_2 x_2 > 0)
-\end{cases}
+\end{cases} \label{perceptron_1} \tag{1}
 $$
 
-하지만 위의 수식에는 편향 **b**가 보이지 않습니다. 이를 눈에 보이게 명시한다면 아래와 같이 표현할 수 있습니다.
+하지만 위의 수식 $(\ref{perceptron_1})$에는 편향 **b**가 보이지 않습니다. 이를 눈에 보이게 명시한다면 아래와 같이 표현할 수 있습니다.
 
 <figure>
      <img src="/assets/images/study/machine_learning/deep_learning/2023-01-02-neural_network_2.jpg" 
@@ -88,7 +88,7 @@ y=h(b+w_1 x_1+w_2 x_2) \\
 h(x)=\begin{cases}
 0 & (x \le 0) \\
 1 & (x > 0)
-\end{cases}
+\end{cases} \tag{2}
 $$
 
 여기서 $h(x)$는 $x$라는 입력이 들어오면 그 값이 0을 넘으면 1을 출력하고 그렇지 않으면 0을 출력하는 하나의 함수입니다. 이처럼 입력 신호의 총합을 출력 신호로 변환하는 함수를 **활성화 함수**(activation function)이라고 합니다.
@@ -103,7 +103,7 @@ $$
 
 $$
 a=b+w_1 x_1+w_2 x_2 \\
-y=h(a)
+y=h(a) \tag{3}
 $$
 
 <figure>
