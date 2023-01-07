@@ -21,7 +21,7 @@ post-order: 5
 **3층 신경망**은 위의 그림처럼 입력층은 2개, 첫번째 은닉층은 3개, 두번째 은닉층은 2개 그리고 출력층은 2개의 뉴런으로 구성할 예정입니다.
 신경망에서 층이 깊어질수록 **가중치**와 **편향 매개변수**$(w,\,b)$의 개수도 많아질 것입니다. 활성화 함수의 **입력**을 계산하기 위해서 입력층의 뉴런들과 매개변수들을 일일이 곱한다면 <ins>연산량이 매우 많아지겠죠</ins>.
 
-> :buld: 따라서 이러한 큰 비용의 연산을 효율적으로 하기 위해서 **행렬**을 사용하고 행렬 계산에 특화되어 있는 Python 모듈이 바로 **numpy**입니다.
+> :bulb: 따라서 이러한 큰 비용의 연산을 효율적으로 하기 위해서 **행렬**을 사용하고 행렬 계산에 특화되어 있는 Python 모듈이 바로 **numpy**입니다.
 
 # 신경망 행렬
 
@@ -31,7 +31,7 @@ post-order: 5
 
 먼저 입력층의 행렬에는 말 그대로 **입력 값**들이 들어있습니다. 예를 들어 입력이 $x_1,\,x_2$의 두 개의 입력을 받는 네트워크라면 $x=\begin{bmatrix} x_1 & x_2 \end{bmatrix}$처럼 **행 벡터**로 그 값들을 순서대로 나열하여 표현할 수 있습니다.
 
-> :note: **편향**의 경우에는 입력 값이 항상 **1**로 고정되어 있기에 그림에도 생략하고 입력 값의 행렬에도 포함하지 않습니다.
+> :memo: **편향**의 경우에는 입력 값이 항상 **1**로 고정되어 있기에 그림에도 생략하고 입력 값의 행렬에도 포함하지 않습니다.
 
 ## 은닉층
 
@@ -141,6 +141,8 @@ print(z1)
 
 코드상에서 $a_1 = x w_1 + b_1$을 표현한 $a$는 이전의 post에서 표기한 임시 은닉층 변수 $a$를 가져왔습니다. 또한 $z_1 = sigmoid(a_1)$도 같은 맥락으로 가져왔습니다. 그리고 입력, 가중치, 편향등의 값은 전부 임의로 설정한 값을 사용했습니다.
 
+---
+
 ## 3층 신경망 구현
 
 이제 본격적으로 3층 신경망을 구현하겠습니다. 상황은 아래와 같이 요약했습니다.
@@ -152,7 +154,7 @@ print(z1)
 - 출력층의 뉴런 $y_1, y_2$
 - 활성화 함수는 시그모이드 함수
 
-2층 네트워크와 크게 흐름은 다르지 않고 같습니다. 딱 하나, 마지막 은닉층에서 출력층으로의 **활성화 함수**만 **시그모이드 함수**가 아닌 **항등 함수**를 사용합니다.
+2층 네트워크와 흐름은 크게 다르지 않고 같습니다. 딱 하나, 마지막 은닉층에서 출력층으로의 **활성화 함수**만 **시그모이드 함수**가 아닌 **항등 함수**를 사용합니다.
 
 **항등 함수**(identity function)은 입력을 그대로 출력합니다. 수식으로 표현하면 아래와 같습니다.
 
@@ -160,6 +162,76 @@ $$
 h(x)=x \label{identity_function} \tag{4}
 $$
 
+그림으로 표현하면 아래와 같습니다.
+
+<figure>
+     <img src="/assets/images/study/machine_learning/deep_learning/2023-01-06-neural_network_7.jpg"
+          title="Identity function"
+          alt="Image of identity function"
+          class="img_center"/>
+     <figcaption>활성화 함수로 사용된 항등 함수</figcaption>
+</figure>
+
+[Fig. 3.]에서 눈여겨 볼 부분은 바로 활성화 함수가 $\boldsymbol{h(x)}$가 아닌 $\boldsymbol{\sigma(x)}$로 표현되어 있다는 점입니다. 이는 **은닉층**의 활성화 함수와 다르게 **출력층**의 활성화 함수라는 부분을 강조하기 위함입니다.
+
+> :memo: **출력층**의 **활성화 함수**는 신경망을 통해 해결하고자 하는 문제의 성질[^fn-property]에 맞게 정합니다.<br>일반적으로 회귀에는 항등 함수, 2 클래스 분류에는 시그모이드 함수, 다중 클래스 분류에는 소프트맥스 함수를 사용하는 것이 일반적입니다.
+
+분류에서 사용하는 **소프트맥스**(softmax)함수의 수식은 아래와 같습니다.
+
+$$
+h(x)_i=\frac{\exp{z_i}}{\sum_{j=1}^K \exp{z_j}}\ \text{for}\ i=1,\cdots,K\ \text{and}\ \boldsymbol{z}=\begin{bmatrix} z_1 & \cdots & z_K \end{bmatrix} \in \mathbb{R}^K \label{softmax} \tag{5}
+$$
+
+그림으로 표현하면 아래와 같습니다.
+
+<figure>
+     <img src="/assets/images/study/machine_learning/deep_learning/2023-01-06-neural_network_8.jpg"
+          title="Softmax function"
+          alt="Image of softmax function"
+          class="img_center"/>
+     <figcaption>활성화 함수로 사용된 소프트맥스 함수</figcaption>
+</figure>
+
+식 $(\ref{softmax})$에서 소프트맥스 함수는 원소가 $\boldsymbol{K}$개인 입력 벡터 $\boldsymbol{z}$를 입력으로 받습니다. **소프트맥스 함수**는 **정규화된 지수 함수**로 출력층의 활성화 함수를 소프트맥스 함수로 사용하게 되면 출력 값들의 합은 **1**이 됩니다. 출력 값들의 합이 1이므로 각각의 출력 값들은 해당 출력이 정답일 확률이라고도 생각할 수 있습니다.
+
+이제 3층 신경망을 아래와 같이 Python으로 구현하고 그 결과를 확인해보겠습니다.
+```python
+def init_network():
+     network = {}
+     network['w1'] = np.array([[0.9, 0.6, 0.3], [0.4, 0.5, 0.6]])
+     network['b1'] = np.array([0.3, 0.2, 0.4])
+     network['w2'] = np.array([[0.5, 0.4], [0.4, 0.5], [0.8, 0.2]])
+     network['b2'] = np.array([0.5, 0.8])
+     network['w3'] = np.array([[0.1, 0.2], [0.3, 0.4]])
+     network['b3'] = np.array([0.7, 0.4])
+     return network
+
+def forward(network, x):
+     w1, w2, w3 = network['w1'], network['w2'], network['w3']
+     b1, b2, b3 = network['b1'], network['b2'], network['b3']
+
+     a1 = np.dot(x,  w1) + b1
+     z1 = sigmoid(a1)
+     a2 = np.dot(z1, w2) + b2
+     z2 = sigmoid(a2)
+     a3 = np.dot(z2, w3) + b3
+     y = identity(a3)
+     return y
+
+network = init_network()
+x = np.array([0.5, 0.8])
+y = forward(network, x)
+print(y)
+```
+
+### 결과
+```text
+[1.03478215 0.90314115] # y
+```
+
+네트워크(가중치, 편향)를 임의의 값으로 초기화하고 임의의 입력값을 설쟁해서 3층 신경망을 구현했습니다. 네트워크에 입력을 전달해서 결과를 확인하는 함수의 이름이 forward()인 이유는 신호가 순방향(입력에서 출력 방향)으로 전달됨을 알리기 위함입니다. 이런 과정을 **순전파**라고 부릅니다. 앞으로의 신경망 학습에서는 역방향(backward, 출력에서 입력 방향) 처리에 대해서도 다룰 예정입니다.
+
 ---
 
 [^fn-bias-matrix]: $1$과 어떤 실수 $b$를 곱하면 그 값은 항상 $b$가 됩니다. 그래서 편향 뉴런은 표시하지 않고 편향 매개변수 행렬만으로 그 존재를 표현할 수 있는겁니다.
+[^fn-property]: 기계학습 문제는 **분류**(classification)와 **회귀**(regression)으로 나뉩니다. **분류**는 데이터가 어느 class에 속하느냐 하는 문제입니다. 예를 들어 사진 속 동물의 종류를 분류하는 문제가 여기에 속합니다. **회귀**는 입력 데이터에서 (연속적인) 수치를 예측하는 문제입니다. 사진 속 동물의 나이를 예측하는 문제가 여기에 속합니다.
