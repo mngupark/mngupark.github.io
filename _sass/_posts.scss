@@ -45,8 +45,8 @@
   padding-top: var(--spacer-2);
   padding-bottom: var(--spacer-2);
   margin-bottom: var(--spacer-2);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  border-top: 0.063rem solid var(--border-color); //1px
+  border-bottom: 0.063rem solid var(--border-color); //1px
 }
 
 .related-posts {

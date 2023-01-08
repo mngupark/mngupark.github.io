@@ -50,7 +50,7 @@ hr {
   position: relative;
   margin: var(--spacer-2) 0;
   border: 0;
-  border-top: 1px solid var(--border-color);
+  border-top: 0.063rem solid var(--border-color); //1px
 }
 
 abbr {
@@ -61,7 +61,7 @@ abbr {
 
   &[title] {
     cursor: help;
-    border-bottom: 1px dotted var(--border-color);
+    border-bottom: 0.063rem dotted var(--border-color); //1px
   }
 }
 

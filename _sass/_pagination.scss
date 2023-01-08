@@ -16,10 +16,10 @@
   padding: var(--spacer);
   text-decoration: none;
   border: solid var(--border-color);
-  border-width: 1px 0;
+  border-width: 0.063rem 0; //1px
 
   &:first-child {
-    margin-bottom: -1px;
+    margin-bottom: -0.063rem; //-1px
   }
 }
 
@@ -28,7 +28,7 @@ a.pagination-item:hover {
   background-color: var(--border-color);
 }
 
-@media (min-width: 30em) {
+@media (min-width: 30rem) {
   .pagination {
     margin: var(--spacer-3) 0;
   }
@@ -36,7 +36,7 @@ a.pagination-item:hover {
   .pagination-item {
     float: left;
     width: 50%;
-    border-width: 1px;
+    border-width: 0.063rem; //1px
 
     &:first-child {
       margin-bottom: 0;
@@ -44,7 +44,7 @@ a.pagination-item:hover {
       border-bottom-left-radius: var(--border-radius);
     }
     &:last-child {
-      margin-left: -1px;
+      margin-left: -0.063rem; //-1px
       border-top-right-radius: var(--border-radius);
       border-bottom-right-radius: var(--border-radius);
     }
