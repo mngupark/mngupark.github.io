@@ -19,13 +19,13 @@ function toggle_theme() {
    if (currentMode == 'dark-poole') {
       document.documentElement.setAttribute('data-theme', 'light-poole');
 		window.localStorage.setItem('theme', 'light');
-      icon.src = '/assets/moon.ico';
+      icon.src = '/assets/images/moon.ico';
 		window.localStorage.setItem('data-theme', 'light-poole');
    }
    else {
       document.documentElement.setAttribute('data-theme', 'dark-poole');
 		window.localStorage.setItem('theme', 'dark');
-      icon.src = '/assets/sun.ico';
+      icon.src = '/assets/images/sun.ico';
 		window.localStorage.setItem('data-theme', 'dark-poole');
    }
    if (cur_degree == 360) cur_degree = 0;
