@@ -16,6 +16,11 @@ title: Home
 
     {{ post.content }}
   </article>
+  {% assign categories = post.categories %}
+  <mark>Categories:</mark>
+  {% for category in categories offset:1 %}
+    <small><a href="{{ site.baseurl }}/categories">{{ category | upcase }}</a></small>
+  {% endfor %}
   {% endfor %}
 </div>
 
