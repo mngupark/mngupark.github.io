@@ -154,11 +154,14 @@ mark {
 }
 
 .theme-btn {
-  padding: 0;
+  padding: 0.25rem;
+  padding-top: 0.063rem;
+  padding-bottom: 0.063rem;
   margin: 0;
-  width: 1.563rem; //25px
+  width: 2.5rem; //25px
+  height: 2.5rem; //25px
   line-height: 0;
-  border-radius: var(--border-radius);
+  border-radius: 50%;
   background-color: transparent;
   box-shadow: none;
 
@@ -176,8 +179,13 @@ mark {
 
 #theme-icon {
   display: inline-block;
-  width: 1.563rem; //25px
+  width: 2rem; //25px
   margin-bottom: 0;
   background-color: transparent;
-  border-radius: 0;
+  padding: 0.25rem;
+  border-radius: 1rem;
+
+  &:hover {
+    background-color: var(--button-bg-color);
+  }
 }

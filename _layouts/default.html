@@ -20,7 +20,7 @@
             <small><a href="{{ nav.url }}">{{ nav.title }}</a></small>
             {% endfor %}
           </nav>
-          <button class="btn theme-btn" onclick="toggle_theme()"><img id="theme-icon" src="#"/></button>
+          <button class="btn theme-btn" onclick="toggleTheme()"><img id="theme-icon" src="#"/></button>
           <script>
             if (theme == 'dark-poole') document.getElementById('theme-icon').setAttribute('src', '/assets/images/sun.ico');
             else document.getElementById('theme-icon').setAttribute('src', '/assets/images/moon.ico');
