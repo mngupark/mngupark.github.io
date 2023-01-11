@@ -102,7 +102,7 @@ mark {
 
 .btn {
   display: inline-block;
-  border-radius: 0.125rem; //2px
+  border-radius: calc(var(--border-radius) * 5);//0.125rem; //2px
   background-color: var(--button-bg-color);;
   border: none;
   color: var(--button-color);;
