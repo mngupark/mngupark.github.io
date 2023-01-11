@@ -26,6 +26,9 @@ layout: default
 
 {% assign categories = page.categories %}
 <mark>Categories:</mark>
+{% assign categoryPath = "" %}
 {% for category in categories offset:1 %}
-  <small><a href="{{ site.baseurl }}/categories">{{ category | upcase }}</a></small>
+  {% capture oldCategoryPath %}{{ categoryPath }}{% endcapture %}
+  {% assign categoryPath = oldCategoryPath | append: category | append: "/" %}
+  <small><a href="{{ site.baseurl }}/posts/{{ categoryPath }}">{{ category | capitalize }}</a></small>
 {% endfor %}
