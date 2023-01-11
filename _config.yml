@@ -3,7 +3,7 @@ title: GyuBlog
 url: http://Gyuhub.github.io
 paginate: 1
 baseurl: ""
-permalink: pretty
+permalink: none
 
 # Gems
 plugins:
