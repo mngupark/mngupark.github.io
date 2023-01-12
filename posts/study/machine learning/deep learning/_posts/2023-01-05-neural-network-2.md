@@ -8,7 +8,7 @@ post-order: 4
 
 ## 계단 함수
 
-이전의 [post](https://gyuhub.github.io/deep%20learning/2023/01/02/neural-network-1/)에서 배웠던 활성화 함수는 임계값을 경계로 출력이 0에서 1로 바뀝니다. 이러한 함수를 <ins>계단 함수</ins>(step function)라고 합니다.
+이전의 [post](https://gyuhub.github.io/posts/study/machine%20learning/deep%20learning/neural-network-1)에서 배웠던 활성화 함수는 임계값을 경계로 출력이 0에서 1로 바뀝니다. 이러한 함수를 <ins>계단 함수</ins>(step function)라고 합니다.
 
 > :bulb: 퍼셉트론은 활성화 함수로 계단 함수를 사용한다고 할 수 있습니다.
 
