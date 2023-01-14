@@ -137,8 +137,8 @@ $$
 $$
 \begin{gather*}
 LSE\begin{pmatrix} x_1,\ \cdots,\ x_n \end{pmatrix}=\log{(\exp{x_1}+\cdots+\exp{x_n})} \\
-=\log{(\exp{C}(\exp{(x_1-C)}+\cdots+\exp{(x_n-C)}))}=\log{\exp{C}}+\log(\exp{(x_1-C)}+\cdots+\exp{(x_n-C)}) \tag{11} \\
-=C+\log(\exp{(x_1-C)}+\cdots+\exp{(x_n-C)}) \label{improved_lse}
+=\log{(\exp{C}(\exp{(x_1-C)}+\cdots+\exp{(x_n-C)}))}=\log{\exp{C}}+\log(\exp{(x_1-C)}+\cdots+\exp{(x_n-C)}) \label{improved_lse} \tag{11} \\
+=C+\log(\exp{(x_1-C)}+\cdots+\exp{(x_n-C)})
 \end{gather*}
 $$
 
