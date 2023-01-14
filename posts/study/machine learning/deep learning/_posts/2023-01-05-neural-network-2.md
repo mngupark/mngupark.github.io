@@ -142,4 +142,4 @@ def relu(x):
 
 ---
 
-[^fn-functions]: 앞으로 이 [github repository](https://github.com/Gyuhub/dl_scratch.git)에서 관련된 예제들과 구현 코드들을 다룰 예정입니다.
+[^fn-functions]: 앞으로 이 [github repository](https://github.com/Gyuhub/dl_scratch.git)에서 관련된 예제들과 구현 코드들을 다룰 예정입니다. 해당 예제는 [링크](https://github.com/Gyuhub/dl_scratch/blob/main/dl_scratch/ch3/view_funcs.py)를 참고해 주시기 바랍니다.
