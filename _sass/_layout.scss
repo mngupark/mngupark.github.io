@@ -42,6 +42,17 @@
   li > ul {
     margin-bottom: 0;
   }
+  & li.active > a {
+    box-shadow: .25rem .25rem .5rem var(--button-bg-color);
+    opacity: 0.8;
+    transform: translateY(-0.25rem);
+    &::before {
+      content: '\f14a';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-right: .25rem;
+    }
+  }
   a {
     display: block;
     text-decoration: none;
