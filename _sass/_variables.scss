@@ -63,6 +63,9 @@
   --button-color: #ffffff;
   --button-bg-color: #868e96;
   --button-hover-bg-color: #495057;
+
+  --sidebar-bg-color: var(--gray-400);
+  --sidebar-hover-bg-color: var(--gray-600);
 }
 
 @media (prefers-color-scheme: dark) {

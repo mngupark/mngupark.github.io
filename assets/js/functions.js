@@ -37,3 +37,23 @@ function toggleTheme() {
    icon.style.transform = 'rotate(' + cur_degree + 'deg)';
    icon.style.transition = 'all 1s';
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+
+	const observer = new IntersectionObserver(entries => {
+		entries.forEach(entry => {
+			const id = entry.target.getAttribute('id');
+			if (entry.intersectionRatio > 0) {
+				document.querySelector(`div li a[href="#${id}"]`).parentElement.classList.add('active');
+			} else {
+				document.querySelector(`div li a[href="#${id}"]`).parentElement.classList.remove('active');
+			}
+		});
+	});
+
+	// Track all sections that have an `id` applied
+	document.querySelectorAll('a[id]').forEach((section) => {
+		observer.observe(section);
+	});
+	
+});

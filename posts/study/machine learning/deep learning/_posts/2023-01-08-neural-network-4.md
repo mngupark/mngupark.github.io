@@ -167,7 +167,7 @@ MNIST 데이터셋에는 **훈련 이미지**가 60,000장, **시험 이미지**
 
 책에서 제공된 코드를 그대로 사용하지 않고 필요한 부분을 가져와서 구현했습니다. 자세한 코드는 Git 저장소[^fn-forward]를 통해 확인하시면 좋을 것 같습니다.
 
-
+---
 
 [^fn-lse]: [Github repository](https://github.com/Gyuhub/dl_scratch/blob/main/dl_scratch/ch3/view_funcs.py)에서 LSE에 관한 코드를 확인하실 수 있습니다.
 [^fn-forward]: [Github repository](https://github.com/Gyuhub/dl_scratch/blob/main/dl_scratch/ch3/forward.py)에서 순전파에 관한 코드를 확인하실 수 있습니다.

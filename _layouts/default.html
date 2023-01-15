@@ -7,7 +7,7 @@
   {% include head.html %}
   {% include mathjax_support.html %}
   <body>
-    <div class="container content">
+    <div class="header">
       <header class="masthead">
         <h3 class="masthead-title">
           <a href="{{ site.baseurl }}/" title="Home">
@@ -27,13 +27,19 @@
           </script>
         </h3>
       </header>
-
-      <main>
-        {{ content }}
-      </main>
+    </div>
+    <div class="container">
+      <div class="content">{{ content }}</div>
+      <div class="sidebar">
+        <span><h3><mark>In this article</mark></h3></span>
+        {% include toc.html html=content skip_no_ids=true %}
+        <a class="back-to-top" href="#"><img class="back-to-top"src="/assets/images/circle-arrow-up-solid.svg" alt="arrow-up"/></a>
+      </div>
+    </div>
       
-      <script type="text/javascript" src="/assets/js/functions.js"></script>
-      <footer class="footer">
+    <script type="text/javascript" src="/assets/js/functions.js"></script>
+    <div class="footer">
+      <footer>
         <small>
           &copy;
           <time datetime="{{ site.time | date_to_xmlschema }}"
