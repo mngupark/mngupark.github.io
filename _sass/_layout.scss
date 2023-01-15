@@ -46,7 +46,7 @@
     display: block;
     text-decoration: none;
     font-size: calc(var(--font-size) / 2);
-    color: #000000;
+    // color: #000000;
     transition: all 0.5s ease-in-out;
   }
   a::before {
@@ -63,23 +63,20 @@
     }
   }
   a.back-to-top {
-    width: 2.5rem; //22px
-    height: 2.5rem; //22px
+    display:flex;
     position: fixed;
     bottom: 2rem;
-    right: 2rem;
+    right: var(--spacer-2);
     z-index: 0;
-    margin: none;
     border-radius: 70%;
     &::before {
       content: '';
       margin-right: 0;
     }
-    & img.back-to-top {
+    & i.back-to-top {
       display: inline-block;
-      width: inherit;
-      height: inherit;
-      margin: 0;
+      border-radius: inherit;
+      background-color: transparent;
     }
   }
 }
