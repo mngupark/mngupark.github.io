@@ -37,6 +37,7 @@
   }
   li {
     list-style-type: none;
+    word-break: break-all;
   }  
   li > ul {
     margin-bottom: 0;
