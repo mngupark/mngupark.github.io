@@ -19,23 +19,30 @@ let cur_degree = 0;
 
 function toggleTheme() {
    let currentMode = localStorage.getItem('data-theme');
+   let iframe = document.querySelector("iframe");
+   let msg = JSON.parse(localStorage.msg);
+   console.log(msg);
    var icon = document.getElementById('theme-icon');
    if (currentMode == 'dark-poole') {
       document.documentElement.setAttribute('data-theme', 'light-poole');
 		window.localStorage.setItem('theme', 'light');
       icon.src = '/assets/images/moon.ico';
 		window.localStorage.setItem('data-theme', 'light-poole');
+      msg.theme = 'github-light';
    }
    else {
       document.documentElement.setAttribute('data-theme', 'dark-poole');
 		window.localStorage.setItem('theme', 'dark');
       icon.src = '/assets/images/sun.ico';
 		window.localStorage.setItem('data-theme', 'dark-poole');
+      msg.theme = 'photon-dark';
    }
    if (cur_degree == 360) cur_degree = 0;
    else cur_degree += 360;
    icon.style.transform = 'rotate(' + cur_degree + 'deg)';
    icon.style.transition = 'all 1s';
+   localStorage.setItem('msg', JSON.stringify(msg));
+   iframe.contentWindow.postMessage(msg, "https://utteranc.es");
 }
 
 window.addEventListener('DOMContentLoaded', () => {
