@@ -3,6 +3,13 @@
   <script>
     var theme = localStorage.getItem('data-theme');
     document.documentElement.setAttribute('data-theme', theme);
+    let msg = {
+      type: "set-theme",
+      theme: ''
+    };
+    if (theme == 'dark-poole') msg.theme = 'photon-dark';
+    else msg.theme = 'github-light';
+    localStorage.setItem('msg', JSON.stringify(msg));
   </script>
   {% include head.html %}
   {% include mathjax_support.html %}
@@ -39,23 +46,6 @@
     <script type="text/javascript" src="/assets/js/toc.js"></script>
     <script type="text/javascript" src="/assets/js/functions.js"></script>
     <div class="footer">
-      <script>
-        let msg = {
-          type: "set-theme",
-          theme: ''
-        };
-        if (theme == 'dark-poole') msg.theme = 'photon-dark';
-        else msg.theme = 'github-light';
-        localStorage.setItem('msg', JSON.stringify(msg));
-      </script>
-      <script src="https://utteranc.es/client.js"
-        repo="Gyuhub/Gyuhub.github.io.blog-comments"
-        issue-term="pathname"
-        label="utterances"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-      </script>
       <footer>
         <small>
           &copy;

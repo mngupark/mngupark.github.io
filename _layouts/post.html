@@ -8,17 +8,27 @@ layout: default
   {{ content }}
 </article>
 
-{% if site.related_posts != empty %}
+{% if page.post-order != empty %}
 <aside class="related">
   <h3>Related posts</h3>
   <ul class="related-posts">
-    {% for post in site.related_posts limit:3 %}
-      <li>
-        <a href="{{ site.baseurl }}{{ post.url }}">
-          {{ post.title }}
-          <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small>
-        </a>
-      </li>
+    {% assign sorted_posts = site.posts | sort:"post-order" %}
+    {% assign post_count = 0 %}
+    {% assign post_offset = 3 %}
+    {% assign post_order = page.post-order %}
+    {% assign post_limit = post_order | minus: post_offset %}
+    {% for post in sorted_posts %}
+      {% if post.category == page.category %}
+        {% assign post_count = post_count | plus: 1 %}
+        {% if post_count <= post_order and post_count > post_limit %}
+          <li>
+            <a href="{{ site.baseurl }}{{ post.url }}">
+              {{ post.title }}
+              <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small>
+            </a>
+          </li>
+        {% endif %}
+      {% endif %}
     {% endfor %}
   </ul>
 </aside>
@@ -32,3 +42,12 @@ layout: default
   {% assign categoryPath = oldCategoryPath | append: category | append: "/" %}
   <small><a href="{{ site.baseurl }}/posts/{{ categoryPath }}">{{ category | capitalize }}</a></small>
 {% endfor %}
+
+<script src="https://utteranc.es/client.js"
+  repo="Gyuhub/Gyuhub.github.io.blog-comments"
+  issue-term="pathname"
+  label="utterances"
+  theme="github-light"
+  crossorigin="anonymous"
+  async>
+</script>
