@@ -16,16 +16,22 @@ layout: default
     {% assign post_count = 0 %}
     {% assign post_offset = 3 %}
     {% assign post_order = page.post-order %}
-    {% assign post_limit = post_order | minus: post_offset %}
+    {% assign post_lower_bound = post_order | minus: post_offset %}
+    {% assign post_upper_bound = post_order | plus: post_offset %}
     {% for post in sorted_posts %}
       {% if post.category == page.category %}
         {% assign post_count = post_count | plus: 1 %}
-        {% if post_count <= post_order and post_count > post_limit %}
+        {% if post_count < post_upper_bound and post_count > post_lower_bound %}
           <li>
             <a href="{{ site.baseurl }}{{ post.url }}">
-              {{ post.title }}
+              {% if post_count == post_order %}
+                <i class="fa-solid fa-arrow-right"></i> <ins>{{ post.title }}</ins>
+              {% else %}
+                {{ post.title }}
+              {% endif %}
               <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small>
             </a>
+            {{post_count}} and page order: {{post_order}}
           </li>
         {% endif %}
       {% endif %}
