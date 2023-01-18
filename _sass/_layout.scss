@@ -4,9 +4,16 @@
 
 .header {
   height: 5rem;
-  margin-left: var(--spacer-3);
-  margin-right: var(--spacer-2);
   margin-bottom: var(--spacer-2);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var(--body-bg);
+  transition: top 0.2s ease-in-out, background-color 0.5s ease;
+}
+
+.nav-up {
+  top: -5rem;
 }
 
 .container {
@@ -14,8 +21,8 @@
   flex-flow: row nowrap;
   padding-left: var(--spacer-1);
   padding-right: var(--spacer-1);
-  margin-left:  var(--spacer-2);;
-  margin-right: var(--spacer-2);;
+  margin-left:  var(--spacer-2);
+  margin-right: var(--spacer-2);
 }
 
 .content {
@@ -28,9 +35,10 @@
   width: 20%;
   height: fit-content;
   position: sticky;
-  top: 2rem;
+  top: 2.5rem;
   margin: inherit;
   box-sizing: border-box;
+  transition: top 0.2s ease-in-out;
   border-radius: calc(var(--border-radius) * 10);
   ul {
     padding-left: 1rem;
