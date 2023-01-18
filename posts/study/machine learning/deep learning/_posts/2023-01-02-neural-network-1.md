@@ -2,7 +2,7 @@
 layout: post
 title: Neural-Network-1
 category: deep learning
-post-order: 3
+post-order: 4
 ---
 # 신경망
 

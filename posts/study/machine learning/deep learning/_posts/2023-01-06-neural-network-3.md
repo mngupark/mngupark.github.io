@@ -2,7 +2,7 @@
 layout: post
 title: Neural-Network-3
 category: deep learning
-post-order: 5
+post-order: 6
 ---
 
 # 3층 신경망 구현 {#neural-network-3-layered}

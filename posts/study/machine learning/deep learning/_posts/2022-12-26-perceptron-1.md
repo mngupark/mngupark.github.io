@@ -2,7 +2,7 @@
 layout: post
 title: Perceptron-1
 category: deep learning
-post-order: 1
+post-order: 2
 ---
 
 # 딥러닝의 출발점

@@ -2,7 +2,7 @@
 layout: post
 title: Neural-Network-2
 category: deep learning
-post-order: 4
+post-order: 5
 ---
 # 활성화 함수
 
