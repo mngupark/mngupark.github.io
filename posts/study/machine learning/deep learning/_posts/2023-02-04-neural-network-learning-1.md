@@ -75,7 +75,18 @@ $$
 E=-\sum_k{t_k \log{y_k}} \label{CEE} \tag{2}
 $$
 
-여기서 $\log{}$는 밑이 자연상수 $e$인 자연로그, $y_k$는 신경망의 출력, $t_k$는 정답 레이블입니다.
+여기서 $\log{}$는 밑이 자연상수 $e$인 자연로그, $y_k$는 신경망의 출력, $t_k$는 정답 레이블입니다. 아래는 자연로그의 그래프입니다.
+
+<figure>
+    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-04-neural-network-learning-1_1.jpg"
+         title="Natural logarithm"
+         alt="Image of natural logarithm"
+         class="img_center"
+         style="width: 50%"/>
+    <figcaption>자연로그 $y=\log{x}의 그래프$</figcaption>
+</figure>
+
+[Fig. 2.]를 보시면 $x$가 1일 때 $y$는 0이 되고 $x$가 0에 가까워질수록 $y$의 값은 점점 작아지는 것을 확인할 수 있습니다. 즉, 정답에 해당하는 출력이 커질수록 0에 다가가다가 그 출력이 1일 때 0이 되고, 출력이 작아질수록 오차가 커집니다. 손실 함수의 의도처럼 정답에 가까울수록 오차의 지표가 작아지고 정답에 멀어질수록 지표가 커지는 효과를 확인할 수 있습니다.
 
 #### 구현
 
