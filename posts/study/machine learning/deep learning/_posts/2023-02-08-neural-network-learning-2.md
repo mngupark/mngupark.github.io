@@ -134,12 +134,12 @@ def numerical_gradient(f, x):
 아래의 그림은 다변수 함수 $f(x_0, x_1)=x_0^2+2x_1^2$와 그 함수의 기울기(gradient)에 마이너스를 곱한 벡터를 나타낸 그림입니다.
 
 <figure>
-    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning-1_3.jpg"
+    <img src="../images/2023-02-08-neural-network-learning-1_3.jpg"
          title="Multivariate function"
          alt="Image of multivariate function"
          class="img_center"
          style="width: 50%"/>
-    <figcaption>함수 $f(x_0,x_1)=x_0^2+2x_1^2$</figcaption>
+    <figcaption>함수 $f(x_0,x_1)=x_0^2+2x_1^2$의 그래프</figcaption>
 </figure>
 
 <figure>
