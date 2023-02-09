@@ -7,6 +7,8 @@ post-order: 9
 
 지난 [post]("https://gyuhub.github.io/posts/study/machine%20learning/deep%20learning/neural-network-learning-1")에서는 신경망 학습과 손실 함수에 대해서 다뤄보았습니다. 이번 post에서는 신경망 학습에서 어떻게 손실 함수를 지표로 삼아서 가중치 매개변수의 값을 학습하는지에 대해 알아보겠습니다.
 
+---
+
 # 수치 미분
 
 신경망에서는 가중치 매개변수에 대한 손실 함수의 *변화량*을 통해서 가중치 매개변수를 변화가 없을때까지 지속적으로 개선해나갑니다. 이때 사용되는 방법이 바로 **경사법**입니다. 경사법에서는 **함수의 기울기**(경사)값을 기준으로 나아갈 방향을 정합니다. 기울기에 대해 알아보기 전에 먼저 **미분**에 대해서 다시 복습해보겠습니다.
@@ -75,7 +77,7 @@ def numerical_diff(f, x):
 또한, 그림을 통해서 함수 $f(x)=$에 대한 1. 해석적 미분, 2. 중앙 차분, 3. 전방 차분을 표현해보겠습니다.
 
 <figure>
-    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning-1_2.jpg"
+    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning-2_2.jpg"
          title="Various differentiations"
          alt="Image of various differentiations"
          class="img_center"
@@ -84,6 +86,8 @@ def numerical_diff(f, x):
 </figure>
 
 그림을 통해서 해석적 미분값을 이용한 접선에 중앙 차분으로 계산한 수치 미분값의 접선은 거의 동일한 것을 확인할 수 있습니다. 하지만 전방 차분으로 계산한 수치 미분값의 접선은 약간의 오차가 존재하는 것을 확인할 수 있습니다.
+
+---
 
 ## 편미분
 
@@ -106,6 +110,8 @@ def numerical_diff(f, x):
 df_dx0 = numerical_diff(func_x0, 3.0)
 df_dx1 = numerical_diff(func_x1, 4.0)
 ```
+
+---
 
 # 기울기
 
@@ -136,7 +142,7 @@ def numerical_gradient(f, x):
 아래의 그림은 다변수 함수 $f(x_0, x_1)=x_0^2+2x_1^2$와 그 함수의 기울기(gradient)에 마이너스를 곱한 벡터를 나타낸 그림입니다.
 
 <figure>
-    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning-1_3.jpg"
+    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning-2_3.jpg"
          title="Multivariate function"
          alt="Image of multivariate function"
          class="img_center"
@@ -145,7 +151,7 @@ def numerical_gradient(f, x):
 </figure>
 
 <figure>
-    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning-1_4.jpg"
+    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning-2_4.jpg"
          title="Gradient of multivariate function"
          alt="Image of gradient of multivariate function"
          class="img_center"
@@ -156,6 +162,8 @@ def numerical_gradient(f, x):
 [Fig. 2.]를 보면 마치 접시처럼 안쪽으로 움푹 파여있는 형상의 그래프를 확인할 수 있습니다. 그리고 [Fig. 3.]을 보면 기울기들이 **방향**을 가진 벡터(화살표)로 그려집니다. 또한 그 벡터들은 "<ins>가장 낮은 장소</ins>"(**최솟값**)을 가리키는 것처럼 보입니다. 그리고 화살표의 크기도 <ins>가장 낮은 장소</ins>에서 멀어질수록 **커짐**을 알 수 있습니다.
 
 하지만 기울기가 항상 **가장 낮은 장소**(최솟값)를 가리키지는 않습니다. 사실 기울기는 각 지점에서 낮아지는 방향을 가리킵니다. 즉, 기울기가 가리키는 쪽은 **각 장소에서 함수의 출력값을 가장 크게 줄이는 방향**입니다.
+
+---
 
 ## 경사법
 
@@ -191,5 +199,17 @@ def gradient_descent(f, init_x, lr=0.01, step_num=100):
     return x
 ```
 
-이 방법을 위의 예제인 $f(x_0,x_1)=x_0^2+2x_1^2$에 적용해보겠습니다. 출발 지점은 $x_{init}=(-2, -2)$으로 설정하겠습니다.
+이 방법을 위의 예제인 $f(x_0,x_1)=x_0^2+2x_1^2$에 적용해보겠습니다. 학습률은 0.1, 갱신 횟수는 40번으로 설정한 그림입니다.
 
+<figure>
+    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning-2_5.jpg"
+         title="Gradient descent method"
+         alt="Image of gradient descent method"
+         class="img_center"
+         style="width: 40%"/>
+    <figcaption>함수 $f(x_0,x_1)=x_0^2+2x_1^2$의 gradient descent 갱신 과정</figcaption>
+</figure>
+
+그림에서 등고선을 통해 함수의 기울기를 표현했습니다. 그리고 초기 위치를 총 3곳을 설정하여 **위치와 무관하게** 최솟값에 도달하는 것을 확인할 수 있습니다. 또한, 기울기가 상대적으로 **큰 곳**(가파른 곳)에서는 한 번 갱신할 때 **많이** 움직이지만 기울기가 작은 곳(완만한 곳)에서는 **조금씩** 움직이는 것을 확인할 수 있습니다. 학습률을 너무 크거나 작게 설정하면 갱신이 잘 되지 않고 발산할 가능성이 존재합니다.
+
+> 📑 학습률 같은 매개변수를 **하이퍼파라미터**(hyper parameter)라고 합니다. 이는 가중치나 편향 같은 **신경망의 매개변수**와는 성질이 다른 매개변수입니다. 신경망 매개변수는 훈련 데이터와 학습 알고리즘에 의해서 **자동**으로 획득되는 반면, 하이퍼파라미터는 사람이 **직접** 설정해야 하기 때문입니다. 일반적으로 이 하이퍼파라미터들은 여러 후보 값 중에서 시험을 통해 가장 잘 학습하는 값을 찾는 과정을 거쳐야 합니다.

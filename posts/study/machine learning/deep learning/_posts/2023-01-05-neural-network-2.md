@@ -31,8 +31,6 @@ $$
 
 ---
 
-## 구현
-
 Python을 이용해서 계단 함수와 시그모이드 함수를 구현해보겠습니다.
 
 ### step function
@@ -101,8 +99,6 @@ h(x)=\begin{cases}
 0\ (x \le 0) \\
 x\ (x > 0) \end{cases} \label{relu} \tag{4}
 $$
-
-## 구현
 
 Python을 이용해서 ReLU 함수를 구현해보겠습니다.
 
