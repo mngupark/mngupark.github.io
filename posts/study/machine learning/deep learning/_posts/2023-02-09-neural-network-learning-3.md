@@ -42,7 +42,7 @@ post-order: 10
   
 자세한 코드는 Git 저장소[^fn-two-layered-network-learning]를 통해 확인해주시기 바랍니다.
 
-아래의 그림은 손실 함수의 값의 변화를 기록한 그래프입니다.
+아래의 그림은 손실 함수의 값의 변화를 기록한 그래프[^fn-numerical-gradient]입니다.
 
 <figure>
     <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning_6.jpg"
@@ -61,7 +61,7 @@ post-order: 10
 
 > 💡 훈련 데이터와 시험 데이터를 1에폭별로 기록할 예정입니다. 여기서 **에폭**(epoch)이란 하나의 단위입니다. 1에폭은 학습에서 **훈련 데이터**를 **모두** 소진했을 때의 횟수에 해당합니다. 예를 들어 훈련 데이터 10,000개를 100개의 미니배치로 학습할 경우, 확률적 경사 하강법을 100회 반복하면 모든 훈련 데이터를 '**소진**'한게 됩니다. 이 경우 100회가 1에폭이 됩니다. 수식으로 표현하면 <ins>(전체 데이터셋 크기)/(미니배치의 크기)=(1에폭의 크기)</ins>라고 말할 수 있겠습니다.
 
-아래의 그림은 훈련 데이터와 시험 데이터에 대한 정확도를 기록한 그래프입니다.
+아래의 그림은 훈련 데이터와 시험 데이터에 대한 정확도를 기록한 그래프[^fn-numerical-gradient]입니다.
 
 <figure>
     <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning_7.jpg"
@@ -89,3 +89,5 @@ post-order: 10
 ---
 
 [^fn-two-layered-network-learning]: [Github repository](https://github.com/Gyuhub/dl_scratch/blob/main/dl_scratch/ch4/two_layered_network_learning.py)에서 2층 신경망 학습에 관한 코드를 확인하실 수 있습니다.
+
+[^fn-numerical-gradient]: 😢 사실 원래라면 수치 미분을 이용한 기울기로 계산하려고 했지만 실제 코드로 구현해보니 연산시간이 말도 안되게 오래 걸려서, [저자의 저장소](https://github.com/WegraLee/deep-learning-from-scratch/blob/master/ch04/two_layer_net.py)의 오차역전파법을 이용한 기울기를 사용해서 구했습니다.
