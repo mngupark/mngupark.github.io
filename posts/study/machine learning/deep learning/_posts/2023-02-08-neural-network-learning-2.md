@@ -5,7 +5,7 @@ category: deep learning
 post-order: 9
 ---
 
-지난 [post]("https://gyuhub.github.io/posts/study/machine%20learning/deep%20learning/neural-network-learning-1")에서는 신경망 학습과 손실 함수에 대해서 다뤄보았습니다. 이번 post에서는 신경망 학습에서 어떻게 손실 함수를 지표로 삼아서 가중치 매개변수의 값을 학습하는지에 대해 알아보겠습니다.
+지난 [post](https://gyuhub.github.io/posts/study/machine%20learning/deep%20learning/neural-network-learning-1)에서는 신경망 학습과 손실 함수에 대해서 다뤄보았습니다. 이번 post에서는 신경망 학습에서 어떻게 손실 함수를 지표로 삼아서 가중치 매개변수의 값을 학습하는지에 대해 알아보겠습니다.
 
 ---
 
