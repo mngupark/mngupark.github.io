@@ -77,7 +77,7 @@ def numerical_diff(f, x):
 또한, 그림을 통해서 함수 $f(x)=$에 대한 1. 해석적 미분, 2. 중앙 차분, 3. 전방 차분을 표현해보겠습니다.
 
 <figure>
-    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning_2.jpg"
+    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning_3.jpg"
          title="Various differentiations"
          alt="Image of various differentiations"
          class="img_center"
@@ -142,7 +142,7 @@ def numerical_gradient(f, x):
 아래의 그림은 다변수 함수 $f(x_0, x_1)=x_0^2+2x_1^2$와 그 함수의 기울기(gradient)에 마이너스를 곱한 벡터를 나타낸 그림입니다.
 
 <figure>
-    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning_3.jpg"
+    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning_4.jpg"
          title="Multivariate function"
          alt="Image of multivariate function"
          class="img_center"
@@ -151,7 +151,7 @@ def numerical_gradient(f, x):
 </figure>
 
 <figure>
-    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning_4.jpg"
+    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning_5.jpg"
          title="Gradient of multivariate function"
          alt="Image of gradient of multivariate function"
          class="img_center"
@@ -202,7 +202,7 @@ def gradient_descent(f, init_x, lr=0.01, step_num=100):
 이 방법을 위의 예제인 $f(x_0,x_1)=x_0^2+2x_1^2$에 적용해보겠습니다. 학습률은 0.1, 갱신 횟수는 40번으로 설정한 그림입니다.
 
 <figure>
-    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning_5.jpg"
+    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning_6.jpg"
          title="Gradient descent method"
          alt="Image of gradient descent method"
          class="img_center"

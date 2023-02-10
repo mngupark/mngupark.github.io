@@ -20,7 +20,7 @@ post-order: 8
 이를 이미지 인식이라는 주제를 가지고 그림을 통해 설명하면 아래와 같습니다.
 
 <figure>
-    <img src="/posts/study/machine%20learning/deep%20learning/images/"
+    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-04-neural-network-learning_1.jpg"
          title="data-centerized learning"
          alt="Image of data-centerized learning"
          class="img_center"
@@ -76,7 +76,7 @@ $$
 여기서 $\log{}$는 밑이 자연상수 $e$인 자연로그, $y_k$는 신경망의 출력, $t_k$는 정답 레이블입니다. 아래는 자연로그의 그래프입니다.
 
 <figure>
-    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-04-neural-network-learning_1.jpg"
+    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-04-neural-network-learning_2.jpg"
          title="Natural logarithm"
          alt="Image of natural logarithm"
          class="img_center"
