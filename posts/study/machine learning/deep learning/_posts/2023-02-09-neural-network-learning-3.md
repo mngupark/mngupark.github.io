@@ -45,7 +45,7 @@ post-order: 10
 아래의 그림은 손실 함수의 값의 변화를 기록한 그래프[^fn-numerical-gradient]입니다.
 
 <figure>
-    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning_7.jpg"
+    <img src="/posts/study/machine%20learning/deep%20learning/images/neural-network-learning_7.jpg"
          title="Graph of loss function"
          alt="Image of graph of loss function"
          class="img_center"
@@ -64,7 +64,7 @@ post-order: 10
 아래의 그림은 훈련 데이터와 시험 데이터에 대한 정확도를 기록한 그래프[^fn-numerical-gradient]입니다.
 
 <figure>
-    <img src="/posts/study/machine%20learning/deep%20learning/images/2023-02-08-neural-network-learning_8.jpg"
+    <img src="/posts/study/machine%20learning/deep%20learning/images/neural-network-learning_8.jpg"
          title="Graph of accuracy"
          alt="Image of graph of accuracy"
          class="img_center"

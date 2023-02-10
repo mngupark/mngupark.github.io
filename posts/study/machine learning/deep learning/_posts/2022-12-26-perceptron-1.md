@@ -12,7 +12,7 @@ post-order: 2
 퍼셉트론(Perceptron)은 프랑크 로젠블라트가 1957년에 고안한 알고리즘입니다.
 
 <figure>
-     <img src="/posts/study/machine learning/deep learning/images/2022-12-26-frank-rosenblatt.jpg" 
+     <img src="/posts/study/machine learning/deep learning/images/frank-rosenblatt.jpg" 
           title="Frank Rosenblatt"
           alt="Frank Rosenblatt"
           class="img_center"/>
@@ -29,7 +29,7 @@ post-order: 2
 ---
 
 <figure>
-     <img src="/posts/study/machine learning/deep learning/images/2022-12-26-perceptron_1.jpg"
+     <img src="/posts/study/machine learning/deep learning/images/perceptron_1.jpg"
           title="Perceptron-1"
           alt="Perceptron-1"
           class="img_center"/>

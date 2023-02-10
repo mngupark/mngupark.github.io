@@ -10,7 +10,7 @@ post-order: 3
 지금까지 AND, NAND, OR 총 3가지의 게이트를 살펴봤습니다. 다음으로 살펴볼 게이트는 XOR 게이트입니다.
 
 <figure>
-     <img src="/posts/study/machine learning/deep learning/images/2022-12-30-perceptron_2.jpg"
+     <img src="/posts/study/machine learning/deep learning/images/perceptron_2.jpg"
           title="Perceptron-2"
           alt="Perceptron-2"
           class="img_center"/>
@@ -42,7 +42,7 @@ XOR 게이트는 여러가지 방법으로 구현할 수 있습니다. 결국 XO
 그 많은 방법 중 아래와 같이 AND, NAND, OR 게이트를 하나씩 조합해서 만드는 방법이 있습니다.
 
 <figure>
-     <img src="/posts/study/machine learning/deep learning/images/2022-12-30-perceptron_3.jpg"
+     <img src="/posts/study/machine learning/deep learning/images/perceptron_3.jpg"
           title="Perceptron-3"
           alt="Perceptron-3"
           class="img_center"/>
@@ -73,7 +73,7 @@ def xor_gate(x1, x2):
 이러한 XOR 게이트를 뉴런을 이용한 퍼셉트론으로 표현한다면 아래 그림과 같습니다.
 
 <figure>
-     <img src="/posts/study/machine learning/deep learning/images/2022-12-30-perceptron_4.jpg"
+     <img src="/posts/study/machine learning/deep learning/images/perceptron_4.jpg"
           title="Perceptron-4"
           alt="Perceptron-4"
           class="img_center"

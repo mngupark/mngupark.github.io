@@ -93,7 +93,7 @@ plt.show()
 ```
 
 <figure>
-    <img src="/posts/study/machine learning/deep learning/images/2023-01-06-neural_network_9.jpg"
+    <img src="/posts/study/machine learning/deep learning/images/neural_network_9.jpg"
           title="ReLU and LSE function"
           alt="Image of ReLU and LSE function"
           class="img_center"

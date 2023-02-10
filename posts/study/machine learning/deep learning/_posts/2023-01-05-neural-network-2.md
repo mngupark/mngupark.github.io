@@ -53,7 +53,7 @@ def sigmoid(x):
 이제 그래프를 통해 두 함수를 비교해보겠습니다.
 
 <figure>
-    <img src="/posts/study/machine learning/deep learning/images/2023-01-05-neural_network_4.jpg"
+    <img src="/posts/study/machine learning/deep learning/images/neural_network_4.jpg"
           title="Step and Sigmoid functions"
           alt="Images of Step and Sigmoid functions"
           class="img_center"
@@ -113,7 +113,7 @@ def relu(x):
 그래프를 통해 ReLU 함수를 확인해보겠습니다.
 
 <figure>
-    <img src="/posts/study/machine learning/deep learning/images/2023-01-05-neural_network_5.jpg"
+    <img src="/posts/study/machine learning/deep learning/images/neural_network_5.jpg"
           title="ReLU functions"
           alt="Image of ReLU functions"
           class="img_center"

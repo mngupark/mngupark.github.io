@@ -10,7 +10,7 @@ post-order: 6
 지금까지 배운 여러 이론과 코드를 통해서 본격적으로 신경망을 구현해보겠습니다. 이를 위해서 **Python** 언어를 사용하고 **numpy**와 **matplotlib** 모듈만 사용할 예정입니다.
 
 <figure>
-    <img src="/posts/study/machine learning/deep learning/images/2023-01-06-neural_network_6.jpg"
+    <img src="/posts/study/machine learning/deep learning/images/neural_network_6.jpg"
           title="3-layers neural network"
           alt="Images of 3-layers neural network"
           class="img_center"
@@ -97,7 +97,7 @@ $$b^{(2)}=\begin{bmatrix} b^{(2)}_{1} & b^{(2)}_{2} \end{bmatrix}$$로 표현이
 간단한 예시를 통해 행렬과 그 연산을 구현해보고 3층 신경망 구현으로 넘어가겠습니다.
 
 <figure>
-    <img src="/posts/study/machine learning/deep learning/images/2023-01-02-neural_network_1.jpg"
+    <img src="/posts/study/machine learning/deep learning/images/neural_network_1.jpg"
           title="example of 2-layers neural network"
           alt="Images of example of 2-layers neural network"
           class="img_center"
@@ -165,7 +165,7 @@ $$
 그림으로 표현하면 아래와 같습니다.
 
 <figure>
-     <img src="/posts/study/machine learning/deep learning/images/2023-01-06-neural_network_7.jpg"
+     <img src="/posts/study/machine learning/deep learning/images/neural_network_7.jpg"
           title="Identity function"
           alt="Image of identity function"
           class="img_center"/>
@@ -185,7 +185,7 @@ $$
 그림으로 표현하면 아래와 같습니다.
 
 <figure>
-     <img src="/posts/study/machine learning/deep learning/images/2023-01-06-neural_network_8.jpg"
+     <img src="/posts/study/machine learning/deep learning/images/neural_network_8.jpg"
           title="Softmax function"
           alt="Image of softmax function"
           class="img_center"/>

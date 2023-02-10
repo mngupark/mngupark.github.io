@@ -28,7 +28,7 @@ post-order: 4
 신경망은 기본적으로 퍼셉트론과 공통점이 많습니다. 신경망을 그림으로 나타낸 예시는 아래와 같습니다.
 
 <figure>
-     <img src="/posts/study/machine learning/deep learning/images/2023-01-02-neural_network_1.jpg" 
+     <img src="/posts/study/machine learning/deep learning/images/neural_network_1.jpg" 
           title="Example of neural network"
           alt="Example of neural network"
           class="img_center"
@@ -51,7 +51,7 @@ post-order: 4
 뉴런(노드)이 연결되는 방식은 퍼셉트론과 신경망 모두 큰 차이가 없습니다. 퍼셉트론이 신호를 전달하는 방식은 아래와 같았습니다.
 
 <figure>
-     <img src="/posts/study/machine learning/deep learning/images/2022-12-26-perceptron_1.jpg" 
+     <img src="/posts/study/machine learning/deep learning/images/perceptron_1.jpg" 
           title="Review of perceptron"
           alt="Review of perceptron"
           class="img_center"
@@ -71,7 +71,7 @@ $$
 하지만 위의 수식 $(\ref{perceptron_1})$에는 편향 **b**가 보이지 않습니다. 이를 눈에 보이게 명시한다면 아래와 같이 표현할 수 있습니다.
 
 <figure>
-     <img src="/posts/study/machine learning/deep learning/images/2023-01-02-neural_network_2.jpg" 
+     <img src="/posts/study/machine learning/deep learning/images/neural_network_2.jpg" 
           title="Biased perceptron"
           alt="Biased perceptron"
           class="img_center"
@@ -107,7 +107,7 @@ y=h(a) \tag{3}
 $$
 
 <figure>
-     <img src="/posts/study/machine learning/deep learning/images/2023-01-02-neural_network_3.jpg" 
+     <img src="/posts/study/machine learning/deep learning/images/neural_network_3.jpg" 
           title="Procedure of activation function"
           alt="Procedure of activation function"
           class="img_center"
