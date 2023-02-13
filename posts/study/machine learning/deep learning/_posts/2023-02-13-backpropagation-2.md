@@ -81,7 +81,7 @@ $$
 
 모든 계층은 **forward()**와 **backward()**라는 공통의 method를 갖도록 구현할 것입니다. 이 method들은 각각 순전파와 역전파를 처리하는 역할을 합니다.
 
-* 곱셈 노드
+* 곱셈 노드(**MulLayer**)
 ```python
 class MulLayer:
     def __init__(self):
@@ -99,7 +99,7 @@ class MulLayer:
         dy = dout * self.x
         return dx, dy
 ```
-* 덧셈 노드
+* 덧셈 노드(**AddLayer**)
 ```python
 class AddLayer:
     def __init__(self):
