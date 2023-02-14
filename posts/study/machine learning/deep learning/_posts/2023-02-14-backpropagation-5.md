@@ -120,7 +120,7 @@ class SoftmaxWithLoss:
 아래의 그림은 훈련 데이터와 시험 데이터에 대한 정확도를 기록한 그래프입니다.
 
 <figure>
-    <img src="/posts/study/machine learning/deep learning/images/backpropagation_25.jpg"
+    <img src="/posts/study/machine learning/deep learning/images/backpropagation_26.jpg"
          title="Graph of accuracy"
          alt="Image of graph of accuracy"
          class="img_center"
@@ -137,9 +137,13 @@ class SoftmaxWithLoss:
 각 가중치 매개변수들의 차이의 절댓값을 평균한 오차는 아래와 같습니다.
 
 ```python
-# numerical gradient method
-# backpropagation method
+W1:2.0902133031008377e-10
+b1:1.528760207091743e-09
+W2:8.575880791007656e-10
+b2:9.159714665125877e-10
 ```
+
+CPU의 부동소수점 계산 능력 정확도와 메모리의 한계로 오차가 완전히 0이 될수는 없습니다. 하지만 $10^{-9}~10^{-10}$의 오차라면 충분히 작은 수치라고 생각할 수 있겠습니다.
 
 지금까지 오차역전파법의 기초와 이론, 구현까지 정리해봤습니다. 다음 post에서는 신경망의 효과적인 학습을 위한 여러 방법들에 대해서 다뤄보겠습니다.
 
