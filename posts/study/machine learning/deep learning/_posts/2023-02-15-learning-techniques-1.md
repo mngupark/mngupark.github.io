@@ -90,6 +90,8 @@ $$
 
 > 🔖 비등방성에 대한 자세한 설명은 [여기](https://en.wikipedia.org/wiki/Anisotropy)를 참고해주세요.
 
+---
+
 ## 모멘텀 (Momentum)
 
 **모멘텀**은 운동량을 뜻하는 단어로, 물리학에서 주로 사용됩니다. 모멘텀 기법은 수식으로는 다음과 같이 쓸 수 있습니다.
@@ -133,6 +135,8 @@ class Momentum:
 </figure>
 
 [Fig. 4.]에서 SGD와 Momentum 최적화 갱신을 진행할 때 학습률은 1, 반복 횟수는 20으로 진행했습니다. Momentum의 $\alpha$는 0.9로 설정했습니다. [Fig. 4.]에서 보듯 Momentum의 갱신 경로는 마치 공이 그릇 바닥을 **구르듯** 움직입니다. SGD와 비교하면 '**지그재그의 정도**'가 덜한 것을 알 수 있습니다. 이는 $x$축의 힘은 상대적으로 작고 중심점을 향하고 있기 때문에 $y$축에 비하면 안정적이게 가속하는 것을 알 수 있습니다. 반면에 $y$축의 힘은 상대적으로 크고 방향이 위아래로 계속 바뀌기에 속도가 안정적이지 않습니다. 전체적으로 보면 SGD보다 Momentum이 최적값에 더 근접하고 $x$축 방향으로 빠르게 다가가 지그재그 움직임이 줄어드는 것을 확인할 수 있습니다.
+
+---
 
 ## AdaGrad
 
@@ -183,6 +187,8 @@ class AdaGrad:
 </figure>
 
 [Fig. 5.]를 보면 최솟값(최적값)을 향해 효율적으로 움직이는 것을 알 수 있습니다. $y$축 방향은 기울기가 **커서** 처음에는 **크게** 움직이지만, 그 큰 움직임에 비례해 갱신 정도도 **큰 폭으로** 작아지도록 조정됩니다. 그래서 $y$축 방향으로 갱신 강도가 빠르게 약해지고, 지그재그 움직임이 줄어듭니다.
+
+---
 
 ## Adam
 
@@ -242,6 +248,8 @@ class Adam:
 
 [Fig. 6.]과 같이 Adam의 갱신 경로도 그릇 바닥을 구르듯 움직입니다. Momentum과 비슷한 패턴이지만, 공의 좌우 흔들림(지그재그)가 적습니다. 이는 학습의 갱신 강도를 적응적으로 조절해서 얻는 예입니다.
 
+---
+
 # 최고의 기법
 
 [Fig. 6.]을 보시면 함수 $f(x,y)=\frac{1}{30}x^2+y^2$에 대한 최적화 기법들의 경로가 나와있습니다. 이 그림만 보면 **AdaGrad**가 가장 나은 것 같지만, 사실 그 결과는 풀어야 할 문제가 *무엇이냐에* 따라 달라지므로 주의해야 합니다. 또, 당연하지만 (학습률 등의) **하이퍼파라미터**를 어떻게 설정하느냐에 따라서도 결과가 바뀝니다. 유감스럽게도 지금까지의 네 후보 중에서 모든 문제에서 **항상** 뛰어난 기법은 **없습니다**. 각자의 장단이 있어 잘 푸는 문제와 서툰 문제가 존재합니다.
@@ -264,7 +272,7 @@ class Adam:
      <figcaption>함수 $f(x,y)=-(\frac{1}{\exp{x}+\exp{-x}}+\frac{1}{\exp{y}+\exp{-y}})$에 대한 최적화 결과</figcaption>
 </figure>
 
-[Fig. 8.]에서는 함수 $f(x,y)=-(\frac{1}{\exp{x}+\exp{-x}}+\frac{1}{\exp{y}+\exp{-y}})$를 여러 최적화 기법을 통해서 최적값을 찾는 과정을 나타낸 것입니다. 요즘은 많은 연구자들이 Adam을 사용한다고 하는데 위 그림을 보면 보편적으로 **Adam**이 성능이 좋은 것을 알 수 있습니다. MNIST 데이터셋을 통해서 각 최적화 기법의 성능도 한번 비교해봤습니다.
+[Fig. 8.]에서는 함수 $f(x,y)=-(\frac{1}{\exp{x}+\exp{-x}}+\frac{1}{\exp{y}+\exp{-y}})$를 여러 최적화 기법을 통해서 최적값을 찾는 과정을 나타낸 것입니다. 요즘은 많은 연구자들이 Adam을 사용한다고 하는데 위 그림을 보면 보편적으로 **Adam**이 성능이 좋은 것을 알 수 있습니다[^fn-example-1]. MNIST 데이터셋을 통해서 각 최적화 기법의 성능도 한번 비교해봤습니다.
 
 <figure>
      <img src="/posts/study/machine learning/deep learning/images/learning_techniques_9.png"
@@ -280,4 +288,10 @@ class Adam:
      <figcaption>각 최적화 기법의 MNIST 데이터셋에 대한 학습 진도와 정확도 비교</figcaption>
 </figure>
 
-[Fig. 9.]의 결과를 보면 <span style="color: black;">SGD</span>과 <span style="color: red;">Momentum</span>이 <span style="color: green;">AdaGrad</span>와 <span style="color: blue;">Adam</span>에 비해서 학습 진도가 느린 것을 알 수 있습니다. 위 실험에서 학습률은 SGD=0.1, Momentum,AdaGrad,Adam=0.01로 설정했습니다. 학습률 같은 하이퍼파라미터나 신경망의 구조에 따라 결과가 조금씩 바뀌는 것도 참고하시면 좋겠습니다.
+[Fig. 9.]의 결과를 보면 <span style="color: black;">SGD</span>과 <span style="color: red;">Momentum</span>이 <span style="color: green;">AdaGrad</span>와 <span style="color: blue;">Adam</span>에 비해서 학습 진도가 느린 것을 알 수 있습니다. 위 실험에서 학습률은 SGD=0.1, Momentum,AdaGrad,Adam=0.01로 설정했습니다. 학습률 같은 하이퍼파라미터나 신경망의 구조에 따라 결과가 조금씩 바뀌는 것도 참고하시면 좋겠습니다[^fn-example-2].
+
+---
+
+[^fn-example-1]: 해당 예제와 관련된 코드는 [여기](https://github.com/Gyuhub/dl_scratch/tree/main/dl_scratch/ch6/compare_optimizer.py)에서 확인하실 수 있습니다.
+
+[^fn-example-2]: 해당 예제와 관련된 코드는 [여기](https://github.com/Gyuhub/dl_scratch/tree/main/dl_scratch/ch6/compare_optimizer_mnist.py)에서 확인하실 수 있습니다.
