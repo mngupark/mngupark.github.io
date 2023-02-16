@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Learning-techniques-1
+title: Learning-Techniques-1
 category: deep learning
 post-order: 16
 ---
