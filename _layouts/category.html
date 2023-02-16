@@ -67,8 +67,9 @@ layout: default
     {% assign sortedPosts = site.posts | sort:"post-order" %}
     {% for post in sortedPosts %}
         {% assign postCategory = post.category %}
-        {% if pageTitle == postCategory and post.post-series != postSeries %}
-            </ul>
+        {% if pageTitle == postCategory and post.post-series != empty and post.post-series != postSeries %}
+            {{ listCloser }}
+            {% capture listCloser %}</ul>{% endcapture %}
         {% endif %}
         {% if post.post-order == 1 and pageTitle == postCategory %}
             {% assign postSeries = post.post-series %}
