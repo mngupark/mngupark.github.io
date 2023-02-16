@@ -67,6 +67,14 @@ layout: default
     {% assign sortedPosts = site.posts | sort:"post-order" %}
     {% for post in sortedPosts %}
         {% assign postCategory = post.category %}
+        {% if pageTitle == postCategory and post.post-series != postSeries %}
+            </ul>
+        {% endif %}
+        {% if post.post-order == 1 and pageTitle == postCategory %}
+            {% assign postSeries = post.post-series %}
+            <h2><i class="fa-solid fa-tags"></i> <mark>{{ postSeries }}</mark></h2>
+            <ul>
+        {% endif %}
         {% if pageTitle == postCategory %}
             <li>
                 <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
