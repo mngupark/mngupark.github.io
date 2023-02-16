@@ -85,7 +85,7 @@ $$
      <figcaption>SGD의 최적화 갱신 경로</figcaption>
 </figure>
 
-[Fig. 3.]에서 SGD의 최적화 갱신을 진행할 때 학습률은 0.9, 반복 횟수는 20으로 진행했습니다. SGD는 [Fig. 3.]과 같이 심하게 굽어진 움직임을 보여줍니다. 상당히 비효율적으로 움직임입니다. SGD의 단점은 **비등방성**(anisotropy) 함수(방향에 따라 성질, 즉 여기에서는 기울기가 달라지는 함수)에서는 탐색 경로가 비효율적이라는 것입니다. 이럴 때는 SGD 같이 무작정 기울어진 방향으로 진행하는 단순한 방식보다 더 영리한 묘안이 간절해집니다. 또한, SGD가 지그재그로 탐색하는 근본적인 원인은 기울어진 방향이 본래의 최솟값과 다른 방향을 가리켜서라는 점도 생각해볼 필요가 있습니다.
+[Fig. 3.]에서 SGD의 최적화 갱신을 진행할 때 학습률은 1, 반복 횟수는 20으로 진행했습니다. SGD는 [Fig. 3.]과 같이 심하게 굽어진 움직임을 보여줍니다. 상당히 비효율적으로 움직임입니다. SGD의 단점은 **비등방성**(anisotropy) 함수(방향에 따라 성질, 즉 여기에서는 기울기가 달라지는 함수)에서는 탐색 경로가 비효율적이라는 것입니다. 이럴 때는 SGD 같이 무작정 기울어진 방향으로 진행하는 단순한 방식보다 더 영리한 묘안이 간절해집니다. 또한, SGD가 지그재그로 탐색하는 근본적인 원인은 기울어진 방향이 본래의 최솟값과 다른 방향을 가리켜서라는 점도 생각해볼 필요가 있습니다.
 
 > 🔖 비등방성에 대한 자세한 설명은 [여기](https://en.wikipedia.org/wiki/Anisotropy)를 참고해주세요.
 
@@ -119,3 +119,25 @@ class Momentum:
                self.v[key] = self.momentum * self.v[key] - self.lr * grads[key]
                params[key] += self.v[key]
 ```
+
+이번에는 함수 $f(x,y)$의 최솟값 탐색을 위해서 Momentum를 적용해보겠습니다. 탐색을 시작하는 장소(초깃값)은 SGD와 똑같이 $(x,y)=(-7.5, -5.0)$으로 하겠습니다. 결과는 아래와 같습니다.
+
+<figure>
+     <img src="/posts/study/machine learning/deep learning/images/learning_techniques_4.png"
+          title="Path of Momentum"
+          alt="Image of path of Momentum"
+          class="img_center"
+          style="width: 60%"/>
+     <figcaption>Momentum의 최적화 갱신 경로</figcaption>
+</figure>
+
+[Fig. 4.]에서 SGD와 Momentum 최적화 갱신을 진행할 때 학습률은 1, 반복 횟수는 20으로 진행했습니다. Momentum의 $\alpha$는 0.9로 설정했습니다. [Fig. 4.]에서 보듯 Momentum의 갱신 경로는 마치 공이 그릇 바닥을 **구르듯** 움직입니다. SGD와 비교하면 '**지그재그의 정도**'가 덜한 것을 알 수 있습니다. 이는 $x$축의 힘은 상대적으로 작고 중심점을 향하고 있기 때문에 $y$축에 비하면 안정적이게 가속하는 것을 알 수 있습니다. 반면에 $y$축의 힘은 상대적으로 크고 방향이 위아래로 계속 바뀌기에 속도가 안정적이지 않습니다. 전체적으로 보면 SGD보다 Momentum이 최적값에 더 근접하고 $x$축 방향으로 빠르게 다가가 지그재그 움직임이 줄어드는 것을 확인할 수 있습니다.
+
+## AdaGrad
+
+신경망 학습에서는 학습률$(\eta)$값이 중요합니다. 이 값이 너무 작으면 학습시간이 너무 길어지고, 반대로 크면 발산하여 학습이 제대로 이뤄지지 않습니다. 이 학습률을 정하는 효과적 기술로 **학습률 감소**(learning rate decay)가 있습니다. 이는 <ins>학습을 진행하면서 학습률을 점차 줄여가는 방법</ins>입니다. 처음에는 크게 학습하다가 조금씩 작게 학습한다는 얘기로, 실제 신경망 학습에 자주 쓰입니다.
+
+학습률을 서서히 낮추는 가장 간단한 방법은 매개변수 '**전체**'의 학습률 값을 *일괄적으로* 낮추는 것이겠죠. 이를 더욱 발전시킨 것이 **AdaGrad**입니다. AdaGrad는 '**각각의**' 매개변수에 **맞춤형** 값을 만들어줍니다.
+
+> :books: AdaGrad에 관한 자세한 내용은 <cite>Duchi, J., Hazan, E., & Singer, Y. (2011). Adaptive subgradient methods for online learning and stochastic optimization. Journal of machine learning research, 12(7).</cite>를 참고해 주시기 바랍니다.
+
