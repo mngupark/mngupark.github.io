@@ -11,8 +11,8 @@ layout: default
 {{ content }}
 
 {% if subcategorySize != 0 or subcategoriesSize != 0 %}
-<ul class="post-list">
     <h3>상위 카테고리(Parent categories)</h3>
+<ul class="post-list">
     {% if categoriesSize == 1%}
         <li class="category-list">
             <a href="{{ site.baseurl }}/categories">Categories</a>
@@ -27,8 +27,8 @@ layout: default
     {% endif %}
 </ul>
     <hr>
-<ul class="post-list">
     <h3>하위 카테고리(Sub categories)</h3>
+<ul class="post-list">
     {% if subcategoriesSize != 0 %}
         {% for subcategory in page.subcategories %}
             <li class="category-list">
@@ -42,8 +42,8 @@ layout: default
     {% endif %}
 </ul>
 {% else %}
-<ul class="post-list">
     <h3>상위 카테고리(Parent categories)</h3>
+<ul class="post-list">
     {% if categoriesSize == 1%}
         <li class="category-list">
             <a href="{{ site.baseurl }}/categories">Categories</a>
@@ -61,8 +61,8 @@ layout: default
     {% endif %}
 </ul>
     <hr>
-<ul class="post-list">
     <h3>게시글(Posts)</h3>
+<ul class="post-list">
     {% assign pageTitle = page.title | downcase %}
     {% assign sortedPosts = site.posts | sort:"post-order" %}
     {% for post in sortedPosts %}
