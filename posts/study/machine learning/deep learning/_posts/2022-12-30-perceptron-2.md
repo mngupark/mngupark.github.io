@@ -2,8 +2,8 @@
 layout: post
 title: Perceptron-2
 category: deep learning
-post-order: 3
 post-series: Deep learning from scratch
+post-order: 3
 ---
 
 # 퍼셉트론의 한계

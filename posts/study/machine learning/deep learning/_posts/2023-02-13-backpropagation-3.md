@@ -2,8 +2,8 @@
 layout: post
 title: Backpropagation-3
 category: deep learning
-post-order: 13
 post-series: Deep learning from scratch
+post-order: 13
 ---
 
 이전 [post](https://gyuhub.github.io/posts/study/machine%20learning/deep%20learning/backpropation-2)에서는 간단한 계산 그래프 계층(덧셈, 곱셈)의 역전파에 대해서 배웠습니다. 이번 post에서는 좀 더 심화된 계산 그래프의 계층에 대해서 설명하겠습니다.

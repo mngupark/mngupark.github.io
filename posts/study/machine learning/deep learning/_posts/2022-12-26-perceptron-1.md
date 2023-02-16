@@ -2,8 +2,8 @@
 layout: post
 title: Perceptron-1
 category: deep learning
-post-order: 2
 post-series: Deep learning from scratch
+post-order: 2
 ---
 
 # 딥러닝의 출발점

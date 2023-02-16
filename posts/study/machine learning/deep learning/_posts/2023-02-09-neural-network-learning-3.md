@@ -2,8 +2,8 @@
 layout: post
 title: Neural-Network-Learning-3
 category: deep learning
-post-order: 10
 post-series: Deep learning from scratch
+post-order: 10
 ---
 
 지난 [post](https://gyuhub.github.io/posts/study/machine%20learning/deep%20learning/neural-network-learning-2)에서는 수치 미분과 기울기(gradient), 그리고 경사법에 대해서 알아보았었습니다. 이번 post에서는 신경망 학습 알고리즘을 구현하고 결과를 분석해보겠습니다.

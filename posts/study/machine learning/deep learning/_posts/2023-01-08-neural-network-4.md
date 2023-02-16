@@ -2,8 +2,8 @@
 layout: post
 title: Neural-Network-4
 category: deep learning
-post-order: 7
 post-series: Deep learning from scratch
+post-order: 7
 ---
 
 # 신경망의 순전파

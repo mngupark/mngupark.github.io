@@ -2,8 +2,8 @@
 layout: post
 title: Neural-Network-3
 category: deep learning
-post-order: 6
 post-series: Deep learning from scratch
+post-order: 6
 ---
 
 # 3층 신경망 구현 {#neural-network-3-layered}
