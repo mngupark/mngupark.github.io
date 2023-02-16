@@ -141,3 +141,142 @@ class Momentum:
 
 > :books: AdaGrad에 관한 자세한 내용은 <cite>Duchi, J., Hazan, E., & Singer, Y. (2011). Adaptive subgradient methods for online learning and stochastic optimization. Journal of machine learning research, 12(7).</cite>를 참고해 주시기 바랍니다.
 
+AdaGrad는 개별 매개변수에 **적응적으로**(adaptive) 학습률을 조정하면서 학습을 진행합니다. AdaGrad의 갱신 방법은 수식으로는 다음과 같습니다.
+
+$$
+\boldsymbol{h} \leftarrow \boldsymbol{h} + \frac{\partial{L}}{\partial{\boldsymbol{W}}} \odot \frac{\partial{L}}{\partial{\boldsymbol{W}}} \\
+\boldsymbol{W} \leftarrow \boldsymbol{W} - \eta \frac{1}{\sqrt{\boldsymbol{h}}} \frac{\partial{L}}{\partial{\boldsymbol{W}}} \label{adagrad} \tag{5} 
+$$
+
+식 $(\ref{adagrad})$는 이전의 수식과 같이 $\boldsymbol{W}$는 갱신할 가중치 매개변수, $\frac{\partial{L}}{\partial{\boldsymbol{W}}}$은 $\boldsymbol{W}$에 대한 손실 함수의 기울기, $\eta$는 학습률입니다. $\boldsymbol{h}$라는 새로운 변수가 등장하는데, $\boldsymbol{h}$는 식 $(\ref{adagrad})$에서 확인할 수 있듯 **기존 기울기 값**을 **제곱**해서 계속 더해줍니다($\odot$ 기호는 행렬의 원소별 곱셈을 의미합니다). 그리고 매개변수를 갱신할 때 $\frac{1}{\boldsymbol{h}}$을 곱해 학습률을 조정합니다. 매개변수의 원소 중에서 **많이 움직인**(크게 갱신된) 원소는 학습률이 **낮아진다는** 뜻인데, 다시 말해 학습률 감소가 매개변수의 원소마다 **다르게** 적용됨을 뜻합니다.
+
+> ❗ AdaGrad는 과거의 기울기를 제곱해서 계속 더해갑니다. 그래서 학습을 진행할수록 갱신 강도가 **약해집니다**. 실제로 무한히 계속 학습한다면 어느 순간 갱신량이 **0**이 되어 전혀 갱신되지 않게 됩니다. 이문제를 개선한 기법으로서 **RMSProp**이라는 방법이 있습니다. RMSProp은 과거의 모든 기울기를 균일하게 더해가는 것이 아니라, **먼 과거**의 기울기는 서서히 잊고 **새로운** 기울기 정보를 크게 반영합니다.
+> <br>:bulb: RMSProp은 $\boldsymbol{h}$의 수식을 $\boldsymbol{h} \leftarrow \gamma \boldsymbol{h} + (1-\gamma)\frac{\partial{L}}{\partial{\boldsymbol{W}}} \odot \frac{\partial{L}}{\partial{\boldsymbol{W}}}$(일반적으로 $\gamma=0.9$로 설정합니다.)처럼 바꾸어 이 문제를 해결합니다. 이를 **지수이동평균**(Exponential Moving Average,EMA)이라 하여, 과거 기울기의 반영 규모를 기하급수적으로 감소시킵니다. $\gamma$가 작을수록 최신의 정보를 더 크게 반영하고 $\boldsymbol{h}$가 무한히 커지는 것을 방지합니다.
+
+이를 Python으로 구현한 코드는 다음과 같습니다.
+```python
+class AdaGrad:
+     def __init__(self, lr=0.01):
+          self.lr = lr
+          self.h = None
+
+     def update(self, params, grads):
+          if self.h is None:
+               self.h = {}
+               for key, val in params.items():
+                    self.h[key] = np.zeros_like(val)
+               
+          for key in params.keys():
+               self.h[key] += grads[key] * grads[key]
+               params[key] -= self.lr * grads[key] / (np.sqrt(self.h[key]) + 1e-7)
+```
+그럼 함수 $f(x,y)$의 최솟값 탐색을 위해서 AdaGrad를 적용해보겠습니다. 탐색을 시작하는 장소(초깃값)은 SGD, Momentum과 똑같이 $(x,y)=(-7.5, -5.0)$으로 하겠습니다. 결과는 아래와 같습니다.
+
+<figure>
+     <img src="/posts/study/machine learning/deep learning/images/learning_techniques_5.png"
+          title="Path of AdaGrad"
+          alt="Image of path of AdaGrad"
+          class="img_center"
+          style="width: 60%"/>
+     <figcaption>AdaGrad의 최적화 갱신 경로</figcaption>
+</figure>
+
+[Fig. 5.]를 보면 최솟값(최적값)을 향해 효율적으로 움직이는 것을 알 수 있습니다. $y$축 방향은 기울기가 **커서** 처음에는 **크게** 움직이지만, 그 큰 움직임에 비례해 갱신 정도도 **큰 폭으로** 작아지도록 조정됩니다. 그래서 $y$축 방향으로 갱신 강도가 빠르게 약해지고, 지그재그 움직임이 줄어듭니다.
+
+## Adam
+
+**Momentum**은 공이 그릇 바닥을 구르는 듯한 움직임을 보였습니다. **AdaGrad**는 매개변수의 원소마다 **적응적**으로 갱신 정도를 조정했습니다. 그럼 혹시 이 두 기법을 융합하면 어떻게 될까요? 이런 생각에서 출발한 기법이 바로 **Adam**입니다.
+
+> :books: Adam에 관한 자세한 내용은 <cite>Kingma, Diederik P., and Jimmy Ba. "Adam: A method for stochastic optimization." arXiv preprint arXiv:1412.6980 (2014).</cite>를 참고해 주시기 바랍니다.
+
+Adam의 이론은 다소 복잡하지만 직관적으로는 Momentum과 AdaGrad를 융합한 듯한 방법입니다(정확히는 Momentum과 RMSProp를 융합한 방법입니다). 이 두 방법의 이점을 조합해서 매개변수 공간을 효율적으로 탐색해줄 것으로 기대할 수 있습니다. 또한, 하이퍼파라미터의 편향 보정이 진행된다는 점도 Adam의 특징입니다. Adam의 갱신 방법은 수식으로는 다음과 같습니다.
+
+$$
+\begin{matrix}
+\boldsymbol{m} &\leftarrow& \beta_1 \cdot \boldsymbol{m} + (1-\beta_1) \cdot \frac{\partial{L}}{\partial{\boldsymbol{W}}} \\
+\boldsymbol{v} &\leftarrow& \beta_2 \cdot \boldsymbol{v} + (1-\beta_2) \cdot \frac{\partial{L}}{\partial{\boldsymbol{W}}} \odot \frac{\partial{L}}{\partial{\boldsymbol{W}}} \\
+\boldsymbol{\hat{m}} &\leftarrow& \frac{\boldsymbol{m}}{1-\beta_1^t} \\
+\boldsymbol{\hat{v}} &\leftarrow& \frac{\boldsymbol{v}}{1-\beta_2^t} \\
+\boldsymbol{W} &\leftarrow& \boldsymbol{W} - \eta \cdot \frac{\boldsymbol{\hat{m}}}{\boldsymbol{\hat{v}}} \\
+\end{matrix} \label{adam} \tag{6}
+$$
+
+식 $(\ref{adam})$는 이전의 수식과 같이 $\boldsymbol{W}$는 갱신할 가중치 매개변수, $\frac{\partial{L}}{\partial{\boldsymbol{W}}}$은 $\boldsymbol{W}$에 대한 손실 함수의 기울기, $\eta$는 학습률입니다. 새로운 변수가 $\beta_1,\beta_2,\boldsymbol{m},\boldsymbol{v}, t$과 같이 많이 등장했는데, $\beta_1,\beta_2 \in [0,1)$는 moment 측정을 위한 지수감소율(exponential decay rate), $\boldsymbol{m}$은 RMPProp의 $\boldsymbol{h}$와 동일한 기울기 제곱 평균, $\boldsymbol{v}$는 Momentum의 $\boldsymbol{v}$와 동일한 기울기의 평균, $t$는 현재 스텝을 말합니다. 일반적으로 $\beta_1=0.9,\ \beta_2=0.999$와 같은 초깃값을 권장합니다.
+
+이를 Python으로 구현한 코드는 다음과 같습니다.
+```python
+class Adam:
+     def __init__(self,lr=0.001,beta1=0.9,beta2=0.999):
+          self.lr = lr
+          self.beta1 = beta1
+          self.beta2 = beta2
+          self.m = None
+          self.v = None
+          self.ts = 0 # time step
+
+     def update(self, params, grads):
+          if self.m is None:
+               self.m, self.v = {}, {}
+               for key, val in params.items():
+                    self.m[key] = np.zeros_like(val)
+                    self.v[key] = np.zeros_like(val)
+
+          self.ts += 1
+          for key in params.keys():
+               self.m[key] = self.beta1 * self.m[key] + (1 - self.beta1) * grads[key]
+               self.v[key] = self.beta2 * self.v[key] + (1 - self.beta2) * grads[key] * grads[key]
+               params[key] -= self.lr * np.sqrt(1 - self.beta2**self.ts) / (1 - self.beta1**self.ts) * self.m[key] / (np.sqrt(self.v[key]) + 1e-8)
+```
+
+마지막으로 함수 $f(x,y)$의 최솟값 탐색을 위해서 Adam을 적용해보겠습니다. 탐색을 시작하는 장소(초깃값)은 SGD, Momentum, AdaGrad과 똑같이 $(x,y)=(-7.5, -5.0)$으로 하겠습니다. 결과는 아래와 같습니다.
+
+<figure>
+     <img src="/posts/study/machine learning/deep learning/images/learning_techniques_6.png"
+          title="Path of Adam"
+          alt="Image of path of Adam"
+          class="img_center"
+          style="width: 60%"/>
+     <figcaption>Adam의 최적화 갱신 경로</figcaption>
+</figure>
+
+[Fig. 6.]과 같이 Adam의 갱신 경로도 그릇 바닥을 구르듯 움직입니다. Momentum과 비슷한 패턴이지만, 공의 좌우 흔들림(지그재그)가 적습니다. 이는 학습의 갱신 강도를 적응적으로 조절해서 얻는 예입니다.
+
+# 최고의 기법
+
+[Fig. 6.]을 보시면 함수 $f(x,y)=\frac{1}{30}x^2+y^2$에 대한 최적화 기법들의 경로가 나와있습니다. 이 그림만 보면 **AdaGrad**가 가장 나은 것 같지만, 사실 그 결과는 풀어야 할 문제가 *무엇이냐에* 따라 달라지므로 주의해야 합니다. 또, 당연하지만 (학습률 등의) **하이퍼파라미터**를 어떻게 설정하느냐에 따라서도 결과가 바뀝니다. 유감스럽게도 지금까지의 네 후보 중에서 모든 문제에서 **항상** 뛰어난 기법은 **없습니다**. 각자의 장단이 있어 잘 푸는 문제와 서툰 문제가 존재합니다.
+
+<figure>
+     <img src="/posts/study/machine learning/deep learning/images/learning_techniques_7.png"
+          title="Path of optimizers"
+          alt="Image of path of optimizers"
+          class="img_center"
+          style="width: 60%"/>
+     <figcaption>학습률 $\eta=1$에서 $\eta=0.5$로 감소시켰을 때의 경로</figcaption>
+</figure>
+
+<figure>
+     <img src="/posts/study/machine learning/deep learning/images/learning_techniques_8.png"
+          title="Path of optimizers"
+          alt="Image of path of optimizers"
+          class="img_center"
+          style="width: 100%"/>
+     <figcaption>함수 $f(x,y)=-(\frac{1}{\exp{x}+\exp{-x}}+\frac{1}{\exp{y}+\exp{-y}})$에 대한 최적화 결과</figcaption>
+</figure>
+
+[Fig. 8.]에서는 함수 $f(x,y)=-(\frac{1}{\exp{x}+\exp{-x}}+\frac{1}{\exp{y}+\exp{-y}})$를 여러 최적화 기법을 통해서 최적값을 찾는 과정을 나타낸 것입니다. 요즘은 많은 연구자들이 Adam을 사용한다고 하는데 위 그림을 보면 보편적으로 **Adam**이 성능이 좋은 것을 알 수 있습니다. MNIST 데이터셋을 통해서 각 최적화 기법의 성능도 한번 비교해봤습니다.
+
+<figure>
+     <img src="/posts/study/machine learning/deep learning/images/learning_techniques_9.png"
+          title="Comparison of each optimizer using MNIST dataset"
+          alt="Image of Comparison of each optimizer using MNIST dataset"
+          class="img_center"
+          style="display: inline-block; width: 40%;"/>
+     <img src="/posts/study/machine learning/deep learning/images/learning_techniques_10.png"
+          title="Accuracy of each optimizer using MNIST dataset"
+          alt="Image of accuracy of each optimizer using MNIST dataset"
+          class="img_center"
+          style="display: inline-block; width: 40%;"/>
+     <figcaption>각 최적화 기법의 MNIST 데이터셋에 대한 학습 진도와 정확도 비교</figcaption>
+</figure>
+
+[Fig. 9.]의 결과를 보면 <span style="color: black;">SGD</span>과 <span style="color: red;">Momentum</span>이 <span style="color: green;">AdaGrad</span>와 <span style="color: blue;">Adam</span>에 비해서 학습 진도가 느린 것을 알 수 있습니다. 위 실험에서 학습률은 SGD=0.1, Momentum,AdaGrad,Adam=0.01로 설정했습니다. 학습률 같은 하이퍼파라미터나 신경망의 구조에 따라 결과가 조금씩 바뀌는 것도 참고하시면 좋겠습니다.
