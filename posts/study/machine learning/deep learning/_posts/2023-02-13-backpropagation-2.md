@@ -3,6 +3,7 @@ layout: post
 title: Backpropagation-2
 category: deep learning
 post-order: 12
+post-series: Deep learning from scratch
 ---
 
 이전 [post](https://gyuhub.github.io/posts/study/machine%20learning/deep%20learning/backpropation-1)에서는 **계산 그래프**의 **연쇄 법칙**에 대해서 배웠습니다. 이번 post에서는 역전파의 구조를 설명하겠습니다.

@@ -3,6 +3,7 @@ layout: post
 title: Backpropagation-5
 category: deep learning
 post-order: 15
+post-series: Deep learning from scratch
 ---
 
 이전 [post](https://gyuhub.github.io/posts/study/machine%20learning/deep%20learning/backpropation-4)에서는 Affine 계층의 역전파에 대해서 배웠습니다. 이번 post에서는 Softmax-with-Loss 계층에 대해서 설명하고 오차역전파법을 정리하겠습니다.

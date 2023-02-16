@@ -3,6 +3,7 @@ layout: post
 title: Learning-Techniques-1
 category: deep learning
 post-order: 16
+post-series: Deep learning from scratch
 ---
 
 이전 [post](https://gyuhub.github.io/posts/study/machine%20learning/deep%20learning/backpropation-5)까지는 오차역전파법에 대해서 배웠습니다. 이번 post부터는 신경망 학습의 **핵심 개념**들에 대해서 알아보겠습니다. 신경망 학습에서 다루는 중요한 주제에는 가중치 매개변수의 최적값을 탐색하는 **최적화 방법**, **가중치 매개변수 초깃값**, **하이퍼파라미터** 설정 방법 등이 있습니다. 또한 오버피팅의 대응책인 가중치 감소와 드롭아웃 등의 **정규화 방법**과 **배치 정규화**에 대해서도 알아보겠습니다.

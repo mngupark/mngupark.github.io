@@ -3,6 +3,7 @@ layout: post
 title: Neural-Network-Learning-1
 category: deep learning
 post-order: 8
+post-series: Deep learning from scratch
 ---
 
 # 신경망 학습

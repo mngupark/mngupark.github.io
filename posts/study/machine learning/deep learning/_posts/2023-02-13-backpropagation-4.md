@@ -3,6 +3,7 @@ layout: post
 title: Backpropagation-4
 category: deep learning
 post-order: 14
+post-series: Deep learning from scratch
 ---
 
 이전 [post](https://gyuhub.github.io/posts/study/machine%20learning/deep%20learning/backpropation-3)에서는 활성화 함수의 역전파에 대해서 배웠습니다. 이번 post에서는 Affine 계층에 대해서 설명해보겠습니다.

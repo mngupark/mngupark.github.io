@@ -3,6 +3,7 @@ layout: post
 title: Backpropagation-1
 category: deep learning
 post-order: 11
+post-series: Deep learning from scratch
 ---
 
 이전 [post](https://gyuhub.github.io/posts/study/machine%20learning/deep%20learning/neural-network-learning-3)에서는 **신경망 학습**에 대해서 배웠습니다. 신경망에는 적응 가능한 매개변수들이 존재하고 이를 훈련 데이터에 잘 적응시키는 것을 **신경망 학습**이라고 불렀습니다. 그리고 손실 함수를 신경망의 성능 평가 **지표**로 사용하면서 매개변수에 대한 손실 함수의 변화량(**기울기**)을 경사법으로 계산했습니다. 기울기를 통해 신경망의 매개변수를 갱신하는 만큼 기울기를 구하는 것이 매우 중요한 작업입니다. 하지만 수치 미분으로 구현한 기울기는 계산 시간이 오래 걸린다는 단점이 있었습니다. 이를 효과적으로 개선한 방법이 바로 **오차역전파법**(backpropagation)입니다.

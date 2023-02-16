@@ -3,6 +3,7 @@ layout: post
 title: Neural-Network-1
 category: deep learning
 post-order: 4
+post-series: Deep learning from scratch
 ---
 # 신경망
 

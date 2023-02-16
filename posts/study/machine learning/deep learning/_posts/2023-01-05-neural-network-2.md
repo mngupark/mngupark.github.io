@@ -3,6 +3,7 @@ layout: post
 title: Neural-Network-2
 category: deep learning
 post-order: 5
+post-series: Deep learning from scratch
 ---
 # 활성화 함수
 
