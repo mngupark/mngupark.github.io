@@ -14,13 +14,14 @@
     
     &.profile-items {
         &.profile-anchor {
-
             transition: none;
             transform: none;
             box-shadow: none;
+            color: var(--body-color);
             &::before {
                 content: none;
             }
         }
+        text-align: left;
     }
 }
