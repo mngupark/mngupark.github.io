@@ -1,0 +1,26 @@
+.profile {
+    
+    &.profile-description {
+        margin-left: 10%;
+        margin-right: 10%;
+        text-align: center;
+        &.profile-image {
+            display: inline-block;
+            margin: var(--spacer);
+            border-radius: 50%;
+            max-width: 50%;
+        }
+    }
+    
+    &.profile-items {
+        &.profile-anchor {
+
+            transition: none;
+            transform: none;
+            box-shadow: none;
+            &::before {
+                content: none;
+            }
+        }
+    }
+}
