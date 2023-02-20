@@ -1,22 +1,23 @@
 .profile {
     
-    &.profile-description {
-        margin-left: 10%;
-        margin-right: 10%;
+    .profile-description {
+        margin-left: 5%;
+        margin-right: 5%;
         text-align: center;
-        &.profile-image {
-            display: inline-block;
-            margin: var(--spacer);
-            border-radius: 50%;
-            max-width: 50%;
+        .message {
+            padding: 0;
         }
     }
-    
-    &.profile-items {
-        &.profile-anchor {
+    .profile-image {
+        display: inline-block;
+        margin: var(--spacer);
+    }
+    .profile-items {
+        a.profile-anchor {
             transition: none;
             transform: none;
             box-shadow: none;
+            border-right: none;
             color: var(--body-color);
             &::before {
                 content: none;
