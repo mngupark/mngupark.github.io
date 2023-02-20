@@ -38,7 +38,11 @@
     <div class="container">
       <div class="content">{{ content }}</div>
       <div class="sidebar">
-        {% include toc.html html=content skip_no_ids=true %}
+        {% if page.url == '/' %}
+          {% include base_sidebar.html %}
+        {% else %}
+          {% include toc.html html=content skip_no_ids=true %}
+        {% endif %}
         <a class="back-to-top" href="#"><i class="fa-solid fa-circle-up fa-2x back-to-top"></i></a>
       </div>
     </div>
