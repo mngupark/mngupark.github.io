@@ -38,7 +38,8 @@
     <div class="container">
       <div class="content">{{ content }}</div>
       <div class="sidebar">
-        {% if page.url == '/' %}
+        {% assign pageUrl = page.url | remove: paginator.page %}
+        {% if page.url == '/' or pageUrl == '/page/' %}
           {% include base_sidebar.html %}
         {% else %}
           {% include toc.html html=content skip_no_ids=true %}
