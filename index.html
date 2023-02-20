@@ -9,7 +9,7 @@ title: Home
   </h1>
   {% for post in paginator.posts %}
   <article class="post" style="margin-bottom: 1rem;">
-    <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date" style="margin-top: var(--spacer); margin-bottom: 0;">{{ post.date | date_to_string }}</time>
+    <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date" style="margin-top: var(--spacer); margin-bottom: 0;"><i class="fa-solid fa-calendar-days"></i> {{ post.date | date_to_string }}</time>
     <h1 class="post-title">
       <a href="{{ post.url | relative_url }}">
         {{ post.title }}
