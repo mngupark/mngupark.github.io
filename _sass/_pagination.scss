@@ -43,13 +43,13 @@ a.pagination-item:hover {
 
     &:first-child {
       margin-bottom: 0;
-      border-top-left-radius: var(--border-radius);
-      border-bottom-left-radius: var(--border-radius);
+      border-top-left-radius: calc(var(--border-radius) * 30);
+      border-bottom-left-radius: calc(var(--border-radius) * 30);
     }
     &:last-child {
       margin-left: -0.063rem; //-1px
-      border-top-right-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
+      border-top-right-radius: calc(var(--border-radius) * 30);
+      border-bottom-right-radius: calc(var(--border-radius) * 30);
     }
   }
 }
