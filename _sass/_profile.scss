@@ -23,6 +23,17 @@
                 content: none;
             }
         }
+        .profile-info {
+            span.profile-hidden {
+                visibility: hidden;
+                opacity: 0;
+                transition: visibility 0.3s, opacity 0.3s linear;
+            }
+            &:hover > span.profile-hidden {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
         text-align: left;
     }
 }
