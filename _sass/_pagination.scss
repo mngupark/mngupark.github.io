@@ -17,7 +17,7 @@
   text-decoration: none;
   border: solid var(--border-color);
   border-width: 0.063rem 0; //1px
-
+  transition: background-color 0.3s ease-in;
   &:first-child {
     margin-bottom: -0.063rem; //-1px
   }

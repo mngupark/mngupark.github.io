@@ -39,6 +39,27 @@
   color: var(--gray-600);
 }
 
+// Blog post article & anchor
+.post-article {
+  margin-bottom: 0;
+  padding-bottom: 1rem;
+  border-bottom: solid var(--border-color);
+  transition: box-shadow 0.3s, transform 0.3s ease-out; 
+  &:hover {
+    box-shadow: .25rem .25rem .5rem var(--button-bg-color);
+    transform: translateX(calc(var(--spacer) * -1));
+  }
+  .post-anchor {
+    text-decoration: none;
+    .post-title {
+      text-decoration: underline;
+    }
+  }
+  .post-date {
+    margin-top: var(--spacer);
+    margin-bottom: 0;
+  }
+}
 
 // Related posts
 .related {

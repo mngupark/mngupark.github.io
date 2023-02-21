@@ -3,17 +3,17 @@
   <div class="profile">
     <img src="/assets/images/profile.jpg" class="profile-image"/>
     <div class="profile-description">
-        <span>Mingyu Park</span><br>
+        <span>{{ site.author.name }}</span><br>
         <span><small><i class="fa-solid fa-robot"></i> Robot Researcher</small></span>
         <p class="message">Nice to meet you!</p>
     </div>
     <hr>
     <div class="profile-items">
-        <a href="https://github.com/Gyuhub" class="profile-anchor"><i class="fa-brands fa-github"></i> Github</a>
-        <a href="https://www.instagram.com/mn_g.p/" class="profile-anchor"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        <a href="{{ site.author.git }}" class="profile-anchor"><i class="fa-brands fa-github"></i> Github</a>
+        <a href="{{ site.author.url }}" class="profile-anchor"><i class="fa-brands fa-instagram"></i> Instagram</a>
         <div class="profile-info"><i class="fa-solid fa-at"></i>
           <span>Email</span>
-          <span class="profile-hidden">alsrb0820@gmail.com</span>
+          <span class="profile-hidden">{{ site.author.email }}</span>
         </div>
     </div>
   </div>
