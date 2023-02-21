@@ -82,7 +82,7 @@ $$
 \tanh{z}&=&\frac{\sinh{z}}{\cosh{z}} \\
 &=&\frac{\exp{z}\ -\ \exp{-z}}{\exp{z}\ +\ \exp{-z}} \\
 &=&\frac{\exp{2z}\ -\ 1}{\exp{2z}\ +\ 1} \\
-\end{matrix}
+\end{matrix} \tag{1}
 $$
 
 <figure>
@@ -150,6 +150,73 @@ He 초깃값은 앞 계층의 노드가 $\boldsymbol{n}$개일 때, 표준편차
 
 ---
 
+# 배치 정규화
+
+이전에는 **활성화값 분포**를 집중관찰하면서, 각 층의 가중치의 초깃값을 적절히 설정하면 각 층의 활성화값 분포가 **적당히** 퍼지면서 학습이 원활하게 수행됨을 배웠습니다. 그렇다면 각 층이 활성화를 적당히 퍼뜨리도록 '**강제**'해보면 어떨까요? **배치 정규화**(Batch Normalization)[^fn-batch-normalization]가 그런 아이디어에서 출발한 방법입니다. 배치 정규화는 2015년에 제안된 방법입니다. 비교적 최근에 나온 기법임에도 불구하고 많은 연구자와 기술자들이 즐겨 사용하고 있습니다.
+
+배치 정규화가 주목받는 이유는 다음과 같습니다.
+* 학습을 빨리 진행할 수 있다(학습 속도 개선).
+* 초깃값에 크게 의존하지 않는다(초깃값 의존성 감소).
+* 오버피팅을 억제한다(추가적인 기법의 필요성 감소).
+
+딥러닝의 학습 시간이 길다는 것을 생각하면 첫 번째 이점은 매우 반가운 일입니다. 초깃값에 크게 신경 쓸 필요가 없고, 오버피팅 억제 효과가 있다는 점도 딥러닝의 두통거리를 덜어줍니다. 🤸‍♂️
+
+배치 정규화의 기본 아이디어는 앞에서 말했듯이 각 층에서의 활성화값이 **적당히** 분포되도록 조정하는 것입니다. 그래서 아래 그림처럼 데이터 분포를 정규화하는 **배치 정규화 계층**(Batch Norm Layer)을 신경망에 삽입합니다.
+
+<figure>
+    <img src="/posts/study/machine learning/deep learning/images/learning_techniques_21.png"
+         title="Example of neural network using batch normalization"
+         alt="Image of example of neural network using batch normalization"
+         class="img_center"
+         style="width: 60%"/>
+    <figcaption>배치 정규화를 사용한 신경망의 예</figcaption>
+</figure>
+
+배치 정규화는 그 이름과 같이 학습 시 **미니배치**를 단위로 정규화합니다. 구체적으로는 데이터 분포가 **평균이 0, 분산이 1**이 되도록 정규화합니다. 수식으로는 다음과 같습니다.
+
+$$
+\begin{matrix}
+\mu_B &\leftarrow& \frac{1}{m} \sum_{i=1}^m x_i \\
+\sigma_B^2 &\leftarrow& \frac{1}{m} \sum_{i=1}^m (x_i-\mu_B)^2 \\
+\hat{x_i} &\leftarrow& \frac{x_i-\mu_B}{\sqrt{\sigma_B^2+\varepsilon}} \label{batch_norm} \tag{2}
+\end{matrix}
+$$
+
+식 $(\ref{batch_norm})$에서는 미니배치 $B=\begin{Bmatrix} x_1,&x_2,&\cdots,&x_m\end{Bmatrix}$이라는 $m$개의 입력 데이터의 집합에 대해 평균 $\mu_B$와 분산 $\sigma_B^2$을 구합니다. 그리고 입력 데이터를 평균이 0, 분산이 1이 되게(적절한 분포가 되게) 정규화합니다. 또한, 식 $(\ref{batch_norm})$에서 $\varepsilon$은 작은 값(예컨대 10e-7 등)으로, 0으로 나누는 사태를 예방하는 역할입니다.
+
+이러한 정규화 처리를 **활성화 함수의 앞**(혹은 **뒤**)에 삽입함으로써 데이터 분포가 덜 치우치게 할 수 있습니다. 또, 배치 정규화 계층마다 이 정규화된 데이터에 고유한 **확대**(scale)와 **이동**(shift) 변환을 수행합니다. 수식으로는 다음과 같습니다.
+
+$$
+y_i \leftarrow \gamma \hat{x_i}+\beta \label{scale_shift} \tag{3}
+$$
+
+식 $(\ref{scale_shift})$에서 $\gamma$가 확대를, $\beta$가 이동을 담당합니다. 두 값은 처음에는 $\gamma=1,\ \beta=0$부터 시작하고, 학습하면서 적합한 값으로 조정해갑니다.
+
+> 💡 $\gamma=1$은 1배 확대를 뜻하고, $\beta=0$은 이동하지 않음을 뜻합니다. 즉, 처음에는 원본 그대로에서 시작한다는 이야기입니다.
+
+이상이 배치 정규화의 알고리즘입니다. 이 알고리즘이 신경망에서 **순전파** 때 적용되죠. 순전파에 적용된다는 말은 **역전파**에서도 적용되어야 하겠죠? 그렇다면 계산 그래프를 통해서 나타내 보겠습니다.
+
+## 계산 그래프
+
+### 순전파
+
+먼저 배치 정규화의 순전파입니다. 미니배치 $B=\begin{Bmatrix} x_1,&x_2,&\cdots,&x_m\end{Bmatrix}$는 $m$개의 $x$가 포함되어 있고, $x$에는 $n$개의 데이터가 포함되어 있다고 가정하겠습니다. 그렇다면 입력 데이터 $X$의 크기는 $(m,n)$이라고 할 수 있겠습니다. 이를 계산 그래프로 나타내면 아래와 같습니다.
+
+<figure>
+    <img src="/posts/study/machine learning/deep learning/images/learning_techniques_22.png"
+         title="Computational graph of forward propagation of batch normalization layer"
+         alt="Image of computational graph of forward propagation of batch normalization layer"
+         class="img_center"
+         style="width: 75%"/>
+    <figcaption>배치 정규화의 순전파를 나타낸 계산 그래프</figcaption>
+</figure>
+
+
+
+---
+
 [^fn-xavier-initialization]: 📚 Glorot, Xavier, and Yoshua Bengio. "Understanding the difficulty of training deep feedforward neural networks." Proceedings of the thirteenth international conference on artificial intelligence and statistics. JMLR Workshop and Conference Proceedings, 2010.
 
 [^fn-He-initialization]: :books: He, Kaiming, et al. "Delving deep into rectifiers: Surpassing human-level performance on imagenet classification." Proceedings of the IEEE international conference on computer vision. 2015.
+
+[^fn-batch-normalization]: :books: Ioffe, Sergey, and Christian Szegedy. "Batch normalization: Accelerating deep network training by reducing internal covariate shift." International conference on machine learning. pmlr, 2015.
