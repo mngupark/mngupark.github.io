@@ -35,7 +35,8 @@ ga_analytics: G-Z13WHQ8YDG
 # Specify the author for blog posts
 author:
   name: Mingyu Park
-  url: https://instagram.com/mn__g.p
+  git: https://github.com/Gyuhub
+  url: https://instagram.com/mn_g.p
   email: alsrb0820@gmail.com
 
 # Custom vars
