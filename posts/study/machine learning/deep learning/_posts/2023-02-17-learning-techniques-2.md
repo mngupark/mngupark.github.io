@@ -79,9 +79,9 @@ post-order: 17
 
 $$
 \begin{matrix}
-\tanh{z}&=&\frac{\sinh{z}}{\cosh{z}} \\
-&=&\frac{\exp{z}\ -\ \exp{-z}}{\exp{z}\ +\ \exp{-z}} \\
-&=&\frac{\exp{2z}\ -\ 1}{\exp{2z}\ +\ 1} \\
+\tanh{z}&=&\frac{\sinh{z}}{\cosh{z}}, \\
+&=&\frac{\exp{z}\ -\ \exp{-z}}{\exp{z}\ +\ \exp{-z}}, \\
+&=&\frac{\exp{2z}\ -\ 1}{\exp{2z}\ +\ 1}. \\
 \end{matrix} \tag{1}
 $$
 
@@ -176,9 +176,9 @@ He 초깃값은 앞 계층의 노드가 $\boldsymbol{n}$개일 때, 표준편차
 
 $$
 \begin{matrix}
-\mu_B &\leftarrow& \frac{1}{m} \sum_{i=1}^m x_i \\
-\sigma_B^2 &\leftarrow& \frac{1}{m} \sum_{i=1}^m (x_i-\mu_B)^2 \\
-\hat{x_i} &\leftarrow& \frac{x_i-\mu_B}{\sqrt{\sigma_B^2+\varepsilon}} \label{batch_norm} \tag{2}
+\mu_B &\leftarrow& \frac{1}{m} \sum_{i=1}^m x_i, \\
+\sigma_B^2 &\leftarrow& \frac{1}{m} \sum_{i=1}^m (x_i-\mu_B)^2, \\
+\hat{x_i} &\leftarrow& \frac{x_i-\mu_B}{\sqrt{\sigma_B^2+\varepsilon}}. \label{batch_norm} \tag{2}
 \end{matrix}
 $$
 
@@ -187,7 +187,7 @@ $$
 이러한 정규화 처리를 **활성화 함수의 앞**(혹은 **뒤**)에 삽입함으로써 데이터 분포가 덜 치우치게 할 수 있습니다. 또, 배치 정규화 계층마다 이 정규화된 데이터에 고유한 **확대**(scale)와 **이동**(shift) 변환을 수행합니다. 수식으로는 다음과 같습니다.
 
 $$
-y_i \leftarrow \gamma \hat{x_i}+\beta \label{scale_shift} \tag{3}
+y_i \leftarrow \gamma \hat{x_i}+\beta. \label{scale_shift} \tag{3}
 $$
 
 식 $(\ref{scale_shift})$에서 $\gamma$가 확대를, $\beta$가 이동을 담당합니다. 두 값은 처음에는 $\gamma=1,\ \beta=0$부터 시작하고, 학습하면서 적합한 값으로 조정해갑니다.
@@ -198,21 +198,202 @@ $$
 
 ## 계산 그래프
 
-### 순전파
-
-먼저 배치 정규화의 순전파입니다. 미니배치 $B=\begin{Bmatrix} x_1,&x_2,&\cdots,&x_m\end{Bmatrix}$는 $m$개의 $x$가 포함되어 있고, $x$에는 $n$개의 데이터가 포함되어 있다고 가정하겠습니다. 그렇다면 입력 데이터 $X$의 크기는 $(m,n)$이라고 할 수 있겠습니다. 이를 계산 그래프로 나타내면 아래와 같습니다.
+결과적인 그래프부터 보여드리면 다음과 같습니다.
 
 <figure>
     <img src="/posts/study/machine learning/deep learning/images/learning_techniques_22.png"
-         title="Computational graph of forward propagation of batch normalization layer"
-         alt="Image of computational graph of forward propagation of batch normalization layer"
+         title="Computational graph of batch normalization layer"
+         alt="Image of computational graph of batch normalization layer"
          class="img_center"
          style="width: 75%"/>
-    <figcaption>배치 정규화의 순전파를 나타낸 계산 그래프</figcaption>
+    <figcaption>배치 정규화의 계산 그래프</figcaption>
 </figure>
 
+[Fig. 8.]에서는 설명의 간략화와 실제적인 구현을 위해서 수식과는 표현이 조금 다르게 묘사되어 있을 수 있습니다. 순전파에 대해서 설명한 다음에 역전파에 대해서 차례대로 설명하겠습니다.
 
+### 순전파
 
+먼저 배치 정규화의 순전파입니다. 미니배치 $B=\begin{Bmatrix} x_1,&x_2,&\cdots,&x_m\end{Bmatrix}$는 $m$개의 $x$가 포함되어 있고, $x$에는 $n$개의 데이터가 포함되어 있다고 가정하겠습니다. 그렇다면 입력 데이터 $X$의 크기는 $(m,n)$이라고 할 수 있겠습니다.
+
+식 $(\ref{batch_norm})$와 $(\ref{scale_shift})$을 통해 [Fig. 8.]의 순전파를 이해하는 데에는 큰 어려움이 없을 것입니다. 다만 계산 과정에서 유의할 점은 $\gamma$와 $\beta$가 **scalar**가 아닌 **vector**라는 사실과 미니배치 $B$의 데이터 $x$의 평균을 열별로 구한다는 사실입니다. 또한 순전파의 노드 중에서 지금까지 없었던 노드는 제곱근 노드와 평균 노드, 뺄셈 노드 입니다. 하나씩 차례대로 역전파를 계산해보겠습니다.
+
+### 역전파
+
+#### 제곱근 노드
+
+먼저 제곱근 노드의 역전파입니다. 식 $f(x)=\sqrt{x}$에 대한 미분은 다음과 같습니다.
+
+$$
+y=f(x)=\sqrt{x}, \\
+\frac{df(x)}{dx}=\frac{1}{2\sqrt{x}}=\frac{1}{2y}. \label{diff_sqrt} \tag{4}
+$$
+
+식 $(\ref{diff_sqrt})$를 보시면 제곱근 함수를 미분하면 $\frac{1}{2}$과 순전파 때의 출력이 뒤집혀서 곱해진 것을 확인할 수 있습니다.
+
+#### 평균 노드
+
+다음은 평균 노드입니다. 크기가 $(m,n)$인 $\boldsymbol{X}$에 대한 평균 $\boldsymbol{y}\in\mathbb{R}^{1\times n}$을 산출하는 식과 그에 대한 미분은 다음과 같습니다.
+
+$$
+\boldsymbol{y}=\begin{bmatrix}
+     y_1 & y_2 & \cdots & y_n
+\end{bmatrix}=f(\boldsymbol{X}),\\
+y_j=\frac{1}{m} \sum_{i=1}^m x_{ij}=\frac{x_{1j}+x_{2j}+\cdots+x_{mj}}{m}, \\
+\text{where}\ \boldsymbol{X}=\begin{bmatrix}
+     x_{11} & x_{12} & \cdots & x_{1n} \\
+     \vdots & \vdots & \ddots & \vdots \\
+     x_{m1} & x_{m2} & \cdots & x_{mn}
+\end{bmatrix}, \\
+\begin{matrix}
+     \frac{\partial{L}}{\partial{\boldsymbol{X}}}&=&
+\begin{bmatrix}
+     \frac{\partial{L}}{\partial{x_{11}}}&\cdots&\frac{\partial{L}}{\partial{x_{m1}}}\\
+     \vdots&\ddots&\vdots\\
+     \frac{\partial{L}}{\partial{x_{1n}}}&\cdots&\frac{\partial{L}}{\partial{x_{mn}}}
+\end{bmatrix}, \\
+\frac{\partial{L}}{\partial{x_{ij}}}
+&=&\frac{\partial{\boldsymbol{y}}}{\partial{x_{ij}}}\frac{\partial{L}}{\partial{\boldsymbol{y}}} \\
+&=&
+\sum_{k=1}^n \frac{\partial{y_k}}{\partial{x_{ij}}}\frac{\partial{L}}{\partial{y_k}}, \\
+\frac{\partial{y_k}}{\partial{x_{ij}}}&=&
+\begin{cases}
+     \frac{1}{m}\ (j=k)\\
+     0\ (j \neq k)
+\end{cases}\ (k=1,2,\cdots,n), \\
+\frac{\partial{L}}{\partial{x_{ij}}}&=&
+\sum_{k=1}^n \frac{\partial{y_k}}{\partial{x_{ij}}}\frac{\partial{L}}{\partial{y_k}} \\
+&=&\sum_{k=1}^n \frac{1}{m}\frac{\partial{L}}{\partial{y_k}}\ (\frac{\partial{y_k}}{\partial{x_{ij}}}=\frac{1}{m}\ \text{only}\ k=j) \\
+&=&\frac{1}{m}\frac{\partial{L}}{\partial{y_j}}, \\
+\frac{\partial{L}}{\partial{\boldsymbol{X}}}&=&
+\begin{bmatrix}
+     \frac{1}{m}\frac{\partial{L}}{\partial{y_1}}&\cdots&\frac{1}{m}\frac{\partial{L}}{\partial{y_1}} \\
+     \vdots&\ddots&\vdots\\
+     \frac{1}{m}\frac{\partial{L}}{\partial{y_n}}&\cdots&\frac{1}{m}\frac{\partial{L}}{\partial{y_n}}
+\end{bmatrix}&=&
+\frac{\partial{L}}{\partial{\boldsymbol{y}}}
+\frac{1}{m}
+\begin{bmatrix}
+     1&\cdots&1 
+\end{bmatrix} \\
+&=&\frac{\partial{L}}{\partial{\boldsymbol{y}}}\frac{1}{m}\boldsymbol{o} 
+(\boldsymbol{o}=\begin{bmatrix}
+     1 & \cdots & 1
+\end{bmatrix}\in\mathbb{R}^{1\times m}).
+\end{matrix} \\
+\therefore \frac{\partial{L}}{\partial{\boldsymbol{X}}}=\frac{\partial{L}}{\partial{\boldsymbol{y}}}\frac{\partial{\boldsymbol{y}}}{\partial{\boldsymbol{X}}}
+=\frac{\partial{L}}{\partial{\boldsymbol{y}}}\frac{1}{m}\boldsymbol{o}. \\
+\therefore \frac{\partial{\boldsymbol{y}}}{\partial{\boldsymbol{X}}}=\frac{1}{m}\boldsymbol{o}. \label{mean_gate} \tag{5}
+$$
+
+이를 계산 그래프로 나타내면 아래와 같습니다.
+
+<figure>
+    <img src="/posts/study/machine learning/deep learning/images/learning_techniques_23.png"
+         title="Computational graph of mean gate"
+         alt="Image of computational graph of mean gate"
+         class="img_center"
+/>
+    <figcaption>평균 노드의 계산 그래프</figcaption>
+</figure>
+
+[Fig. 9.]에서의 역전파 결과와 식 $(\ref{mean_gate})$에서 유도한 결과가 다른 것을 확인할 수 있습니다. 이는 Python의 numpy 모듈을 통해 계산하는 과정에서 broadcast 기능을 이용해서 계산하다 보니 생긴 문제입니다. 따라서 수식적 유도 과정과 실제 구현에서 발생할 수 있는 표기의 차이라고 이해해주시면 감사하겠습니다.
+
+#### 뺄셈 노드
+
+마지막으로 뺼셈 노드의 역전파입니다. 식 $f(x,y)=x-y$에 대한 미분은 다음과 같습니다.
+
+$$
+y=f(x,y)=x-y, \\
+\frac{\partial{f(x,y)}}{\partial{x}}=1,\ \frac{\partial{f(x,y)}}{\partial{y}}=-1. \label{diff_subtraction} \tag{6}
+$$
+
+식 $(\ref{diff_subtraction})$을 보시면 덧셈 노드처럼 역전파때의 값에 1을 곱해서 그대로 흘리기에, 크기는 **그대로**라는 점은 유사하지만, 순전파때 뺄셈 노드에 의해서 **뺄셈 연산이 수행된** 입력값에 대해서는 역전파때에도 '**-**'를 곱하는 것을 확인할 수 있습니다.
+
+배치 정규화 계층을 Python을 이용해서 구현해보겠습니다.
+<details>
+<summary>Show code</summary>
+```python
+class BatchNormLayer:
+     def __init__(self, gamma, beta, momentum=0.9, rolling_mean=None, rolling_var=None):
+          self.gamma = gamma
+          self.beta = beta
+          self.momentum = momentum
+          self.input_shape = None # 4-D for convolution layer, 2-D for affine layer
+
+          # used when the network is run for testing, not learning
+          self.rolling_mean = rolling_mean
+          self.rolling_var = rolling_var
+
+          # used when backpropagation
+          self.batch_size = None
+          self.xd = None # deviation between data and mean
+          self.std = None # standarad deviation
+          self.xhat = None # normalized data
+          self.dgamma = None
+          self.dbeta = None
+
+     def forward(self, x, train_flag=True):
+          self.input_shape = x.shape
+          if x.ndim != 2:
+               N, C, H, W = x.shape # batch, channel, height, width
+               x = x.reshape(N, -1)
+          
+          out = self.__forward(x,train_flag)
+          return out.reshape(*self.input_shape)
+
+     def __forward(self, x, train_flag):
+          if self.rolling_mean == None:
+               N, D = x.shape
+               self.rolling_mean = np.zeros(D)
+               self.rolling_var = np.zeros(D)
+
+          if train_flag:
+               mu = np.mean(x, axis=0)
+               xd = x - mu
+               var = np.mean(xd**2, axis=0)
+               std = np.sqrt(var + 10e-7)
+               xhat = xd / std
+
+               self.batch_size = x.shape[0]
+               self.xd = xd
+               self.std = std
+               self.xhat = xhat
+
+               # Exponential Moving Average (EMA)
+               self.rolling_mean = self.momentum * self.rolling_mean (1 - self.momentum) * mu
+               self.rolling_var = self.momentum * self.rolling_var (1 - self.momentum) * var
+          else:
+               xd = x - self.rolling_mean
+               xhat = xd / (np.sqrt(self.running_var + 10e-7))
+          
+          out = self.gamma * xhat + self.beta
+          return out
+
+     def backward(self, dout):
+          if dout.ndim != 2:
+               N, C, H, W = dout.shape # batch, channel, height, width
+               dout = dout.reshape(N, -1)
+          
+          dx = self.__backward(dout)
+          dx = dx.reshape(*self.input_shape)
+          return dx
+
+     def __backward(self, dout):
+          dbeta = np.sum(dout, axis=0)
+          dgamma = np.sum(dout * self.xhat, axis=0)
+          dxhat = self.gamma * dout
+          dxd = dxhat / self.std
+          dstd = -np.sum((dxhat * self.xd) / (self.std**2), axis=0)
+          dvar = 0.5 * dstd / self.std
+          dxd += (2.0 / self.batch_size) * self.xd * dvar
+          dmu = np.sum(dxd, axis=0)
+          dx = dxd - dmu / self.batch_size
+
+          self.dgamma = dgamma
+          self.dbeta = dbeta
+          return dx
+```
+</details>
 ---
 
 [^fn-xavier-initialization]: 📚 Glorot, Xavier, and Yoshua Bengio. "Understanding the difficulty of training deep feedforward neural networks." Proceedings of the thirteenth international conference on artificial intelligence and statistics. JMLR Workshop and Conference Proceedings, 2010.
