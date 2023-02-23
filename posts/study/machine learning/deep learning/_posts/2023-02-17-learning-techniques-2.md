@@ -291,8 +291,7 @@ $$
     <img src="/posts/study/machine learning/deep learning/images/learning_techniques_23.png"
          title="Computational graph of mean gate"
          alt="Image of computational graph of mean gate"
-         class="img_center"
-/>
+         class="img_center"/>
     <figcaption>평균 노드의 계산 그래프</figcaption>
 </figure>
 
@@ -309,88 +308,44 @@ $$
 
 식 $(\ref{diff_subtraction})$을 보시면 덧셈 노드처럼 역전파때의 값에 1을 곱해서 그대로 흘리기에, 크기는 **그대로**라는 점은 유사하지만, 순전파때 뺄셈 노드에 의해서 **뺄셈 연산이 수행된** 입력값에 대해서는 역전파때에도 '**-**'를 곱하는 것을 확인할 수 있습니다.
 
-배치 정규화 계층을 Python을 이용해서 구현해보겠습니다. 코드가 길어지니 자세한 코드는 여기[^fn-batch-normalization-python]를 참고해 주시면 감사하겠습니다.
-```python
-class BatchNormLayer:
-     def __init__(self, gamma, beta, momentum=0.9, rolling_mean=None, rolling_var=None):
-          self.gamma = gamma
-          self.beta = beta
-          self.momentum = momentum
-          self.input_shape = None # 4-D for convolution layer, 2-D for affine layer
+배치 정규화 계층을 Python을 이용해서 구현했지만 코드가 너무 길어서 자세한 코드는 여기[^fn-batch-normalization-python]를 참고해 주시면 감사하겠습니다😅.
 
-          # used when the network is run for testing, not learning
-          self.rolling_mean = rolling_mean
-          self.rolling_var = rolling_var
+---
 
-          # used when backpropagation
-          self.batch_size = None
-          self.xd = None # deviation between data and mean
-          self.std = None # standarad deviation
-          self.xhat = None # normalized data
-          self.dgamma = None
-          self.dbeta = None
+그럼 배치 정규화 계층을 MNIST 데이터셋을 통해서 실제로 학습에 도움이 되는지 알아보겠습니다. 결과는 다음과 같습니다. 
 
-     def forward(self, x, train_flag=True):
-          self.input_shape = x.shape
-          if x.ndim != 2:
-               N, C, H, W = x.shape # batch, channel, height, width
-               x = x.reshape(N, -1)
-          
-          out = self.__forward(x,train_flag)
-          return out.reshape(*self.input_shape)
+<figure>
+    <img src="/posts/study/machine learning/deep learning/images/learning_techniques_24.png"
+         title="Comparison of result by how the batch normalization affect to learning"
+         alt="Image of comparison of result by how the batch normalization affect to learning"
+         class="img_center"
+         style="display: inline-block; width: 50%"/>
+     <img src="/posts/study/machine learning/deep learning/images/learning_techniques_25.png"
+         title="Comparison of result by how the batch normalization affect to learning"
+         alt="Image of comparison of result by how the batch normalization affect to learning"
+         class="img_center"
+         style="display: inline-block; width: 80%"/>
+    <figcaption>배치 정규화가 학습 진도와 정확도에 미치는 영향</figcaption>
+</figure>
 
-     def __forward(self, x, train_flag):
-          if self.rolling_mean == None:
-               N, D = x.shape
-               self.rolling_mean = np.zeros(D)
-               self.rolling_var = np.zeros(D)
+[Fig. 10.]을 보시면 <span style="color: blue">배치 정규화를 진행한 신경망</span>이 <span style="color: green">진행하지 않은 신경망</span>보다 학습 진도와 정확도면에서 둘 다 뛰어난 것을 확인할 수 있습니다. 그렇다면 정말 초깃값에도 영향을 크게 받지 않는지에 대해서도 알아보겠습니다. 초깃값은 위에서 알아본 권장 초깃값(표준편차가 1인 정규분포를 따르는 난수, Xavier 초깃값, He 초깃값)들을 사용해보겠습니다. 결과는 다음과 같습니다.
 
-          if train_flag:
-               mu = np.mean(x, axis=0)
-               xd = x - mu
-               var = np.mean(xd**2, axis=0)
-               std = np.sqrt(var + 10e-7)
-               xhat = xd / std
+<figure>
+    <img src="/posts/study/machine learning/deep learning/images/learning_techniques_26.png"
+         title="Comparison of result by how the batch normalization affect to learning with initialization"
+         alt="Image of comparison of result by how the batch normalization affect to learning with initialization"
+         class="img_center"
+         style="display: inline-block; width: 50%"/>
+     <img src="/posts/study/machine learning/deep learning/images/learning_techniques_27.png"
+         title="Comparison of result by how the batch normalization affect to learning with initialization"
+         alt="Image of comparison of result by how the batch normalization affect to learning with initialization"
+         class="img_center"
+         style="display: inline-block; width: 80%"/>
+    <figcaption>배치 정규화가 초깃값에 따라서 학습 진도와 정확도에 미치는 영향</figcaption>
+</figure>
 
-               self.batch_size = x.shape[0]
-               self.xd = xd
-               self.std = std
-               self.xhat = xhat
+[Fig. 11.]을 보시면 초깃값에 영향을 받지 않고 모든 신경망이 잘 학습이 된 것을 확인할 수 있습니다. 다만, 정확도에 대해서는 약간의 오버피팅이 일어난 모습을 확인할 수 있습니다. 다음 post에서는 이 오버피팅을 대응하기 위한 방법들에 대해서 알아보겠습니다.
 
-               # Exponential Moving Average (EMA)
-               self.rolling_mean = self.momentum * self.rolling_mean (1 - self.momentum) * mu
-               self.rolling_var = self.momentum * self.rolling_var (1 - self.momentum) * var
-          else:
-               xd = x - self.rolling_mean
-               xhat = xd / (np.sqrt(self.running_var + 10e-7))
-          
-          out = self.gamma * xhat + self.beta
-          return out
-
-     def backward(self, dout):
-          if dout.ndim != 2:
-               N, C, H, W = dout.shape # batch, channel, height, width
-               dout = dout.reshape(N, -1)
-          
-          dx = self.__backward(dout)
-          dx = dx.reshape(*self.input_shape)
-          return dx
-
-     def __backward(self, dout):
-          dbeta = np.sum(dout, axis=0)
-          dgamma = np.sum(dout * self.xhat, axis=0)
-          dxhat = self.gamma * dout
-          dxd = dxhat / self.std
-          dstd = -np.sum((dxhat * self.xd) / (self.std**2), axis=0)
-          dvar = 0.5 * dstd / self.std
-          dxd += (2.0 / self.batch_size) * self.xd * dvar
-          dmu = np.sum(dxd, axis=0)
-          dx = dxd - dmu / self.batch_size
-
-          self.dgamma = dgamma
-          self.dbeta = dbeta
-          return dx
-```
 ---
 
 [^fn-xavier-initialization]: 📚 Glorot, Xavier, and Yoshua Bengio. "Understanding the difficulty of training deep feedforward neural networks." Proceedings of the thirteenth international conference on artificial intelligence and statistics. JMLR Workshop and Conference Proceedings, 2010.
@@ -399,4 +354,4 @@ class BatchNormLayer:
 
 [^fn-batch-normalization]: :books: Ioffe, Sergey, and Christian Szegedy. "Batch normalization: Accelerating deep network training by reducing internal covariate shift." International conference on machine learning. pmlr, 2015.
 
-[^fn-batch-normalization-python]: [여기]()에서 batch normalization에 관한 Python 코드를 확인하실 수 있습니다.
+[^fn-batch-normalization-python]: [여기](https://github.com/Gyuhub/dl_scratch/blob/main/dl_scratch/common/layers.py#L99)에서 batch normalization에 관한 Python 코드를 확인하실 수 있습니다.
