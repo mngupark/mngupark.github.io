@@ -309,9 +309,7 @@ $$
 
 식 $(\ref{diff_subtraction})$을 보시면 덧셈 노드처럼 역전파때의 값에 1을 곱해서 그대로 흘리기에, 크기는 **그대로**라는 점은 유사하지만, 순전파때 뺄셈 노드에 의해서 **뺄셈 연산이 수행된** 입력값에 대해서는 역전파때에도 '**-**'를 곱하는 것을 확인할 수 있습니다.
 
-배치 정규화 계층을 Python을 이용해서 구현해보겠습니다.
-<details>
-<summary>Show code</summary>
+배치 정규화 계층을 Python을 이용해서 구현해보겠습니다. 코드가 길어지니 자세한 코드는 여기[^fn-batch-normalization-python]를 참고해 주시면 감사하겠습니다.
 ```python
 class BatchNormLayer:
      def __init__(self, gamma, beta, momentum=0.9, rolling_mean=None, rolling_var=None):
@@ -393,7 +391,6 @@ class BatchNormLayer:
           self.dbeta = dbeta
           return dx
 ```
-</details>
 ---
 
 [^fn-xavier-initialization]: 📚 Glorot, Xavier, and Yoshua Bengio. "Understanding the difficulty of training deep feedforward neural networks." Proceedings of the thirteenth international conference on artificial intelligence and statistics. JMLR Workshop and Conference Proceedings, 2010.
@@ -401,3 +398,5 @@ class BatchNormLayer:
 [^fn-He-initialization]: :books: He, Kaiming, et al. "Delving deep into rectifiers: Surpassing human-level performance on imagenet classification." Proceedings of the IEEE international conference on computer vision. 2015.
 
 [^fn-batch-normalization]: :books: Ioffe, Sergey, and Christian Szegedy. "Batch normalization: Accelerating deep network training by reducing internal covariate shift." International conference on machine learning. pmlr, 2015.
+
+[^fn-batch-normalization-python]: [여기]()에서 batch normalization에 관한 Python 코드를 확인하실 수 있습니다.
