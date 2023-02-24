@@ -30,6 +30,9 @@ const observerCallback = (entries) => {
 			if (activatedToc._arr.length != 0)
 				sidebarAnchors[headingIds.indexOf(id)].parentElement.classList.remove('active');
 		}
+		if (headingIds.indexOf(id) == 0 && activatedToc._lastToc.length != 0) {
+			activatedToc._lastToc = activatedToc.dequeue();
+		}
 	});
 };
 
