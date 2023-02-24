@@ -73,7 +73,7 @@ layout: default
         {% endif %}
         {% if post.post-order == 1 and pageTitle == postCategory %}
             {% assign postSeries = post.post-series %}
-            <h2><i class="fa-solid fa-tags"></i> <mark>{{ postSeries }}</mark></h2>
+            <h2><i class="fa-solid fa-tags"></i> <a id="{{ postSeries }}"><mark>{{ postSeries }}</mark></a></h2>
             <ul>
         {% endif %}
         {% if pageTitle == postCategory %}

@@ -17,6 +17,10 @@ title: Home
           {% assign categoryPath = oldCategoryPath | append: category | append: "/" %}
           <small><a href="{{ site.baseurl }}/posts/{{ categoryPath }}">{{ category | capitalize }}</a></small>
         {% endfor %}
+        {% if post.post-series %}
+          <mark style="background-color: var(--blue-300);">Series:</mark>
+          <small><a href="{{ site.baseurl }}/posts/{{ categoryPath }}#{{ post.post-series }}">{{ post.post-series }}</a></small>
+        {% endif %}
       </a>
     </article>
   {% endfor %}

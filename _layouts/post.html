@@ -5,6 +5,15 @@ layout: default
 <article class="post">
   <h1 class="post-title">{{ page.title }}</h1>
   <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">{{ page.date | date_to_string }}</time>
+  {% if page.post-series %}
+    {% assign categoryPath = "" %}
+      {% for category in page.categories %}
+        {% capture oldCategoryPath %}{{ categoryPath }}{% endcapture %}
+        {% assign categoryPath = oldCategoryPath | append: category | append: "/" %}
+      {% endfor %}
+      {% assign seriesPath = categoryPath | append: "#" | append: page.post-series %}  
+      <p class="post-title message"><i class="fa-solid fa-circle-info"></i> This post is a series post. In case you missed the previous posts, please follow the <a href="/{{ seriesPath }}">link</a></p>
+  {% endif %}
   {{ content }}
 </article>
 
