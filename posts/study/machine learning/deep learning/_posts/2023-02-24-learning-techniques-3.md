@@ -21,7 +21,7 @@ post-order: 18
 위 두 조건을 충족하면 어떤 일이 발생할까요? 실제로 두 조건을 충족하여 오버피팅을 **일부러** 일으켜보겠습니다. 원래 60,000개의 훈련 데이터로 이루어진 MNIST 데이터셋에서 **500개**만 사용해서 훈련 데이터를 줄이고, **7층** 네트워크를 사용해서 네트워크의 복잡성을 높이겠습니다. 각 층의 뉴런은 100개, 활성화 함수는 ReLU를 사용하겠습니다. 결과는 다음과 같습니다.
 
 <figure>
-     <img src="/posts/study/machine learning/deep learning/images/learning_techniques_28.png"
+    <img src="/posts/study/machine learning/deep learning/images/learning_techniques_28.png"
          title="Comparison of accuracy between train and test dataset when overfitting occurred"
          alt="Image of comparison of accuracy between train and test dataset when overfitting occurred"
          class="img_center"
@@ -41,13 +41,45 @@ post-order: 18
 
 > 💡 L2 노름은 **각 원소의 제곱**을 더한 것에 해당합니다. 가중치 $W=\begin{pmatrix} w_1 & w_2 & \cdots & w_n \end{pmatrix}$ 이 있다면, L2 노름에서는 $\sqrt{w_1^2+w_2^2+\cdots+w_n^2}$으로 계산할 수 있습니다. L2 노름 외에 L1 노름과 L$\infty$ 노름도 있습니다. L1 노름은 절댓값의 합, 즉 $\left \vert w_1 \right \vert+\left \vert w_2 \right \vert+\cdots+\left \vert w_n \right \vert$에 해당합니다. L$\infty$ 노름은 Max 노름이라고도 하며, 각 원소의 절댓값 중 가장 큰 것에 해당합니다. 정규화 항으로 L2 노름, L1 노름, L$\infty$ 노름 중 어떤 것도 사용할 수 있습니다.
 
-그러면 가중치 감소를 한번 적용해보겠습니다. [Fig. 1.]에 $\lambda=0.1$로 가중치 감소를 적용합니다. 결과는 다음과 같습니다.
+그러면 가중치 감소를 한번 적용해보겠습니다. [Fig. 1.]에서는 $\lambda=0.1$의 가중치 감소를 적용합니다. 결과는 다음과 같습니다.
 
 <figure>
-     <img src="/posts/study/machine learning/deep learning/images/learning_techniques_29.png"
+    <img src="/posts/study/machine learning/deep learning/images/learning_techniques_29.png"
          title="Comparison of accuracy between train and test dataset when applied weight decay method"
          alt="Image of comparison of accuracy between train and test dataset when applied weight decay method"
          class="img_center"
          style="width: 60%"/>
     <figcaption>가중치 감소를 적용한 훈련 데이터와 시험 데이터의 정확도 비교</figcaption>
 </figure>
+
+가중치 감소를 <ins>적용하지 않은</ins> 신경망의 <span style="color: blue">훈련 데이터</span>와 <span style="color: green">시험 데이터</span>의 정확도 차이보다 가중치 감소를 <ins>적용한</ins> 신경망의 <span style="color: purple">훈련 데이터</span>와 <span style="color: pink">시험 데이터</span>의 정확도 차이가 **더 작은** 것을 확인할 수 있습니다. 다시 말해 가중치 감소를 통해서 **오버피팅**을 **억제**하는 것에 성공했다는 말입니다. 하지만, 앞선 경우와 달리 훈련 데이터에 대한 정확도가 **100%**에 도달하지 못한 점도 주목해야 하겠습니다.
+
+---
+
+## 드롭아웃
+
+오버피팅을 억제하는 방식으로 손실 함수에 가중치의 L2 노름을 더하는 **가중치 감소** 방법을 설명했습니다. 가중치 감소는 **구현도 간단하고** 어느 정도 **지나친 학습**을 억제하는데 도움이 된다는 것도 확인했습니다. 하지만 신경망이 복잡해질수록 가중치 감소만으로는 오버피팅에 대응하기 어려워집니다. 이때 사용하는 기법이 바로 **드롭아웃**(Dropout)입니다.
+
+**드롭아웃**은 뉴런을 **임의로 삭제**하면서 학습하는 방법입니다. 훈련 때 **은닉층**의 뉴런을 **무작위로** 골라 삭제합니다. 삭제된 뉴런은 아래 그림과 같이 신호를 전달하지 않게 됩니다. **훈련** 때는 데이터를 흘릴 때마다 삭제할 뉴런을 **무작위로** 선택하고, **시험** 때는 **모든** 뉴런에 신호를 전달합니다. 단, **시험 때는** 각 뉴런의 **출력**에 훈련 때 **삭제 안 한 비율**을 곱하여 출력합니다.
+
+<figure>
+    <img src="/posts/study/machine learning/deep learning/images/learning_techniques_30.png"
+         title="Comparison of networks within dropout"
+         alt="Image of comparison of networks within dropout"
+         class="img_center"
+         style="width: 60%"/>
+    <figcaption>드롭아웃의 개념</figcaption>
+</figure>
+
+그러면 드롭아웃을 한번 적용해보겠습니다. [Fig. 4.]에서는 **0.3**의 드롭아웃 비율을 적용합니다. 결과는 다음과 같습니다.
+
+<figure>
+    <img src="/posts/study/machine learning/deep learning/images/learning_techniques_31.png"
+         title="Comparison of accuracy between train and test dataset when applied dropout method"
+         alt="Image of comparison of accuracy between train and test dataset when applied dropout method"
+         class="img_center"
+         style="width: 60%"/>
+    <figcaption>드롭아웃을 적용한 훈련 데이터와 시험 데이터의 정확도 비교</figcaption>
+</figure>
+
+[Fig. 4.]와 같이 드롭아웃을 적용하니 훈련 데이터와 시험 데이터에 대한 정확도 차이가 **줄었습니다**. 또한, **가중치 감소**와 마찬가지로 훈련 데이터에 대한 정확도가 **100%**에 도달하지도 않게 되었습니다. 이처럼 드롭아웃을 이용하면 표현력을 높이면서도 오버피팅을 억제할 수 있습니다.
