@@ -42,7 +42,7 @@ Trial & Error 학습에서는 "<ins>좋거나 나쁜 결과에 따라서 동물�
     <figcaption>Richard Ernest Bellman</figcaption>
 </figure>
 
-벨만 방정식은 19세기의 *Hamilton*과 *Jacobi*의 이론을 확장해서 동역학 시스템의 상태와 **가치 함수**(value function), 혹은 **최적 리턴 함수**(optimal return function),라는 개념을 도입한 방정식입니다. 이 벨만 방정식을 풀어서 Optimal Control 문제를 해결하려는 방법론으로 나온 것이 바로 **Dynamic Programming**입니다. 이러한 것들이 모두 현대 강화 학습의 알고리즘과 이론의 근간을 이루는 요소들입니다.
+벨만 방정식은 19세기의 *Hamilton*과 *Jacobi*의 이론을 확장해서 동역학 시스템의 상태와 **가치 함수**(value function), 혹은 **최적 리턴 함수**(optimal return function),라는 개념을 도입한 방정식입니다. 이 벨만 방정식을 풀어서 Optimal Control 문제를 해결하려는 방법론으로 나온 것이 바로 **Dynamic Programming**입니다. 이러한 것들이 모두 1980년대 후반에 합쳐지면서 현대 강화 학습의 알고리즘과 이론의 근간을 이루는 요소들이 되었습니다.
 
 ---
 
