@@ -83,7 +83,7 @@ post-order: 3
 
 <i class="fa-solid fa-1"></i>. 상태 $s_t$에서 에이전트로부터 받은 액션 $a_t$를 통해서 상태 변화를 일으킴.
 
-<i class="fa-solid fa-2"></i>. 그 결과 상태는 $s_t \rightarraw s_{t+1}$로 바뀜.
+<i class="fa-solid fa-2"></i>. 그 결과 상태는 $s_t \rightarrow s_{t+1}$로 바뀜.
 
 <i class="fa-solid fa-3"></i>. 에이전트에게 줄 보상 $r_t$도 함께 계산.
 
