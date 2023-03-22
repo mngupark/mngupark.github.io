@@ -25,14 +25,16 @@ const observerCallback = (entries) => {
 			activatedToc.enqueue(decodeURI(id));
 			sidebarAnchors[headingIds.indexOf(id)].parentElement.classList.add('active');
 		} else {
-			if (activatedToc._arr.find((element) => element == id) != undefined)
+			if (activatedToc._arr.find((element) => element == id) != undefined) {
 				activatedToc._lastToc = activatedToc.dequeue();
+				console.log(activatedToc);
+			}
 			if (activatedToc._arr.length != 0)
 				sidebarAnchors[headingIds.indexOf(id)].parentElement.classList.remove('active');
 		}
-		if (headingIds.indexOf(id) == 0 && activatedToc._lastToc.length != 0) {
-			activatedToc._lastToc = activatedToc.dequeue();
-		}
+		// if (headingIds.indexOf(id) == 0 && activatedToc._lastToc.length != 0) {
+		// 	activatedToc._lastToc = activatedToc.dequeue();
+		// }
 	});
 };
 
