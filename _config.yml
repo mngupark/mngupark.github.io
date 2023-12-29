@@ -30,14 +30,14 @@ sass:
 # Options
 
 # Replace this value and uncomment to enable Google Analytics tracking
-ga_analytics: G-Z13WHQ8YDG
+ga_analytics: G-0124JN7YV0
 
 # Specify the author for blog posts
 author:
   name: Mingyu Park
   git: https://github.com/Gyuhub
   url: https://instagram.com/mn_g.p
-  email: alsrb0820@gmail.com
+  email: mngupark@gmail.com
 
 # Custom vars
 version: 3.0.0
