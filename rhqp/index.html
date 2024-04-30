@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Computational Cost Reduction Method for HQP-based Hierarchical Controller for Articulated Robot</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1296">
+    <meta property="og:image:height" content="840">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mngupark.github.io/rhqp"/>
+    <meta property="og:title" content="Computational Cost Reduction Method for HQP-based Hierarchical Controller for Articulated Robot" />
+    <meta property="og:description" content="Reduced hierarchical quadratic programming (rHQP) is an optimal real-time controller for articulated redundant dual-arm manipulators. rHQP solves about faster than the conventional HQP on average." />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Computational Cost Reduction Method for HQP-based Hierarchical Controller for Articulated Robot" />
+    <meta name="twitter:description" content="Reduced hierarchical quadratic programming (rHQP) is an optimal real-time controller for articulated redundant dual-arm manipulators. rHQP solves about faster than the conventional HQP on average." />
+    <meta name="twitter:image" content="https://mngupark.github.io/rhqp/img/rhqp.png" />
+
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕹️</text></svg>">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    
+    <script src="js/app.js"></script>
+    <script src="js/video_comparison.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center">
+                Computational Cost Reduction Method for HQP-based Hierarchical Controller for Articulated Robot</br> 
+                <small>
+                KROS 2022
+                </small>
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://mngupark.github.io/">
+                          Mingyu Park
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://sites.google.com/view/kist-arc/home/people#h.so392lublzio">
+                          Dongwhan Kim
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://scholar.google.com/citations?hl=en&user=hEnok94AAAAJ">
+                          Yongwhan Oh
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://sites.google.com/view/kist-arc/home/people#h.2ttiu6fl16v6">
+                            Yisoo Lee
+                        </a>
+                    </li>
+                    </br>KIST (Korea Institute of Science and Technology)
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://koreascience.kr/article/JAKO202209065708448.page?&lang=en">
+                            <image src="img/rhqp_kros_image.jpg" height="60px">
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <video id="v0" width="100%" autoplay loop muted controls>
+                  <source src="img/rhqp.mp4" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify">
+                    This paper presents a method that can reduce the computational cost of the hierarchical
+                    quadratic programming (HQP)-based robot controller. Hierarchical controllers can effectively manage
+                    articulated robots with many degrees of freedom (DoFs) to perform multiple tasks. The HQP-based
+                    controller is one of the generic hierarchical controllers that can provide a control solution guaranteeing
+                    strict task priority while handling numerous equality and inequality constraints. However, according to
+                    a large amount of computation, it can be a burden to use it for real-time control. Therefore, for
+                    practical use of the HQP, we propose a method to reduce the computational cost by decreasing the size
+                    of the decision variable. The computation time and control performance of the proposed method are
+                    evaluated by real robot experiments with a 15 DoFs dual-arm manipulator.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Framework
+                </h3>
+				<table style="width: 100%; border-collapse: collapse;">
+				  <tr>
+				    <td style="text-align: center;">
+		                <image src="img/rhqp_framework.jpg" height="60px">
+					</td>
+				  </tr>
+				  <tr>
+				    <td style="text-align: center;">Overview of the algorithm of the proposed method</td>
+				  </tr>
+				</table>
+                <p class="text-justify">
+                    HQP is the process of solving cascade numerical optimization problems using quadratic programming (QP).
+                    In the QP, we can minimize quadratic function while satisfying equality and inequality constraints.
+                    To reduce the computational cost of HQP controller, we propose a novel method that resizes the decision variables
+                    of the controller while satisfying a dynamical relatoinship of the rigid body.
+                </p>
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Platform
+                </h3>
+				<table style="width: 100%; border-collapse: collapse;">
+				  <tr>
+				    <td style="text-align: center;">
+		                <image src="img/dual_arm_manipulators.jpg" height="100%">
+					</td>
+				  </tr>
+				  <tr>
+				    <td style="text-align: center;">Dual-arm manipulator (left) and schematic kinematic structure of the robot (right)</td>
+				  </tr>
+				</table>
+                <p class="text-justify">
+                    The 15-DoFs dual-arm manipulators have 7 DoFs for each arm and a 1 DoF prismatic joint for vertical motion.
+                    The HQP is solved by the library <a href="https://github.com/coin-or/qpOASES">qpOASES</a>, and rigid body dynamics parameters are obtained from the library <a href="https://github.com/rbdl/rbdl">RBDL</a> and URDF model of the robot.
+                    <a href="https://eigen.tuxfamily.org/index.php?title=Main_Page">Eigen</a> library is utilized for linear algebra computation.
+                    The controller is implemented in the computer with Intel 3.1 GHz hexadecacore processor and 32 GByte memory with Linux and Xenomai for 1 kHz real-time control.
+                    For joint torque control, Elmo motor drivers are utilized with an EtherCAT communication interface.
+                </p>
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Experimental Results
+                </h3>
+				<table style="width: 100%; border-collapse: collapse;">
+				  <tr>
+				    <td style="text-align: center;">
+		                <image src="img/rhqp_computation_time.jpg" width="100%">
+					</td>
+                    <td style="text-align: center;">
+		                <image src="img/rhqp_computation_time_table.jpg" width="100%">
+					</td>
+				  </tr>
+				  <tr>
+				    <td style="text-align: center;">Computation time consumed with rHQP (blue), HQP (red), and OSF</td>
+				    <td style="text-align: center;">Statistical results of each method</td>
+				  </tr>
+				</table>
+                <p class="text-justify">
+                    For the comparison of performance, we conduct a trajectory tracking experiment.
+                    Since the task for comparison is designed to compare the efficiency of computation,
+                    all controllers including rHQP, HQP, and operational space formulation (OSF) generate a similar control solution.
+                    As a result, rHQP solves about <b>x2.44</b> faster than the conventional HQP on average.
+                </p>
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Citation
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+                        @article{park2022computational,
+                            title={Computational Cost Reduction Method for HQP-based Hierarchical Controller for Articulated Robot},
+                            author={Park, Mingyu and Kim, Dongwhan and Oh, Yonghwan and Lee, Yisoo},
+                            journal={The Journal of Korea Robotics Society},
+                            volume={17},
+                            number={1},
+                            pages={16--24},
+                            year={2022},
+                            publisher={Korea Robotics Society}
+                          }</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                This project was supported by the Korea Institute of Science, and Technology Institutional Programs under Grant 2E31593.
+                    <br><br>
+                The website template was borrowed from <a href="https://jonbarron.info/">Jonathan T. Barron</a> and <a href="https://jonbarron.info/zipnerf/">Zip-NeRF</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
