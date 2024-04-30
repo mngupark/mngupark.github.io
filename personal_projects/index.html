@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Personal research projects</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1296">
+    <meta property="og:image:height" content="840">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mngupark.github.io/baram"/>
+    <meta property="og:title" content="Personal research projects" />
+    <meta property="og:description" content="Project pages for personal research." />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Personal research projects" />
+    <meta name="twitter:description" content="Project pages for personal research." />
+    <meta name="twitter:image" content="https://mngupark.github.io/images/favicon/android-chrome-192x192.png" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕹️</text></svg>">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    
+    <script src="js/app.js"></script>
+    <script src="js/video_comparison.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center" id="baram">
+                Project conducted at BARAM (Acdaemic Robotics Club at Kwangwoon University)
+            </h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+                    <tr>
+                        <td style="padding:20px;width:75%;vertical-align:middle">
+                            <h4>QP-based MPC for Differential-Drive Mobile Robot</h4>
+                            <p>Personal project during Sep. - Nov. 2021</p>
+                        </td>
+                        <td style="padding:20px;width:25%;vertical-align:middle">
+                            <ul class="nav nav-pills nav-justified width:75%">
+                                <li>
+                                    <a href="https://github.com/mngupark/qmp">
+                                    <image src="img/github.png" height="60px">
+                                        <h4><strong>Source code</strong></h4>
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                  </tbody></table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h3>
+                    Experimental Results
+                </h3>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+                    <tr>
+                        <td style="text-align: center;">
+                            <video id="v0" height="200px" autoplay loop muted>
+                                <source src="img/baram_qmp_real.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                        <td style="text-align: center;">
+                            <video id="v0" height="200px" autoplay loop muted>
+                                <source src="img/baram_qmp_rviz.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">Real-world robot in a small maze</td>
+				        <td style="text-align: center;">Visualized path planner and local MPC controller</td>
+				    </tr>
+                </table>
+                <p class="text-justify">
+                    Real-world robot experiments to validate the <b>QP-based MPC controller</b> for a differential-drive mobile robot.
+                    Navigation performance of the robot is evaluated at small maze environment using sensory inputs (e.g. LiDAR and encoder).
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Description
+                </h3>
+                <p class="text-justify">
+                    This project aims to adopt quadratic programming (QP) based local controller for the differential-drive mobile robot navigation.
+                    Commonly, the navigation system of mobile robots consists of two core components: <b>global planner</b> and <b>local controller</b>.
+                    Conventional local controller often shows <b>sub-optimal behaviors</b> under dynamic environments (e.g. dynamic obstacles).
+                    Optimal controllers like model predictive controller (MPC) are popular at different domains (e.g. manipulators or humanoids),
+                    while it's performance is not evaluated well at the <b>mobile robot</b> domain.
+                    Through this project, the effectiveness of optimal controller using QP is evaluated for real-world environments.
+                </p>
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Conclusion
+                </h3>
+                <p class="text-justify">
+                    Combination of QP-based MPC controller and global planner (i.e a* planner) can navigate the differential-drive mobile robot effectively.
+                    <font color="red"><b>However</b></font>, heavy hand-engineered parameter tuning for MPC controller makes this controller unrealiable to various real-world scenrios.
+                    Furthermore, increased computing budget by optimal controller cause the overall operation time too slow.
+                </p>
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <h2 class="col-md-12 text-center" id="dyros">
+                Projects conducted at DYROS (Dynamic Robotic Systems Lab at Seoul National University)
+            </h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+                    <tr>
+                        <td style="padding:20px;width:75%;vertical-align:middle">
+                            <h4>Efficient map construction and navigation using multiple sensors on a single robot</h4>
+                            <p>Personal project during Jan. - Jun. 2022</p>
+                        </td>
+                        <td style="padding:20px;width:25%;vertical-align:middle">
+                            <ul class="nav nav-pills nav-justified width:75%">
+                                <li>
+                                    <a href="https://github.com/mngupark/gazebo_ros_2d_map_plugin">
+                                    <image src="img/github.png" height="60px">
+                                        <h4><strong>Gazebo map plugin</strong></h4>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/mngupark/husky">
+                                    <image src="img/github.png" height="60px">
+                                        <h4><strong>Husky A200 robot</strong></h4>
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                  </tbody></table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h3>
+                    Experimental Results
+                </h3>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+                    <tr>
+                        <td style="text-align: center;">
+                            <video id="v1" height="200px" autoplay loop muted>
+                                <source src="img/encoder_alone_no_slam_4x.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                        <td style="text-align: center;">
+                            <video id="v1" height="200px" autoplay loop muted>
+                                <source src="img/encoder_imu_4x.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">When only motor encoders are used (SLAM X)</td>
+				        <td style="text-align: center;">When motor encoders and LiDAR sensors are used (SLAM O)</td>
+				    </tr>
+                </table>
+                <p class="text-justify">
+                    Real-world robot experiments to evaluate the effect of <b>LiDAR SLAM</b> on mobile robot localization.
+                    The occupancy grid map was pre-generated by <b>multiple LiDAR sensors</b>.
+                </p>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+                    <tr>
+                        <td style="text-align: center;">
+                            <video id="v1" height="200px" autoplay loop muted>
+                                <source src="img/map_building_x8.mp4" type="video/mp4" />
+                            </video>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">Building an occupancy map using LiDAR sensor</td>
+				    </tr>
+                </table>
+                <p class="text-justify">
+                    An occupancy grid map was generated using SICK LiDAR sensor.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Description
+                </h3>
+                <p class="text-justify">
+                    This project aims to justify the effect of <b>multiple LiDAR SLAM</b> for mobile robot localization.
+                    Simultaneous localization and mapping (<b>SLAM</b>) can generate precise maps using sensors (camera or LiDAR) for the navigation.
+                    <font color="red">However</font>, it is still open challenge that creating high-precise map while reducing computational cost.
+                    Furthermore, the mobile robot often uses a single sensor to generate an occupancy map.
+                    Through this project, the relation between the number of sensors and the performance of SLAM is studied
+                    for mobile robot navigation.
+                </p>
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Conclusion
+                </h3>
+                <p class="text-justify">
+                    Using multiple LiDAR sensors don't significantly increase the speed of map generation in general.
+                    <font color="red">However</font>, under complex environments with multiple obstacles,
+                    using multiple sensors can enhance the efficiency of SLAM, and not surprisingly, the <b>location of the sensors</b> affects
+                    to the performance. It is important to place the multiple sensors where each sensor does not <b>overlap</b> as much as possible.
+                    Also, based on experiemntal results, relying on <b>kinematic information using motor encoders</b> shows strong performance on <b>short-term</b> navigation,
+                    while <b>using SLAM</b> shows relatively better accuracy on <b>long-term</b> navigation due to accumulated error of encoders.
+                </p>
+            </div>
+        </div>
+<br>
+    </div>
+</body>
+</html>
