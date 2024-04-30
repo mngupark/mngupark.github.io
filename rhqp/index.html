@@ -98,8 +98,8 @@
 
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <video id="v0" width="100%" autoplay loop muted controls>
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <video id="v0" width="80%" autoplay loop muted controls>
                   <source src="img/rhqp.mp4" type="video/mp4" />
                 </video>
             </div>
@@ -133,7 +133,7 @@
 				<table style="width: 100%; border-collapse: collapse;">
 				  <tr>
 				    <td style="text-align: center;">
-		                <image src="img/rhqp_framework.jpg" height="60px">
+		                <image src="img/rhqp_framework.jpg" width="100%">
 					</td>
 				  </tr>
 				  <tr>
@@ -157,7 +157,7 @@
 				<table style="width: 100%; border-collapse: collapse;">
 				  <tr>
 				    <td style="text-align: center;">
-		                <image src="img/dual_arm_manipulators.jpg" height="100%">
+		                <image src="img/dual_arm_manipulators.jpg" width="100%">
 					</td>
 				  </tr>
 				  <tr>
@@ -189,15 +189,32 @@
 					</td>
 				  </tr>
 				  <tr>
-				    <td style="text-align: center;">Computation time consumed with rHQP (blue), HQP (red), and OSF</td>
+				    <td style="text-align: center;">Computation time consumed with rHQP (blue), HQP (red), and OSF (yellow)</td>
 				    <td style="text-align: center;">Statistical results of each method</td>
 				  </tr>
 				</table>
                 <p class="text-justify">
-                    For the comparison of performance, we conduct a trajectory tracking experiment.
+                    For the comparison of performance, we conduct trajectory tracking experiments.
                     Since the task for comparison is designed to compare the efficiency of computation,
                     all controllers including rHQP, HQP, and operational space formulation (OSF) generate a similar control solution.
                     As a result, rHQP solves about <b>x2.44</b> faster than the conventional HQP on average.
+                </p>
+                <table style="width: 100%; border-collapse: collapse;">
+				  <tr>
+				    <td style="text-align: center;">
+		                <image src="img/rhqp_inequalilty_constraints.jpg" width="100%">
+					</td>
+				  </tr>
+				  <tr>
+				    <td style="text-align: center;">Joint torque constraints of the wrist pitch joints and desired joint torque result</td>
+				  </tr>
+				</table>
+                <p class="text-justify">
+                    Although the computational cost of rHQP is lower than that of HQP, it is still higher than that of OSF.
+                    However, in contrast to OSF, rHQP can satisfy inequality constraints of optimal control problem.
+                    To verify this, we conduct an experiment whether rHQP can indeed satisfy joint torque inequality constraints.
+                    Our method successfully satisfy the inequality condition that the joint torque of wrist pitch should be bounded to narrow as -2.3 Nm ~ 2.3Nm.
+                    As a result, rHQP can solve optimization problem much faster than the previous methods without any sacrification of optimality of the solution.
                 </p>
             </div>
         </div>
@@ -207,18 +224,18 @@
                 <h3>
                     Citation
                 </h3>
-                <div class="form-group col-md-10 col-md-offset-1">
+                <div class="form-group col-md-10 col-md-offset-1 text-left">
                     <textarea id="bibtex" class="form-control" readonly>
-                        @article{park2022computational,
-                            title={Computational Cost Reduction Method for HQP-based Hierarchical Controller for Articulated Robot},
-                            author={Park, Mingyu and Kim, Dongwhan and Oh, Yonghwan and Lee, Yisoo},
-                            journal={The Journal of Korea Robotics Society},
-                            volume={17},
-                            number={1},
-                            pages={16--24},
-                            year={2022},
-                            publisher={Korea Robotics Society}
-                          }</textarea>
+@article{park2022computational,
+    title={Computational Cost Reduction Method for HQP-based Hierarchical Controller for Articulated Robot},
+    author={Park, Mingyu and Kim, Dongwhan and Oh, Yonghwan and Lee, Yisoo},
+    journal={The Journal of Korea Robotics Society},
+    volume={17},
+    number={1},
+    pages={16--24},
+    year={2022},
+    publisher={Korea Robotics Society}
+}</textarea>
                 </div>
             </div>
         </div>
