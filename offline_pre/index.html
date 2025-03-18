@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Pretraining a Shared $Q$-Network for Data-Efficient Offline Reinforcement Learning</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1296">
+    <meta property="og:image:height" content="840">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mngupark.github.io/offline_pre"/>
+    <meta property="og:title" content="Pretraining a Shared Q-Network for Data-Efficient Offline Reinforcement Learning" />
+    <meta property="og:description" content="Pretraining a shared Q-network with a supervised regression task significantly improves the performance of existing offline RL methods, demonstrating an average improvement of 135.94% on the D4RL benchmark." />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pretraining a Shared Q-Network for Data-Efficient Offline Reinforcement Learning" />
+    <meta name="twitter:description" content="Pretraining a shared Q-network with a supervised regression task significantly improves the performance of existing offline RL methods, demonstrating an average improvement of 135.94% on the D4RL benchmark." />
+    <meta name="twitter:image" content="https://mngupark.github.io/offline_pre/img/overview.png" />
+
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕹️</text></svg>">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script type="text/javascript" src="https://www.maths.nottingham.ac.uk/plp/pmadw/LaTeXMathML.js"></script>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/video_comparison.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center" style="font-family: 'Times New Roman', Times, serif">
+                Pretraining a Shared $Q$-Network for Data-Efficient Offline Reinforcement Learning</br> 
+                <small>
+                Under review, 2025
+                </small>
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://openreview.net/profile?id=~Jongchan_Park4">
+                            Jongchan Park
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://mngupark.github.io/">
+                          Mingyu Park
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://sites.google.com/site/donghwanleehome/about-pi">
+                            Donghwan Lee
+                        </a>
+                    </li>
+                    </br>KAIST (Korea Advanced Institute of Science and Technology)
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="nav nav-pills nav-justified">
+                    <li>
+                        <a href="../data/icml_offline_pre.pdf">
+                        <image src="../assets/img/icon/paper.png" height="60px">
+                            <h4><strong>Paper</strong></h4>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Abstract
+                </h3>
+                <p class="text-justify lead">
+                    Offline reinforcement learning (RL) aims to learn a policy from a static dataset without further interactions with the environment.
+                    Collecting sufficiently large datasets for offline RL is exhausting since this data collection requires colossus interactions with environments and becomes tricky when the interaction with the environment is restricted.
+                    Hence, how an agent learns the best policy with a minimal static dataset is a crucial issue in offline RL, similar to the sample efficiency problem in online RL.
+                    In this paper, we propose a simple yet effective plug-and-play pretraining method to initialize a feature of a $Q$-network to enhance data efficiency in offline RL.
+                    Specifically, we introduce a shared $Q$-network structure that outputs predictions of the next state and $Q$-value.
+                    We pretrain the shared $Q$-network through a supervised regression task that predicts a next state and trains the shared $Q$-network using diverse offline RL methods.
+                    Through extensive experiments, we empirically demonstrate that the proposed method enhances the performance of existing popular offline RL methods on the D4RL and Robomimic benchmarks, with an average improvement of 135.94% on the D4RL benchmark.
+                    Furthermore, we show that the proposed method significantly boosts data-efficient offline RL across various data qualities and data distributions.
+                    Notably, our method adapted with only 10% of the dataset outperforms standard algorithms even with full datasets.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Overview
+                </h3>
+				<table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+				  <tr>
+				    <td style="text-align: center;">
+		                <image src="img/overview.png" width="80%">
+					</td>
+				  </tr>
+				</table>
+                <p class="text-justify lead">
+                    Our method splits the original $Q$-network into two core architectures: (i) a shared backbone network extracting $z$ from the concatenated input $\textbf{concat}(s,a)$,
+                    and (ii) separate shallow heads for training the transition model network and $Q$-network, respectively.
+                </p>
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Two-Phase Offline Learning Scheme
+                </h3>
+				<!-- <table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+				  <tr>
+				    <td style="text-align: center;">
+		                <image src="img/rhqp_computation_time.jpg" width="100%">
+					</td>
+                    <td style="text-align: center;">
+		                <image src="img/rhqp_computation_time_table.jpg" width="100%">
+					</td>
+				  </tr>
+				  <tr>
+				    <td style="text-align: center;">
+                        <p>Computation time consumed with rHQP (blue), HQP (red), and OSF (yellow)</p>
+                    </td>
+				    <td style="text-align: center;">
+                        <p>Statistical results of each method</p>
+                    </td>
+				  </tr>
+				</table> -->
+                <p class="text-justify lead">
+                    Our method presents a two-phase training scheme during offline learning: pretraining and RL training.
+                    During pretraining phase, the shared backbone ($h_\phi$) attached with a shallow transition head ($g_\psi$) is trained with the transition dynamics prediction task.
+                    Subsequently, the pretrained shared backbone is connected with randomly initialized $Q$ layer ($f_\theta$) and trained with a remaining offline RL value learning.
+                    we consider the <i><b>pretraining time-step</b></i> ratio; a ratio of <u>pretraining steps</u> over <u>entire training gradient steps</u>.
+                </p>
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Empirical D4RL Results
+                </h3>
+				<table style="width: 60%; border-collapse: collapse; margin: 0px auto;">
+                    <tr>
+                        <td style="text-align: center;">
+                            <image src="img/halfcheetah.png" width="80%">
+                        </td>
+                        <td style="text-align: center;">
+                            <image src="img/hopper.png" width="80%">
+                        </td>
+                        <td style="text-align: center;">
+                            <image src="img/walker2d.png" width="80%">
+                        </td>
+                    </tr>
+                    <tr>
+				        <td style="text-align: center;">
+		                    <p>HalfCheetah</p>
+    					</td>
+                        <td style="text-align: center;">
+		                    <p>Hopper</p>
+    					</td>
+                        <td style="text-align: center;">
+		                    <p>Walker2d</p>
+    					</td>
+	    			</tr>
+                </table>
+				<table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+                    <tr>
+				        <td style="text-align: center;">
+		                    <image src="img/benchmark_result.png" width="80%">
+    					</td>
+                    </tr>
+                    <tr>
+				        <td style="text-align: center;">
+		                    <p>Average normalized scores on the D4RL benchmark</p>
+    					</td>
+	    			</tr>
+				</table>
+                <p class="text-justify lead">
+                    By combining with popular offline RL methods (e.g., CQL), our method demonstrates strong empirical improvements over diverse datasets and environments, where blue scores outperform baselines without our method.
+                </p>
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Learning Curves
+                </h3>
+				<table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+                    <tr>
+				        <td style="text-align: center;">
+		                    <image src="img/d4rl_learning_curves.png" width="70%">
+    					</td>
+                    </tr>
+                    <tr>
+				        <td style="text-align: center;">
+		                    <p>Average normalized scores of TD3+BC variations with our method on the D4RL benchmark.<br>
+                               <font color="red">Red vertical line</font> indicates to 10% pretraining time-step ratio, which is used as a default value.
+                            </p>
+    					</td>
+	    			</tr>
+				</table>
+                <p class="text-justify lead">
+                    Regardless of the pretraining time-step ratio, our method accelerates performance of offline RL with only a few lines of modifications.
+                    As depicted in figures, offline RL agents with our method (<font color="red">red</font>, <font color="orange">orange</font>, <font color="green">green</font>) demonstrate rapid and strong performance over baselines (<font color="blue">blue</font>) after the pretraining phase. 
+                </p>
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Robomimic Results
+                </h3>
+                <table style="width: 60%; border-collapse: collapse; margin: 0px auto;">
+                    <tr>
+                        <td style="text-align: center;">
+                            <image src="img/lift.png" width="50%">
+                        </td>
+                        <td style="text-align: center;">
+                            <image src="img/can.png" width="50%">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+		                    <p>Lift</p>
+    					</td>
+                        <td style="text-align: center;">
+		                    <p>Can</p>
+    					</td>
+	    			</tr>
+                </table>
+				<table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+                    <tr>
+				        <td style="text-align: center;">
+		                    <image src="img/robomimic_result.png" width="70%">
+    					</td>
+                    </tr>
+                    <tr>
+				        <td style="text-align: center;">
+		                    <p>Average success rates of baselines <font color="orange">with</font> and <font color="blue">without</font> our method on the Robomimic benchmark.</p>
+    					</td>
+	    			</tr>
+				</table>
+                <p class="text-justify lead">
+                    Performance gains are not limited to a popular offline RL benchmark, D4RL. Our method successfully proves superior performance over baselines on robotic manipulation tasks.
+                </p>
+            </div>
+        </div>
+<br>
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Citation
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1 text-left">
+                    <textarea id="bibtex" class="form-control" readonly>
+@article{park2022computational,
+    title={Pretraining a Shared $Q$-Network for Data-Efficient Offline Reinforcement Learning},
+    author={Park, Mingyu and Kim, Dongwhan and Oh, Yonghwan and Lee, Yisoo},
+    journal={The Journal of Korea Robotics Society},
+    volume={17},
+    number={1},
+    pages={16--24},
+    year={2022},
+    publisher={Korea Robotics Society}
+}
+                    </textarea>
+                </div>
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                This project was supported by the Korea Institute of Science, and Technology Institutional Programs under Grant 2E31593.
+                    <br><br>
+                The website template was borrowed from <a href="https://jonbarron.info/">Jonathan T. Barron</a> and <a href="https://jonbarron.info/zipnerf/">Zip-NeRF</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+<br> -->
+</body>
+</html>

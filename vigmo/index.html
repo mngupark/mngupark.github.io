@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Improving Visual Generalization in Model-Based Reinforcement Learning</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1296">
+    <meta property="og:image:height" content="840">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mngupark.github.io/vigmo"/>
+    <meta property="og:title" content="Improving Visual Generalization in Model-Based Reinforcement Learning" />
+    <meta property="og:description" content="Combining recipes from the model-free visual RL literature with a model-based RL backbone achieves superior sample efficiency and visual generalization across diverse visual RL environments." />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Improving Visual Generalization in Model-Based Reinforcement Learning" />
+    <meta name="twitter:description" content="Combining recipes from the model-free visual RL literature with a model-based RL backbone achieves superior sample efficiency and visual generalization across diverse visual RL environments." />
+    <meta name="twitter:image" content="https://mngupark.github.io/vigmo/img/overview.png" />
+
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕹️</text></svg>">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script type="text/javascript" src="https://www.maths.nottingham.ac.uk/plp/pmadw/LaTeXMathML.js"></script>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/video_comparison.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center" style="font-family: 'Times New Roman', Times, serif">
+                Improving Visual Generalization in Model-Based Reinforcement Learning</br> 
+                <small>
+                Under review, 2025
+                </small>
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://mngupark.github.io/">
+                          Mingyu Park
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://sites.google.com/site/donghwanleehome/about-pi">
+                            Donghwan Lee
+                        </a>
+                    </li>
+                    </br>KAIST (Korea Advanced Institute of Science and Technology)
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="nav nav-pills nav-justified">
+                    <li>
+                        <a href="../data/icml_vigmo.pdf">
+                        <image src="../assets/img/icon/paper.png" height="60px">
+                            <h4><strong>Paper</strong></h4>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/mngupark">
+                        <image src="../assets/img/icon/github.png" height="60px">
+                            <h4><strong>Code (TBA)</strong></h4>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Abstract
+                </h3>
+                <p class="text-justify lead">
+                    Learning a generalizable reinforcement learning (RL) agent to the unseen visual image in a zero-shot manner enables further deployments of deep RL into the real world.
+                    The field has witnessed significant progress in the prior literature by leveraging data augmentation and auxiliary representation learning techniques.
+                    However, simultaneously achieving superior sample efficiency and generalization ability still remains challenging for visual RL agents.
+                    In this work, we devise <b>Vi</b>sual <b>G</b>>eneralization in <b>MO</b>del-Based RL (<b>ViGMO</b>), a novel model-based RL method to encourage visual generalization with superior sample efficiency by blending a popular model-based RL architecture with groundbreaking recipes from the prior literature in model-free RL.
+                    Our key idea is to constrain the model to exhibit a consistent prediction ability regardless of visual perturbations during training.
+                    We provide extensive empirical results on the sample efficiency and generalization ability of visual RL agents in diverse environments and tasks.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Overview
+                </h3>
+				<table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+				  <tr>
+				    <td style="text-align: center;">
+		                <image src="img/overview.jpg" width="80%">
+					</td>
+				  </tr>
+				</table>
+                <p class="text-justify lead">
+                    Under construction
+                </p>
+            </div>
+        </div>
+<br>
+        <!-- <div class="row" style="display: flex; justify-content: center;">
+            <div class="col-md-12 text-center">
+                <iframe width="40%" height="60%" src="https://youtube.com/embed/YLoYlM-0Fag?autoplay=1&mute=1&playlist=YLoYlM-0Fag&loop=1&controls=1" frameborder="0" allowfullscreen></iframe>
+                <iframe width="40%" height="60%" src="https://youtube.com/embed/7OWTuqN-27k?autoplay=1&mute=1&playlist=7OWTuqN-27k&loop=1&controls=1" frameborder="0" allowfullscreen></iframe>
+                <iframe width="40%" height="60%" src="https://youtube.com/embed/sEh4Vhg5n40?autoplay=1&mute=1&playlist=sEh4Vhg5n40&loop=1&controls=1" frameborder="0" allowfullscreen></iframe>
+                <iframe width="40%" height="60%" src="https://youtube.com/embed/0klSx4Qgbzg?autoplay=1&mute=1&playlist=0klSx4Qgbzg&loop=1&controls=1" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+<br> -->
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Citation
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1 text-left">
+                    <textarea id="bibtex" class="form-control" readonly>
+@article{park2022computational,
+    title={Pretraining a Shared $Q$-Network for Data-Efficient Offline Reinforcement Learning},
+    author={Park, Mingyu and Kim, Dongwhan and Oh, Yonghwan and Lee, Yisoo},
+    journal={The Journal of Korea Robotics Society},
+    volume={17},
+    number={1},
+    pages={16--24},
+    year={2022},
+    publisher={Korea Robotics Society}
+}
+                    </textarea>
+                </div>
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                This project was supported by the Korea Institute of Science, and Technology Institutional Programs under Grant 2E31593.
+                    <br><br>
+                The website template was borrowed from <a href="https://jonbarron.info/">Jonathan T. Barron</a> and <a href="https://jonbarron.info/zipnerf/">Zip-NeRF</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+<br> -->
+</body>
+</html>
