@@ -7,8 +7,9 @@
 
     <meta name="author" content="Mingyu Park">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/icon/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <script type="text/javascript" src="https://www.maths.nottingham.ac.uk/plp/pmadw/LaTeXMathML.js"></script>
     
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0124JN7YV0"></script>
@@ -35,9 +36,9 @@
                 <p>I'm a Master's student of Robotics program at <a href="https://www.kaist.ac.kr/en/">KAIST</a> in South Korea, advised by Prof. <a href="https://sites.google.com/site/donghwanleehome/about-pi">Donghwan Lee</a>.
                 </p>
                 <p>
-                  My research goal is to build <b>real‑world robots</b> that can perform control tasks with <i>human‑level abilities and generalize to unseen situations</i> using <b>artificial general intelligence</b> (<a href="https://en.wikipedia.org/wiki/Artificial_general_intelligence">AGI</a>).
-                  I’m especially interested in developing practical methods and understanding underlying theory for <i>sequential decision‑making</i> problems.
-                  My current mission toward this goal is to devise a general method that can <b>recover an expert policy from static datasets</b> under <b>high‑dimensional sensory input</b>.
+                  My research goal is to build <b>real‑world robots</b> that can perform precise control tasks with <i>human‑level cognitive and generalizable abilities</i>.
+                  I’m especially interested in developing practical methods and understanding underlying foundations for <i>sequential decision‑making</i> problems.
+                  My current mission toward this goal is to devise a general method for learning a unified policy that can generalize to diverse <b>tasks</b>, <b>environments</b>, and <b>embodiments</b>.
                 </p>
                 <p style="text-align:center">
                   <a href="mailto:mngupark@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=flat&logo=Gmail&logoColor=white"/></a> &nbsp;&nbsp;
@@ -49,7 +50,7 @@
                 </p>
               </td>
               <td style="padding:2.5%;width:40%;max-width:40%">
-                <a href="images/MingyuPark.jpg"><img style="width:80%;max-width:80%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="images/MingyuPark.jpg" class="hoverZoomLink"></a>
+                <a href="assets/img/MingyuPark.jpg"><img style="width:80%;max-width:80%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="assets/img/MingyuPark.jpg" class="hoverZoomLink"></a>
               </td>
             </tr>
           </tbody></table>
@@ -73,7 +74,7 @@
             </tr>
             <tr>
               <td style="padding-left:30px;width:100%;vertical-align:middle">
-                <p style="display:list-item;list-style:disc inside;margin-top:5px;margin-bottom:5px;">(Feb, 2025) I finally graduated at KAIST with the Master's degree with the robotics program!</p>
+                <p style="display:list-item;list-style:disc inside;margin-top:5px;margin-bottom:5px;">(Feb, 2025) I finally graduated the Master's degree with the robotics program at KAIST!</p>
                 <p style="display:list-item;list-style:disc inside;margin-top:5px;margin-bottom:5px;">(May, 2024) I attended to <a href="data/certificate_icra.pdf">ICRA</a> in Yokohama, Japan!</p>
                 <p style="display:list-item;list-style:disc inside;margin-top:5px;margin-bottom:5px;">(Aug., 2023) I participated in <a href="data/diploma.pdf">Elite Summer School</a> in Odense, Denmark!</p>
               </td>
@@ -93,10 +94,10 @@
               <td style="padding:20px;width:25%;vertical-align:middle">
                 <div class="one">
                   <div class="two" id='smerf_image'><video  width=100% muted autoplay loop>
-                  <source src="images/smerf.mp4" type="video/mp4">
+                  <source src="assets/img/smerf.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                   </video></div>
-                  <img src='images/smerf.jpg' width=100%>
+                  <img src='assets/img/smerf.jpg' width=100%>
                 </div>
                 <script type="text/javascript">
                   function smerf_start() {
@@ -136,17 +137,82 @@
                 </p>
               </td>
             </tr> -->
+            <tr onmouseout="vigmo_stop()" onmouseover="vigmo_start()" bgcolor="#ffffd0">
+              <td style="padding:20px;width:25%;vertical-align:middle">
+                <div class="one">
+                  <div class="two" id='vigmo_image'><video width="100%" height="100%" object-fit="cover" muted autoplay loop>
+                    <source src="assets/img/vigmo.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                  <img src='assets/img/vigmo.png' width="100%" height="100%" object-fit="cover">
+                </div>
+                <script type="text/javascript">
+                  function vigmo_start() {
+                    document.getElementById('vigmo_image').style.opacity = "1";
+                  }
 
+                  function vigmo_stop() {
+                    document.getElementById('vigmo_image').style.opacity = "0";
+                  }
+                  vigmo_stop()
+                </script>
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                <a href="http://mngupark.github.io/vigmo">
+                  <span class="papertitle" id="vigmo">Improving Visual Generalization in Model-Based Reinforcement Learning</span>
+                </a>
+                <br>
+                <strong>Mingyu Park</strong>,
+                <a href="https://sites.google.com/site/donghwanleehome/about-pi">Donghwan Lee</a>
+                <br>
+                <em>Under review</em>, 2025
+                <br>
+                <a href="data/icml_vigmo.pdf">paper</a>
+                /
+                <a href="http://mngupark.github.io/vigmo">site</a>
+                <p>
+                  Combining recipes from the model-free visual RL literature with a model-based RL backbone achieves superior sample efficiency and visual generalization across diverse visual RL environments.
+                </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:20px;width:25%;vertical-align:middle">
+                <div class="one">
+                  <img src='assets/img/offline_pre.png' width="100%">
+                </div>
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:middle">
+                <a href="http://mngupark.github.io/offline_pre">
+                  <span class="papertitle" id="offline_pre">Pretraining a Shared Q-Network for Data-Efficient Offline Reinforcement Learning</span>
+                </a>
+                <br>
+                <a href="https://openreview.net/profile?id=~Jongchan_Park4">Jongchan Park</a>,
+                <strong>Mingyu Park</strong>,
+                <a href="https://sites.google.com/site/donghwanleehome/about-pi">Donghwan Lee</a>
+                <br>
+                <em>Under review</em>, 2025
+                <br>
+                <a href="data/icml_offline_pre.pdf">paper</a>
+                /
+                <a href="http://mngupark.github.io/offline_pre">site</a>
+                <p>
+                  Pretraining a shared $Q$-network with a supervised regression task significantly improves the performance of existing offline RL methods,
+                  demonstrating an average improvement of <font color="red"><strong>135.94%</strong></font> on the D4RL benchmark.
+                </p>
+              </td>
+            </tr>
     
             <tr onmouseout="rhqp_stop()" onmouseover="rhqp_start()" bgcolor="#ffffd0">
               <td style="padding:20px;width:25%;vertical-align:middle">
                 <div class="one">
-                  <div class="two" id='rhqp_image'><video width=100% muted autoplay loop>
-                    <source src="images/rhqp.mp4" type="video/mp4">
+                  <div class="two" id='rhqp_image'><video width="100%" height="100%" object-fit="cover" muted autoplay loop>
+                    <source src="assets/img/rhqp.mp4" type="video/mp4">
                       Your browser does not support the video tag.
                     </video>
                   </div>
-                  <img src='images/rhqp.png' width="100%">
+                  <img src='assets/img/rhqp.png' width="100%" height="100%" object-fit="cover">
                 </div>
                 <script type="text/javascript">
                   function rhqp_start() {
@@ -171,8 +237,9 @@
                 <br>
                 <em>KROS</em>, 2022
                 <br>
-                <a href="http://mngupark.github.io/rhqp">project page</a>
-                <p></p>
+                <a href="https://koreascience.kr/article/JAKO202209065708448.pdf">paper</a>
+                /
+                <a href="http://mngupark.github.io/rhqp">site</a>
                 <p>
                   Reduced hierarchical quadratic programming (rHQP) is an optimal real-time controller for articulated redundant dual-arm manipulators.
                   rHQP solves about <font color="red"><strong>x2.44</strong></font> faster than the conventional HQP on average.
@@ -191,7 +258,7 @@
           </tbody></table>
           <table width="100%" align="center" border="0" cellpadding="20"><tbody>
             <tr>
-              <td style="padding:20px;width:25%;vertical-align:middle"><img src="images/kwangwoon_logo_trans.png" width="100%"></td>
+              <td style="padding:20px;width:25%;vertical-align:middle"><img src="assets/img/logo/kwangwoon_logo_trans.png" width="100%"></td>
               <td width="75%" valign="center">
                 <p><a href="https://www.kw.ac.kr/en/">Kwangwoon University</a> (Mar. 2017 - Feb. 2023)</p>
                 <p>B.S. in Robotics Engineering<br>
@@ -199,7 +266,7 @@
               </td>
             </tr>
             <tr>
-              <td style="padding:20px;width:25%;vertical-align:middle"><img src="images/kaist_logo_trans.png" width="100%"></td>
+              <td style="padding:20px;width:25%;vertical-align:middle"><img src="assets/img/logo/kaist_logo_trans.png" width="100%"></td>
               <td width="75%" valign="center">
                 <p><a href="https://www.kaist.ac.kr/en/">KAIST</a>(Korea Advanced Institute of Science and Technology) (Mar. 2023 - Feb. 2025)</p>
                 <p>M.S. in Robotics Program<br>
@@ -217,7 +284,7 @@
           </tbody></table>
           <table width="100%" align="center" border="0" cellpadding="20"><tbody>
             <tr>
-              <td style="padding:20px;width:25%;vertical-align:middle"><img src="images/kist_logo.jpg" height="80px" style="margin-left:auto;margin-right:auto;display:block;"></td>
+              <td style="padding:20px;width:25%;vertical-align:middle"><img src="assets/img/logo/kist_logo.jpg" height="80px" style="margin-left:auto;margin-right:auto;display:block;"></td>
               <td width="75%" valign="center">
                 <p><a href="https://kist.re.kr/eng/">KIST</a> (Jun. 2021 - Dec. 2021)</p>
                 <p>Undergraduate Research Assistant advised by Dr. <a href="https://sites.google.com/view/kist-arc/home">Yisoo Lee</a>.<br>
@@ -225,7 +292,7 @@
               </td>
             </tr>
             <tr>
-              <td style="padding:20px;width:25%;vertical-align:middle"><img src="images/snu_logo_trans.png" height="80px" style="margin-left:auto;margin-right:auto;display:block;"></td>
+              <td style="padding:20px;width:25%;vertical-align:middle"><img src="assets/img/logo/snu_logo_trans.png" height="80px" style="margin-left:auto;margin-right:auto;display:block;"></td>
               <td width="75%" valign="center">
                 <p><a href="https://en.snu.ac.kr/">SNU</a> (Seoul National University) (Jan. 2022 - Oct. 2022)</p>
                 <p>Undergraduate Research intern advised by Prof. <a href="http://dyros.snu.ac.kr/team/jaeheung-park/">Jaeheung Park</a>.<br>
@@ -244,7 +311,7 @@
           </tbody></table>
           <table width="100%" align="center" border="0" cellpadding="20"><tbody>
             <tr>
-              <td style="padding:20px;width:25%;vertical-align:middle"><img src="images/baram_logo_trans.png" width="160px" style="margin-left:auto;margin-right:auto;display:block;"></td>
+              <td style="padding:20px;width:25%;vertical-align:middle"><img src="assets/img/logo/baram_logo_trans.png" width="160px" style="margin-left:auto;margin-right:auto;display:block;"></td>
               <td width="75%" valign="center">
                 <p><a href="https://cafe.naver.com/roboticsbaram">BARAM</a> (Academic Robotics Club) (Mar. 2020 - Dec. 2022)</p>
                 <p>Designed and taught an academic seminar regarding robotics, including computer vision and control engineering.<br>
@@ -254,7 +321,7 @@
               </td>
             </tr>
             <tr>
-              <td style="padding:20px;width:25%;vertical-align:middle"><img src="images/sdu_logo_trans.png" height="80px" style="margin-left:auto;margin-right:auto;display:block;"></td>
+              <td style="padding:20px;width:25%;vertical-align:middle"><img src="assets/img/logo/sdu_logo_trans.png" height="80px" style="margin-left:auto;margin-right:auto;display:block;"></td>
               <td width="75%" valign="center">
                 <p><a href="https://robotelite.sdu.dk/">International Elite Summer School</a> in Robotics & Entrepreneurship (Aug. 2023).</p>
                 <p>Participated in the summer school to have a better academic knowledge of robotics, regarding advanced techniques for designing robotic systems and entrepreneurship in robotic startup companies (e.g. <a href="https://www.universal-robots.com/">Universal Robots</a>) in Denmark.<br>
@@ -294,7 +361,7 @@
               </td>
             </tr>
             <!-- <tr>
-              <td style="padding:20px;width:25%;vertical-align:middle"><img src="images/cvf.jpg"></td>
+              <td style="padding:20px;width:25%;vertical-align:middle"><img src="assets/img/cvf.jpg"></td>
               <td width="75%" valign="center">
                 <a href="https://cvpr.thecvf.com/Conferences/2024/Organizers">Area Chair, CVPR 2024</a>
                 <br>
