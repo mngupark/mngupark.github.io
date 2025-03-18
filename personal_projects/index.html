@@ -15,14 +15,14 @@
     <meta property="og:image:width" content="1296">
     <meta property="og:image:height" content="840">
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mngupark.github.io/baram"/>
+    <meta property="og:url" content="https://mngupark.github.io/personal_projects"/>
     <meta property="og:title" content="Personal research projects" />
     <meta property="og:description" content="Project pages for personal research." />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Personal research projects" />
     <meta name="twitter:description" content="Project pages for personal research." />
-    <meta name="twitter:image" content="https://mngupark.github.io/images/favicon/android-chrome-192x192.png" />
+    <meta name="twitter:image" content="https://mngupark.github.io/assets/img/icon/favicon/android-chrome-192x192.png" />
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕹️</text></svg>">
 
@@ -31,39 +31,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
     <link rel="stylesheet" href="css/app.css">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
     
-    <script src="js/app.js"></script>
-    <script src="js/video_comparison.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/video_comparison.js"></script>
 </head>
 
 <body>
     <div class="container" id="main">
         <div class="row">
-            <h2 class="col-md-12 text-center" id="baram">
+            <h2 class="col-md-12 text-center" id="baram" style="font-family: 'Times New Roman', Times, serif">
                 Project conducted at BARAM (Acdaemic Robotics Club at Kwangwoon University)
             </h2>
         </div>
 
         <div class="row">
-            <div class="col-md-6 col-md-offset-3 text-center">
-                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <div class="col-md-12 text-center">
+				<table style="width: 100%; border-collapse: collapse; margin-bottom:10px"><tbody>
                     <tr>
-                        <td style="padding:20px;width:75%;vertical-align:middle">
+                        <td style="width:75%;vertical-align:middle">
                             <h4>QP-based MPC for Differential-Drive Mobile Robot</h4>
                             <p>Personal project during Sep. - Nov. 2021</p>
                         </td>
-                        <td style="padding:20px;width:25%;vertical-align:middle">
+                        <td style="width:25%;vertical-align:middle">
                             <ul class="nav nav-pills nav-justified width:75%">
                                 <li>
                                     <a href="https://github.com/mngupark/qmp">
-                                    <image src="img/github.png" height="60px">
-                                        <h4><strong>Source code</strong></h4>
+                                    <image src="../assets/img/icon/github.png" height="60px">
+                                        <h4><strong>Code</strong></h4>
                                     </a>
                                 </li>
                             </ul>
@@ -74,19 +74,19 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <h3>
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
                     Experimental Results
                 </h3>
-                <table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+                <table style="width: 80%; border-collapse: collapse; margin: 0px auto; margin-bottom: 10px;">
                     <tr>
                         <td style="text-align: center;">
-                            <video id="v0" height="200px" autoplay loop muted>
+                            <video id="v0" width="100%" autoplay loop muted>
                                 <source src="img/baram_qmp_real.mp4" type="video/mp4" />
                             </video>
                         </td>
                         <td style="text-align: center;">
-                            <video id="v0" height="200px" autoplay loop muted>
+                            <video id="v0" width="100%" autoplay loop muted>
                                 <source src="img/baram_qmp_rviz.mp4" type="video/mp4" />
                             </video>
                         </td>
@@ -96,7 +96,7 @@
 				        <td style="text-align: center;">Visualized path planner and local MPC controller</td>
 				    </tr>
                 </table>
-                <p class="text-justify">
+                <p class="text-justify lead">
                     Real-world robot experiments to validate the <b>QP-based MPC controller</b> for a differential-drive mobile robot.
                     Navigation performance of the robot is evaluated at small maze environment using sensory inputs (e.g. LiDAR and encoder).
                 </p>
@@ -105,11 +105,11 @@
 
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
                     Description
                 </h3>
-                <p class="text-justify">
+                <p class="text-justify lead">
                     This project aims to adopt quadratic programming (QP) based local controller for the differential-drive mobile robot navigation.
                     Commonly, the navigation system of mobile robots consists of two core components: <b>global planner</b> and <b>local controller</b>.
                     Conventional local controller often shows <b>sub-optimal behaviors</b> under dynamic environments (e.g. dynamic obstacles).
@@ -121,12 +121,12 @@
         </div>
 <br>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
                     Conclusion
                 </h3>
-                <p class="text-justify">
-                    Combination of QP-based MPC controller and global planner (i.e a* planner) can navigate the differential-drive mobile robot effectively.
+                <p class="text-justify lead">
+                    Combination of QP-based MPC controller and global planner (i.e A* planner) can navigate the differential-drive mobile robot effectively.
                     <font color="red"><b>However</b></font>, heavy hand-engineered parameter tuning for MPC controller makes this controller unrealiable to various real-world scenrios.
                     Furthermore, increased computing budget by optimal controller cause the overall operation time too slow.
                 </p>
@@ -134,30 +134,30 @@
         </div>
 <br>
         <div class="row">
-            <h2 class="col-md-12 text-center" id="dyros">
+            <h2 class="col-md-12 text-center" id="dyros" style="font-family: 'Times New Roman', Times, serif">
                 Projects conducted at DYROS (Dynamic Robotic Systems Lab at Seoul National University)
             </h2>
         </div>
 
         <div class="row">
-            <div class="col-md-6 col-md-offset-3 text-center">
-                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <div class="col-md-12 text-center">
+				<table style="width: 100%; border-collapse: collapse; margin-bottom:10px"><tbody>
                     <tr>
-                        <td style="padding:20px;width:75%;vertical-align:middle">
+                        <td style="width:75%;vertical-align:middle">
                             <h4>Efficient map construction and navigation using multiple sensors on a single robot</h4>
                             <p>Personal project during Jan. - Jun. 2022</p>
                         </td>
-                        <td style="padding:20px;width:25%;vertical-align:middle">
+                        <td style="width:25%;vertical-align:middle">
                             <ul class="nav nav-pills nav-justified width:75%">
                                 <li>
                                     <a href="https://github.com/mngupark/gazebo_ros_2d_map_plugin">
-                                    <image src="img/github.png" height="60px">
+                                    <image src="../assets/img/icon/github.png" height="60px">
                                         <h4><strong>Gazebo map plugin</strong></h4>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://github.com/mngupark/husky">
-                                    <image src="img/github.png" height="60px">
+                                    <image src="../assets/img/icon/github.png" height="60px">
                                         <h4><strong>Husky A200 robot</strong></h4>
                                     </a>
                                 </li>
@@ -169,19 +169,19 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <h3>
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
                     Experimental Results
                 </h3>
-                <table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+                <table style="width: 80%; border-collapse: collapse; margin: 0px auto; margin-bottom: 10px;">
                     <tr>
                         <td style="text-align: center;">
-                            <video id="v1" height="200px" autoplay loop muted>
+                            <video id="v1" width="100%" autoplay loop muted>
                                 <source src="img/encoder_alone_no_slam_4x.mp4" type="video/mp4" />
                             </video>
                         </td>
                         <td style="text-align: center;">
-                            <video id="v1" height="200px" autoplay loop muted>
+                            <video id="v1" width="100%" autoplay loop muted>
                                 <source src="img/encoder_imu_4x.mp4" type="video/mp4" />
                             </video>
                         </td>
@@ -191,14 +191,14 @@
 				        <td style="text-align: center;">When motor encoders and LiDAR sensors are used (SLAM O)</td>
 				    </tr>
                 </table>
-                <p class="text-justify">
+                <p class="text-justify lead">
                     Real-world robot experiments to evaluate the effect of <b>LiDAR SLAM</b> on mobile robot localization.
                     The occupancy grid map was pre-generated by <b>multiple LiDAR sensors</b>.
                 </p>
-                <table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+                <table style="width: 80%; border-collapse: collapse; margin: 0px auto; margin-bottom: 10px;">
                     <tr>
                         <td style="text-align: center;">
-                            <video id="v1" height="200px" autoplay loop muted>
+                            <video id="v1" width="50%" autoplay loop muted>
                                 <source src="img/map_building_x8.mp4" type="video/mp4" />
                             </video>
                         </td>
@@ -207,7 +207,7 @@
                         <td style="text-align: center;">Building an occupancy map using LiDAR sensor</td>
 				    </tr>
                 </table>
-                <p class="text-justify">
+                <p class="text-justify lead">
                     An occupancy grid map was generated using SICK LiDAR sensor.
                 </p>
             </div>
@@ -215,11 +215,11 @@
 
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
                     Description
                 </h3>
-                <p class="text-justify">
+                <p class="text-justify lead">
                     This project aims to justify the effect of <b>multiple LiDAR SLAM</b> for mobile robot localization.
                     Simultaneous localization and mapping (<b>SLAM</b>) can generate precise maps using sensors (camera or LiDAR) for the navigation.
                     <font color="red">However</font>, it is still open challenge that creating high-precise map while reducing computational cost.
@@ -231,11 +231,11 @@
         </div>
 <br>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
                     Conclusion
                 </h3>
-                <p class="text-justify">
+                <p class="text-justify lead">
                     Using multiple LiDAR sensors don't significantly increase the speed of map generation in general.
                     <font color="red">However</font>, under complex environments with multiple obstacles,
                     using multiple sensors can enhance the efficiency of SLAM, and not surprisingly, the <b>location of the sensors</b> affects
@@ -247,19 +247,19 @@
         </div>
 <br>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h2>
+            <div class="col-md-12 text-center">
+                <h2 class="text-center" style="font-size: 32px; font-weight: bold;">
                     Other awesome experiences!
                 </h2>
-                <table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+                <table style="width: 80%; border-collapse: collapse; margin: 0px auto; margin-bottom: 10px;">
                     <tr>
                         <td style="text-align: center;">
-                            <video id="v1" height="200px" autoplay loop muted>
+                            <video id="v1" width="100%" autoplay loop muted>
                                 <source src="img/door_experiment.mp4" type="video/mp4" />
                             </video>
                         </td>
                         <td style="text-align: center;">
-                            <video id="v1" height="200px" autoplay loop muted>
+                            <video id="v1" width="100%" autoplay loop muted>
                                 <source src="img/motion_capture_experiment.mp4" type="video/mp4" />
                             </video>
                         </td>

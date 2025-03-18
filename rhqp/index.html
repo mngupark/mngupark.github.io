@@ -30,26 +30,27 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script type="text/javascript" src="https://www.maths.nottingham.ac.uk/plp/pmadw/LaTeXMathML.js"></script>
     
-    <script src="js/app.js"></script>
-    <script src="js/video_comparison.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/video_comparison.js"></script>
 </head>
 
 <body>
     <div class="container" id="main">
         <div class="row">
-            <h2 class="col-md-12 text-center">
-                Computational Cost Reduction Method for HQP-based Hierarchical Controller for Articulated Robot</br> 
+            <h2 class="col-md-12 text-center" style="font-family: 'Times New Roman', Times, serif">
+                Computational Cost Reduction Method for HQP-based Hierarchical Controller for Articulated Robot<br> 
                 <small>
-                KROS 2022
+                KROS, 2022
                 </small>
             </h2>
         </div>
@@ -76,18 +77,18 @@
                             Yisoo Lee
                         </a>
                     </li>
-                    </br>KIST (Korea Institute of Science and Technology)
+                    <br>KIST (Korea Institute of Science and Technology)
                 </ul>
             </div>
         </div>
 
 
         <div class="row">
-            <div class="col-md-6 col-md-offset-3 text-center">
+            <div class="col-md-12 text-center">
                 <ul class="nav nav-pills nav-justified">
                     <li>
                         <a href="https://koreascience.kr/article/JAKO202209065708448.page?&lang=en">
-                        <image src="img/rhqp_kros_image.jpg" height="60px">
+                        <image src="../assets/img/icon/paper.png" height="60px">
                             <h4><strong>Paper</strong></h4>
                         </a>
                     </li>
@@ -97,9 +98,9 @@
 
 
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <video id="v0" width="80%" autoplay loop muted controls>
+        <div class="row" style="display: flex; justify-content: center;">
+            <div class="col-md-3 text-center">
+                <video id="v0" width="100%" autoplay loop muted controls>
                   <source src="img/rhqp.mp4" type="video/mp4" />
                 </video>
             </div>
@@ -107,11 +108,11 @@
 
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
+            <div class="col-md-12">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
                     Abstract
                 </h3>
-                <p class="text-justify">
+                <p class="text-justify lead">
                     This paper presents a method that can reduce the computational cost of the hierarchical
                     quadratic programming (HQP)-based robot controller. Hierarchical controllers can effectively manage
                     articulated robots with many degrees of freedom (DoFs) to perform multiple tasks. The HQP-based
@@ -126,21 +127,21 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
                     Framework
                 </h3>
 				<table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
 				  <tr>
 				    <td style="text-align: center;">
-		                <image src="img/rhqp_framework.jpg" width="100%">
+		                <image src="img/rhqp_framework.jpg" width="80%">
 					</td>
 				  </tr>
 				  <tr>
 				    <td style="text-align: center;">Overview of the algorithm of the proposed method</td>
 				  </tr>
 				</table>
-                <p class="text-justify">
+                <p class="text-justify lead">
                     HQP is the process of solving cascade numerical optimization problems using quadratic programming (QP).
                     In the QP, we can minimize quadratic function while satisfying equality and inequality constraints.
                     To reduce the computational cost of HQP controller, we propose a novel method that resizes the decision variables
@@ -150,24 +151,24 @@
         </div>
 <br>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Platform
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Robot Platform
                 </h3>
 				<table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
 				  <tr>
 				    <td style="text-align: center;">
-		                <image src="img/dual_arm_manipulators.jpg" width="100%">
+		                <image src="img/dual_arm_manipulators.jpg" width="60%">
 					</td>
 				  </tr>
 				  <tr>
 				    <td style="text-align: center;">Dual-arm manipulator (left) and schematic kinematic structure of the robot (right)</td>
 				  </tr>
 				</table>
-                <p class="text-justify">
+                <p class="text-justify lead">
                     The 15-DoFs dual-arm manipulators have 7 DoFs for each arm and a 1 DoF prismatic joint for vertical motion.
-                    The HQP is solved by the library <a href="https://github.com/coin-or/qpOASES">qpOASES</a>, and rigid body dynamics parameters are obtained from the library <a href="https://github.com/rbdl/rbdl">RBDL</a> and URDF model of the robot.
-                    <a href="https://eigen.tuxfamily.org/index.php?title=Main_Page">Eigen</a> library is utilized for linear algebra computation.
+                    The HQP is solved by the library <a href="https://github.com/coin-or/qpOASES" class="lead">qpOASES</a>, and rigid body dynamics parameters are obtained from the library <a href="https://github.com/rbdl/rbdl" class="lead">RBDL</a> and URDF model of the robot.
+                    <a href="https://eigen.tuxfamily.org/index.php?title=Main_Page" class="lead">Eigen</a> library is utilized for linear algebra computation.
                     The controller is implemented in the computer with Intel 3.1 GHz hexadecacore processor and 32 GByte memory with Linux and Xenomai for 1 kHz real-time control.
                     For joint torque control, Elmo motor drivers are utilized with an EtherCAT communication interface.
                 </p>
@@ -175,11 +176,11 @@
         </div>
 <br>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
                     Experimental Results
                 </h3>
-				<table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+				<table style="width: 60%; border-collapse: collapse; margin: 0px auto; margin-bottom: 10px;">
 				  <tr>
 				    <td style="text-align: center;">
 		                <image src="img/rhqp_computation_time.jpg" width="100%">
@@ -193,23 +194,23 @@
 				    <td style="text-align: center;">Statistical results of each method</td>
 				  </tr>
 				</table>
-                <p class="text-justify">
+                <p class="text-justify lead">
                     For the comparison of performance, we conduct trajectory tracking experiments.
                     Since the task for comparison is designed to compare the efficiency of computation,
                     all controllers including rHQP, HQP, and operational space formulation (OSF) generate a similar control solution.
                     As a result, rHQP solves about <b>x2.44</b> faster than the conventional HQP on average.
                 </p>
-                <table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+                <table style="width: 60%; border-collapse: collapse; margin: 0px auto; margin-bottom: 10px;">
 				  <tr>
 				    <td style="text-align: center;">
-		                <image src="img/rhqp_inequalilty_constraints.jpg" height="300px">
+		                <image src="img/rhqp_inequalilty_constraints.jpg" width="100%">
 					</td>
 				  </tr>
 				  <tr>
 				    <td style="text-align: center;">Joint torque constraints of the wrist pitch joints and desired joint torque result</td>
 				  </tr>
 				</table>
-                <p class="text-justify">
+                <p class="text-justify lead">
                     Although the computational cost of rHQP is lower than that of HQP, it is still higher than that of OSF.
                     However, in contrast to OSF, rHQP can satisfy inequality constraints of optimal control problem.
                     To verify this, we conduct an experiment whether rHQP can indeed satisfy joint torque inequality constraints.
@@ -220,8 +221,8 @@
         </div>
 <br>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
                     Citation
                 </h3>
                 <div class="form-group col-md-10 col-md-offset-1 text-left">
@@ -235,14 +236,15 @@
     pages={16--24},
     year={2022},
     publisher={Korea Robotics Society}
-}</textarea>
+}
+                    </textarea>
                 </div>
             </div>
         </div>
-
+<br>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
                     Acknowledgements
                 </h3>
                 <p class="text-justify">
@@ -253,5 +255,6 @@
             </div>
         </div>
     </div>
+<br>
 </body>
 </html>
