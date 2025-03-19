@@ -116,60 +116,173 @@
 				<table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
 				  <tr>
 				    <td style="text-align: center;">
-		                <image src="img/overview.jpg" width="80%">
+		                <image src="img/overview.jpg" width="70%">
 					</td>
 				  </tr>
 				</table>
                 <p class="text-justify lead">
-                    Under construction
+                    We propose <b>ViGMO</b>; a model-based RL for visual generalization with superior sample efficiency by employing recipes from model-free RL:
+                    (1) applying weak and strong image augmentations,
+                    (2) predicting consistent representations from mixed horizontal representations,
+                    (3) regularizing visual encoder with weak and strong augmentations.
                 </p>
-            </div>
-        </div>
-<br>
-        <!-- <div class="row" style="display: flex; justify-content: center;">
-            <div class="col-md-12 text-center">
-                <iframe width="40%" height="60%" src="https://youtube.com/embed/YLoYlM-0Fag?autoplay=1&mute=1&playlist=YLoYlM-0Fag&loop=1&controls=1" frameborder="0" allowfullscreen></iframe>
-                <iframe width="40%" height="60%" src="https://youtube.com/embed/7OWTuqN-27k?autoplay=1&mute=1&playlist=7OWTuqN-27k&loop=1&controls=1" frameborder="0" allowfullscreen></iframe>
-                <iframe width="40%" height="60%" src="https://youtube.com/embed/sEh4Vhg5n40?autoplay=1&mute=1&playlist=sEh4Vhg5n40&loop=1&controls=1" frameborder="0" allowfullscreen></iframe>
-                <iframe width="40%" height="60%" src="https://youtube.com/embed/0klSx4Qgbzg?autoplay=1&mute=1&playlist=0klSx4Qgbzg&loop=1&controls=1" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-<br> -->
-        <!-- <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
-                    Citation
-                </h3>
-                <div class="form-group col-md-10 col-md-offset-1 text-left">
-                    <textarea id="bibtex" class="form-control" readonly>
-@article{park2022computational,
-    title={Pretraining a Shared $Q$-Network for Data-Efficient Offline Reinforcement Learning},
-    author={Park, Mingyu and Kim, Dongwhan and Oh, Yonghwan and Lee, Yisoo},
-    journal={The Journal of Korea Robotics Society},
-    volume={17},
-    number={1},
-    pages={16--24},
-    year={2022},
-    publisher={Korea Robotics Society}
-}
-                    </textarea>
-                </div>
             </div>
         </div>
 <br>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12 text-center">
                 <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
-                    Acknowledgements
+                    Motivation
                 </h3>
-                <p class="text-justify">
-                This project was supported by the Korea Institute of Science, and Technology Institutional Programs under Grant 2E31593.
-                    <br><br>
-                The website template was borrowed from <a href="https://jonbarron.info/">Jonathan T. Barron</a> and <a href="https://jonbarron.info/zipnerf/">Zip-NeRF</a>.
+				<table style="width: 100%; border-collapse: collapse; margin-bottom:10px">
+				  <tr>
+				    <td style="text-align: center;">
+		                <image src="img/motivation.png" width="70%">
+					</td>
+				  </tr>
+				</table>
+                <ul class="text-justify lead" style="font-weight: 400;">
+                    <li>Typical visual model-based RL generates synthetic latent samples by rolling a learned transition model from latent representations, which enables sample-efficient value learning.</li>
+                    <li>However, when the image is perturbed with distracting factors, the encoder may extract representations distinct from the observed latent distribution $Z$.</li>
+                    <li>Latent transition model would be conditioned <font color="red">out-of-distributional latent representations</font>, leading to poor performance at test time.</li>
+                </ul>
+                <p class="text-justify lead">
+                    If the transition model predicts consistent representation regardless of perturbations, model-based RL exhibits superior sample efficiency and visual generalization over model-free RL!
                 </p>
             </div>
         </div>
-    </div>
-<br> -->
+<br>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Experimental Results
+                </h3>
+				<table style="width: 70%; border-collapse: collapse; margin: 0px auto; margin-bottom: 10px;">
+                    <tr>
+                        <td colspan="2" style="text-align: center;">
+                            <image src="img/envs.png" display="block" width="100%" height="100%" object-fit="fill">
+                        </td>
+                    </tr>
+                    <tr>
+				        <td colspan="2" style="text-align: center;">
+		                    <p>DM Control and Robosuite <b>training</b> tasks</p>
+    					</td>
+	    			</tr>
+                    <tr>
+                        <td style="text-align: center;">
+                            <image src="img/dmc_eval_types.png" display="block" width="100%" object-fit="fill">
+                        </td>
+                        <td style="text-align: center;">
+                            <image src="img/robosuite_eval_types.png" display="block" width="100%" object-fit="fill">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+		                    <p>Example <b>evaluation</b> tasks on DM Control</p>
+    					</td>
+				        <td style="text-align: center;">
+		                    <p>Example <b>evaluation</b> tasks on Robosuite</p>
+    					</td>
+	    			</tr>
+				</table>
+                <p class="text-justify lead">
+                    Inspired by <a class="lead" href="https://github.com/gemcollector/RL-ViGen.git">RL-ViGen</a>, we consider diverse visual generalization tasks during evaluation, including <b>15</b> tasks for DM Control and <b>4</b> tasks for Robosuite.
+                </p>
+                <table style="width: 70%; border-collapse: collapse; margin: 0px auto; margin-bottom: 10px;">
+                    <tr>
+                        <td style="text-align: center;">
+                            <image src="img/dmc_result.png" display="block" width="100%" height="100%" object-fit="fill">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+		                    <p><b>DM Control</b> training & evaluation results</p>
+    					</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+                            <image src="img/robosuite_result.png" display="block" width="100%" height="100%" object-fit="fill">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+		                    <p><b>Robosuite</b> training & evaluation results</p>
+    					</td>
+	    			</tr>
+				</table>
+                <p class="text-justify lead">
+                    Our method demonstrate strong performance on diverse visual RL tasks with superior sample efficiency and generalization performance.
+                </p>
+                <table style="width: 70%; border-collapse: collapse; margin: 0px auto; margin-bottom: 10px;">
+                    <tr>
+                        <td>
+                            <image src="img/eval_over_envs.png" width="100%">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+		                    <p>Full <b>evaluation</b> results</p>
+    					</td>
+	    			</tr>
+                    <tr>
+                        <td>
+                            <image src="img/eval_during_train_over_envs.png" width="100%">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+		                    <p>Full <b>training</b> results</p>
+    					</td>
+	    			</tr>
+				</table>
+            </div>
+        </div>
+<br>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="text-center" style="font-size: 32px; font-weight: bold;">
+                    Embedding Visualization
+                </h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 0px auto; margin-bottom: 10px;">
+                    <tr>
+                        <td>
+                            <iframe width="95%" height="400px" src="https://youtube.com/embed/YLoYlM-0Fag" frameborder="0" allowfullscreen></iframe>
+                        </td>
+                        <td>
+                            <iframe width="95%" height="400px" src="https://youtube.com/embed/7OWTuqN-27k" frameborder="0" allowfullscreen></iframe>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+                            <p><font color="red"><b>TD-MPC2</b></font> on cheetah-run</p>
+                        </td>
+                        <td style="text-align: center;">
+                            <p><font color="blue"><b>ViGMO</b></font> on cheetah-run</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <iframe width="95%" height="400px" src="https://youtube.com/embed/0klSx4Qgbzg" frameborder="0" allowfullscreen></iframe>
+                        </td>
+                        <td>
+                            <iframe width="95%" height="400px" src="https://youtube.com/embed/sEh4Vhg5n40" frameborder="0" allowfullscreen></iframe>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+                            <p><font color="red"><b>TD-MPC2</b></font> on cartpole-swingup</p>
+                        </td>
+                        <td style="text-align: center;">
+                            <p><font color="blue"><b>ViGMO</b></font> on cartpole-swingup</p>
+                        </td>
+                    </tr>
+                </table>
+                <p class="text-justify lead">
+                    To validate our motivation, we visualize the latent representation predictions of <font color="red">TD-MPC2</font>, our backbone model-based RL, and <font color="blue">ViGMO</font> over the horizon.
+                    While <font color="red">TD-MPC2</font> struggles to predict the consistent representations over different perturbations, <font color="blue">ViGMO</font> demonstrates a consistent prediciton ability over the horizon regardless of perturbations (representations from perturbed images (&times; and &diams;) track the representations extracted from original images (&star;)).
+                </p>
+            </div>
+        </div>
+<br>
 </body>
 </html>
