@@ -180,12 +180,27 @@
 
             <tr bgcolor="#ffffd0">
               <td style="padding:20px;width:25%;vertical-align:middle">
-                <div class="one">
-                  <img src='assets/img/offline_pre.png' width="100%">
+                <div class="one" onmouseout="rhqp_stop()" onmouseover="rhqp_start()">
+                  <div class="two" id='psqn_image'><video width="100%" height="100%" object-fit="cover" muted autoplay loop>
+                    <source src="assets/img/psqn.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                  <img src='assets/img/psqn.jpg' width="100%" height="100%" object-fit="cover">
                 </div>
+                <script type="text/javascript">
+                  function psqn_start() {
+                    document.getElementById('psqn_image').style.opacity = "1";
+                  }
+
+                  function psqn_stop() {
+                    document.getElementById('psqn_image').style.opacity = "0";
+                  }
+                  psqn_stop()
+                </script>
               </td>
               <td style="padding:20px;width:75%;vertical-align:middle">
-                <a href="http://mngupark.github.io/offline_pre">
+                <a href="http://sites.google.com/view/psqn">
                   <span class="papertitle" id="offline_pre">Pretraining a Shared Q-Network for Data-Efficient Offline Reinforcement Learning</span>
                 </a>
                 <br>
@@ -200,7 +215,7 @@
                 <a href="http://sites.google.com/view/psqn">site</a>
                 <p>
                   Pretraining a shared $Q$-network with a supervised regression task significantly improves the performance of existing offline RL methods,
-                  demonstrating an average improvement of <font color="red"><strong>135.94%</strong></font> on the D4RL benchmark.
+                  demonstrating a strong data efficiency only with <font color="red"><strong>10%</strong></font> of a dataset on the D4RL benchmark.
                 </p>
               </td>
             </tr>
